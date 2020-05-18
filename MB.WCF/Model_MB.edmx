@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="iIdCategoria" />
+          </Key>
+          <Property Name="iIdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vDetalle" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FORMA_PAGO">
+          <Key>
+            <PropertyRef Name="iIdFormaPago" />
+          </Key>
+          <Property Name="iIdFormaPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vDetalleFP" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="GASTOS">
+          <Key>
+            <PropertyRef Name="iIdGastos" />
+          </Key>
+          <Property Name="iIdGastos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdCategoria" Type="int" Nullable="false" />
+          <Property Name="dMonto" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="iIdMoneda" Type="int" />
+          <Property Name="vDetalle" Type="varchar" MaxLength="125" />
+          <Property Name="iIdFormaPago" Type="int" />
+        </EntityType>
+        <EntityType Name="HIS_CAPITAL_FINANCIERO">
+          <Key>
+            <PropertyRef Name="iIdCapitalF" />
+          </Key>
+          <Property Name="iIdCapitalF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dMontoCF" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="dFechaDeCorte" Type="date" />
+          <Property Name="bEstado" Type="bit" />
+        </EntityType>
+        <EntityType Name="HIS_TIPO_CAMBIO">
+          <Key>
+            <PropertyRef Name="iIdTipoCambio" />
+          </Key>
+          <Property Name="iIdTipoCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vMonto" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="iIdMoneda" Type="int" />
+        </EntityType>
+        <EntityType Name="INGRESOS">
+          <Key>
+            <PropertyRef Name="iIdIngreso" />
+          </Key>
+          <Property Name="iIdIngreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dMonto" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="dFecha" Type="date" Nullable="false" />
+          <Property Name="vConcepto" Type="varchar" MaxLength="124" />
+          <Property Name="iMoneda" Type="int" />
+        </EntityType>
+        <EntityType Name="MONEDA">
+          <Key>
+            <PropertyRef Name="iIdMoneda" />
+          </Key>
+          <Property Name="iIdMoneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vCodMoneda" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="vMoneda" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAGOS">
+          <Key>
+            <PropertyRef Name="iIdPagos" />
+          </Key>
+          <Property Name="iIdPagos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vConcepto" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="dFechaVencePago" Type="date" />
+          <Property Name="dMonto" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="bEstado" Type="bit" />
+          <Property Name="iIdCategoria" Type="int" />
+        </EntityType>
+        <Association Name="FK__INGRESOS__iMoned__29572725">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="INGRESOS">
+              <PropertyRef Name="iMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDCATEGORIS_PAGOS">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+          <End Role="PAGOS" Type="Self.PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="PAGOS">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDFORMAP_GASTOS">
+          <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="0..1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORMA_PAGO">
+              <PropertyRef Name="iIdFormaPago" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMoneda_tipoCambio">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="HIS_TIPO_CAMBIO" Type="Self.HIS_TIPO_CAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FR_IDMONEDA_GASTOS">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RK_IDCATEGORIA_GASTOS">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MB_ModelStoreContainer">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GASTOS" EntityType="Self.GASTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="Self.HIS_CAPITAL_FINANCIERO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HIS_TIPO_CAMBIO" EntityType="Self.HIS_TIPO_CAMBIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INGRESOS" EntityType="Self.INGRESOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MONEDA" EntityType="Self.MONEDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAGOS" EntityType="Self.PAGOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__INGRESOS__iMoned__29572725" Association="Self.FK__INGRESOS__iMoned__29572725">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDCATEGORIS_PAGOS" Association="Self.FK_IDCATEGORIS_PAGOS">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PAGOS" EntitySet="PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDFORMAP_GASTOS" Association="Self.FK_IDFORMAP_GASTOS">
+            <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMoneda_tipoCambio" Association="Self.FK_idMoneda_tipoCambio">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+          </AssociationSet>
+          <AssociationSet Name="FR_IDMONEDA_GASTOS" Association="Self.FR_IDMONEDA_GASTOS">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="RK_IDCATEGORIA_GASTOS" Association="Self.RK_IDCATEGORIA_GASTOS">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="iIdCategoria" />
+          </Key>
+          <Property Name="iIdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vDetalle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PAGOS" Relationship="Self.FK_IDCATEGORIS_PAGOS" FromRole="CATEGORIA" ToRole="PAGOS" />
+          <NavigationProperty Name="GASTOS" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="CATEGORIA" ToRole="GASTOS" />
+        </EntityType>
+        <EntityType Name="FORMA_PAGO">
+          <Key>
+            <PropertyRef Name="iIdFormaPago" />
+          </Key>
+          <Property Name="iIdFormaPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vDetalleFP" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GASTOS" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="FORMA_PAGO" ToRole="GASTOS" />
+        </EntityType>
+        <EntityType Name="GASTOS">
+          <Key>
+            <PropertyRef Name="iIdGastos" />
+          </Key>
+          <Property Name="iIdGastos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="dMonto" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="iIdMoneda" Type="Int32" />
+          <Property Name="vDetalle" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="iIdFormaPago" Type="Int32" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATEGORIA" />
+          <NavigationProperty Name="FORMA_PAGO" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="GASTOS" ToRole="FORMA_PAGO" />
+          <NavigationProperty Name="MONEDA" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="GASTOS" ToRole="MONEDA" />
+        </EntityType>
+        <EntityType Name="HIS_TIPO_CAMBIO">
+          <Key>
+            <PropertyRef Name="iIdTipoCambio" />
+          </Key>
+          <Property Name="iIdTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vMonto" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="iIdMoneda" Type="Int32" />
+          <NavigationProperty Name="MONEDA" Relationship="Self.FK_idMoneda_tipoCambio" FromRole="HIS_TIPO_CAMBIO" ToRole="MONEDA" />
+        </EntityType>
+        <EntityType Name="INGRESOS">
+          <Key>
+            <PropertyRef Name="iIdIngreso" />
+          </Key>
+          <Property Name="iIdIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dMonto" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="dFecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="vConcepto" Type="String" MaxLength="124" FixedLength="false" Unicode="false" />
+          <Property Name="iMoneda" Type="Int32" />
+          <NavigationProperty Name="MONEDA" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="INGRESOS" ToRole="MONEDA" />
+        </EntityType>
+        <EntityType Name="MONEDA">
+          <Key>
+            <PropertyRef Name="iIdMoneda" />
+          </Key>
+          <Property Name="iIdMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vCodMoneda" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vMoneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GASTOS" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="MONEDA" ToRole="GASTOS" />
+          <NavigationProperty Name="HIS_TIPO_CAMBIO" Relationship="Self.FK_idMoneda_tipoCambio" FromRole="MONEDA" ToRole="HIS_TIPO_CAMBIO" />
+          <NavigationProperty Name="INGRESOS" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="MONEDA" ToRole="INGRESOS" />
+        </EntityType>
+        <EntityType Name="PAGOS">
+          <Key>
+            <PropertyRef Name="iIdPagos" />
+          </Key>
+          <Property Name="iIdPagos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vConcepto" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFechaVencePago" Type="DateTime" Precision="0" />
+          <Property Name="dMonto" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="bEstado" Type="Boolean" />
+          <Property Name="iIdCategoria" Type="Int32" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_IDCATEGORIS_PAGOS" FromRole="PAGOS" ToRole="CATEGORIA" />
+        </EntityType>
+        <Association Name="FK_IDCATEGORIS_PAGOS">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+          <End Role="PAGOS" Type="Self.PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="PAGOS">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RK_IDCATEGORIA_GASTOS">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDFORMAP_GASTOS">
+          <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="0..1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FORMA_PAGO">
+              <PropertyRef Name="iIdFormaPago" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FR_IDMONEDA_GASTOS">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMoneda_tipoCambio">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="HIS_TIPO_CAMBIO" Type="Self.HIS_TIPO_CAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INGRESOS__iMoned__29572725">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="iIdMoneda" />
+            </Principal>
+            <Dependent Role="INGRESOS">
+              <PropertyRef Name="iMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" />
+          <EntitySet Name="GASTOS" EntityType="Self.GASTOS" />
+          <EntitySet Name="HIS_TIPO_CAMBIO" EntityType="Self.HIS_TIPO_CAMBIO" />
+          <EntitySet Name="INGRESOS" EntityType="Self.INGRESOS" />
+          <EntitySet Name="MONEDA" EntityType="Self.MONEDA" />
+          <EntitySet Name="PAGOS" EntityType="Self.PAGOS" />
+          <AssociationSet Name="FK_IDCATEGORIS_PAGOS" Association="Self.FK_IDCATEGORIS_PAGOS">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PAGOS" EntitySet="PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="RK_IDCATEGORIA_GASTOS" Association="Self.RK_IDCATEGORIA_GASTOS">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDFORMAP_GASTOS" Association="Self.FK_IDFORMAP_GASTOS">
+            <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FR_IDMONEDA_GASTOS" Association="Self.FR_IDMONEDA_GASTOS">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMoneda_tipoCambio" Association="Self.FK_idMoneda_tipoCambio">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INGRESOS__iMoned__29572725" Association="Self.FK__INGRESOS__iMoned__29572725">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
+          </AssociationSet>
+          <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" />
+        </EntityContainer>
+        <EntityType Name="HIS_CAPITAL_FINANCIERO">
+          <Key>
+            <PropertyRef Name="iIdCapitalF" />
+          </Key>
+          <Property Name="iIdCapitalF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dMontoCF" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="dFechaDeCorte" Type="DateTime" Precision="0" />
+          <Property Name="bEstado" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MB_ModelStoreContainer" CdmEntityContainer="MBEntities">
+          <EntitySetMapping Name="CATEGORIA">
+            <EntityTypeMapping TypeName="MB_Model.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
+                <ScalarProperty Name="vDetalle" ColumnName="vDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FORMA_PAGO">
+            <EntityTypeMapping TypeName="MB_Model.FORMA_PAGO">
+              <MappingFragment StoreEntitySet="FORMA_PAGO">
+                <ScalarProperty Name="iIdFormaPago" ColumnName="iIdFormaPago" />
+                <ScalarProperty Name="vDetalleFP" ColumnName="vDetalleFP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GASTOS">
+            <EntityTypeMapping TypeName="MB_Model.GASTOS">
+              <MappingFragment StoreEntitySet="GASTOS">
+                <ScalarProperty Name="iIdGastos" ColumnName="iIdGastos" />
+                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
+                <ScalarProperty Name="dMonto" ColumnName="dMonto" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="iIdMoneda" ColumnName="iIdMoneda" />
+                <ScalarProperty Name="vDetalle" ColumnName="vDetalle" />
+                <ScalarProperty Name="iIdFormaPago" ColumnName="iIdFormaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HIS_TIPO_CAMBIO">
+            <EntityTypeMapping TypeName="MB_Model.HIS_TIPO_CAMBIO">
+              <MappingFragment StoreEntitySet="HIS_TIPO_CAMBIO">
+                <ScalarProperty Name="iIdTipoCambio" ColumnName="iIdTipoCambio" />
+                <ScalarProperty Name="vMonto" ColumnName="vMonto" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="iIdMoneda" ColumnName="iIdMoneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGRESOS">
+            <EntityTypeMapping TypeName="MB_Model.INGRESOS">
+              <MappingFragment StoreEntitySet="INGRESOS">
+                <ScalarProperty Name="iIdIngreso" ColumnName="iIdIngreso" />
+                <ScalarProperty Name="dMonto" ColumnName="dMonto" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="vConcepto" ColumnName="vConcepto" />
+                <ScalarProperty Name="iMoneda" ColumnName="iMoneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MONEDA">
+            <EntityTypeMapping TypeName="MB_Model.MONEDA">
+              <MappingFragment StoreEntitySet="MONEDA">
+                <ScalarProperty Name="iIdMoneda" ColumnName="iIdMoneda" />
+                <ScalarProperty Name="vCodMoneda" ColumnName="vCodMoneda" />
+                <ScalarProperty Name="vMoneda" ColumnName="vMoneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAGOS">
+            <EntityTypeMapping TypeName="MB_Model.PAGOS">
+              <MappingFragment StoreEntitySet="PAGOS">
+                <ScalarProperty Name="iIdPagos" ColumnName="iIdPagos" />
+                <ScalarProperty Name="vConcepto" ColumnName="vConcepto" />
+                <ScalarProperty Name="dFechaVencePago" ColumnName="dFechaVencePago" />
+                <ScalarProperty Name="dMonto" ColumnName="dMonto" />
+                <ScalarProperty Name="bEstado" ColumnName="bEstado" />
+                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HIS_CAPITAL_FINANCIERO">
+            <EntityTypeMapping TypeName="MB_Model.HIS_CAPITAL_FINANCIERO">
+              <MappingFragment StoreEntitySet="HIS_CAPITAL_FINANCIERO">
+                <ScalarProperty Name="bEstado" ColumnName="bEstado" />
+                <ScalarProperty Name="dFechaDeCorte" ColumnName="dFechaDeCorte" />
+                <ScalarProperty Name="dMontoCF" ColumnName="dMontoCF" />
+                <ScalarProperty Name="iIdCapitalF" ColumnName="iIdCapitalF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

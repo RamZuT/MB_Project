@@ -1,0 +1,89 @@
+﻿@model MB.WEB.Models.IngresosRegistrar
+
+@{
+    ViewBag.Title = "Crear ingresos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div>
+        <h2>Ingresos</h2>
+    </div>
+</div>  
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <!--h4>Registrar</!--h4-->
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group" id="izquierda">
+        <table>
+            <tr>
+                <td>
+                    <label>Capital inicial: </label>
+                </td>
+                <td>
+                    <label>Celda de capital inicial</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Capital actual: </label>
+                </td>
+                <td>
+                    <label>Celda de capital actual</label>
+                </td>
+            </tr>
+        </table>
+     </div>  
+    Ingresos por cuenta
+    <div class="form-group">
+        @Html.LabelFor(model => model.dFecha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dFecha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dFecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.iMoneda, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.iMoneda, ViewBag.Moneda as SelectList, "Seleccione la moneda", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.iMoneda, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dMonto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dMonto, new { htmlAttributes = new { Type = "text", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dMonto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.vConcepto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.vConcepto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.vConcepto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Ingresar" class="btn btn-default" />
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Regresar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

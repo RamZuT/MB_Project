@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c268c8ecc4774e63a44f5fd7e52fd4e9" Name="Diagram1">
+        <EntityTypeShape EntityType="MB_Model.CATEGORIA" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.FORMA_PAGO" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.GASTOS" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.HIS_TIPO_CAMBIO" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.INGRESOS" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.MONEDA" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MB_Model.PAGOS" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MB_Model.FK_IDCATEGORIS_PAGOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MB_Model.RK_IDCATEGORIA_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MB_Model.FK_IDFORMAP_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MB_Model.FR_IDMONEDA_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MB_Model.FK_idMoneda_tipoCambio" ManuallyRouted="false" />
+        <AssociationConnector Association="MB_Model.FK__INGRESOS__iMoned__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
