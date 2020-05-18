@@ -114,6 +114,7 @@
     <Compile Include="Logica\Acciones\AccionCategorias.cs" />
     <Compile Include="Logica\Acciones\AccionIngresos.cs" />
     <Compile Include="Logica\Acciones\AccionMonedas.cs" />
+    <Compile Include="Logica\Acciones\AccionPrueba.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionIngresos.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioMonedas.cs" />
