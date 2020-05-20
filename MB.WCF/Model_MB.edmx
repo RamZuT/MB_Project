@@ -39,6 +39,8 @@
           <Property Name="dMontoCF" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="dFechaDeCorte" Type="date" />
           <Property Name="bEstado" Type="bit" />
+          <Property Name="iIdIngreso" Type="int" />
+          <Property Name="iIdGastos" Type="int" />
         </EntityType>
         <EntityType Name="HIS_TIPO_CAMBIO">
           <Key>
@@ -78,6 +80,30 @@
           <Property Name="bEstado" Type="bit" />
           <Property Name="iIdCategoria" Type="int" />
         </EntityType>
+        <Association Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2">
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="0..1" />
+          <End Role="HIS_CAPITAL_FINANCIERO" Type="Self.HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="HIS_CAPITAL_FINANCIERO">
+              <PropertyRef Name="iIdGastos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HIS_CAPIT__iIdIn__5AEE82B9">
+          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="0..1" />
+          <End Role="HIS_CAPITAL_FINANCIERO" Type="Self.HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGRESOS">
+              <PropertyRef Name="iIdIngreso" />
+            </Principal>
+            <Dependent Role="HIS_CAPITAL_FINANCIERO">
+              <PropertyRef Name="iIdIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__INGRESOS__iMoned__29572725">
           <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
           <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
@@ -159,6 +185,14 @@
           <EntitySet Name="INGRESOS" EntityType="Self.INGRESOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MONEDA" EntityType="Self.MONEDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAGOS" EntityType="Self.PAGOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2" Association="Self.FK__HIS_CAPIT__iIdGa__5BE2A6F2">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HIS_CAPIT__iIdIn__5AEE82B9" Association="Self.FK__HIS_CAPIT__iIdIn__5AEE82B9">
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
+            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
+          </AssociationSet>
           <AssociationSet Name="FK__INGRESOS__iMoned__29572725" Association="Self.FK__INGRESOS__iMoned__29572725">
             <End Role="MONEDA" EntitySet="MONEDA" />
             <End Role="INGRESOS" EntitySet="INGRESOS" />
@@ -219,6 +253,7 @@
           <NavigationProperty Name="CATEGORIA" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATEGORIA" />
           <NavigationProperty Name="FORMA_PAGO" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="GASTOS" ToRole="FORMA_PAGO" />
           <NavigationProperty Name="MONEDA" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="GASTOS" ToRole="MONEDA" />
+          <NavigationProperty Name="HIS_CAPITAL_FINANCIERO" Relationship="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2" FromRole="GASTOS" ToRole="HIS_CAPITAL_FINANCIERO" />
         </EntityType>
         <EntityType Name="HIS_TIPO_CAMBIO">
           <Key>
@@ -240,6 +275,7 @@
           <Property Name="vConcepto" Type="String" MaxLength="124" FixedLength="false" Unicode="false" />
           <Property Name="iMoneda" Type="Int32" />
           <NavigationProperty Name="MONEDA" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="INGRESOS" ToRole="MONEDA" />
+          <NavigationProperty Name="HIS_CAPITAL_FINANCIERO" Relationship="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9" FromRole="INGRESOS" ToRole="HIS_CAPITAL_FINANCIERO" />
         </EntityType>
         <EntityType Name="MONEDA">
           <Key>
@@ -369,6 +405,14 @@
             <End Role="INGRESOS" EntitySet="INGRESOS" />
           </AssociationSet>
           <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" />
+          <AssociationSet Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2" Association="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HIS_CAPIT__iIdIn__5AEE82B9" Association="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9">
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
+            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HIS_CAPITAL_FINANCIERO">
           <Key>
@@ -378,7 +422,35 @@
           <Property Name="dMontoCF" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="dFechaDeCorte" Type="DateTime" Precision="0" />
           <Property Name="bEstado" Type="Boolean" />
+          <Property Name="iIdIngreso" Type="Int32" />
+          <Property Name="iIdGastos" Type="Int32" />
+          <NavigationProperty Name="GASTOS" Relationship="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2" FromRole="HIS_CAPITAL_FINANCIERO" ToRole="GASTOS" />
+          <NavigationProperty Name="INGRESOS" Relationship="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9" FromRole="HIS_CAPITAL_FINANCIERO" ToRole="INGRESOS" />
         </EntityType>
+        <Association Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2">
+          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="0..1" />
+          <End Type="MB_Model.HIS_CAPITAL_FINANCIERO" Role="HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="HIS_CAPITAL_FINANCIERO">
+              <PropertyRef Name="iIdGastos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HIS_CAPIT__iIdIn__5AEE82B9">
+          <End Type="MB_Model.INGRESOS" Role="INGRESOS" Multiplicity="0..1" />
+          <End Type="MB_Model.HIS_CAPITAL_FINANCIERO" Role="HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGRESOS">
+              <PropertyRef Name="iIdIngreso" />
+            </Principal>
+            <Dependent Role="HIS_CAPITAL_FINANCIERO">
+              <PropertyRef Name="iIdIngreso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -459,6 +531,8 @@
           <EntitySetMapping Name="HIS_CAPITAL_FINANCIERO">
             <EntityTypeMapping TypeName="MB_Model.HIS_CAPITAL_FINANCIERO">
               <MappingFragment StoreEntitySet="HIS_CAPITAL_FINANCIERO">
+                <ScalarProperty Name="iIdGastos" ColumnName="iIdGastos" />
+                <ScalarProperty Name="iIdIngreso" ColumnName="iIdIngreso" />
                 <ScalarProperty Name="bEstado" ColumnName="bEstado" />
                 <ScalarProperty Name="dFechaDeCorte" ColumnName="dFechaDeCorte" />
                 <ScalarProperty Name="dMontoCF" ColumnName="dMontoCF" />
