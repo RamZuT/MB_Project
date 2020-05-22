@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MB.WCF.DataContract
 {
-    public class CDHisCapitalFinanciero
+    public class DCHisCapitalFinanciero
     {
         [DataMember]
         public int iIdCapitalF { get; set; }
@@ -16,5 +16,9 @@ namespace MB.WCF.DataContract
         public DateTime dFechaDeCorte { get; set; }
         [DataMember]
         public bool bEstado { get; set; }
+        [DataMember]
+        public int iIdIngreso { get; set; }
+        [DataMember]
+        public int iIdGastos { get; set; }
     }
 }

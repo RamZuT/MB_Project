@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logica\Servicios\ServicioCategorias.svc" />
+    <Content Include="Logica\Servicios\ServicioHistorialCapital.svc" />
     <Content Include="Logica\Servicios\ServicioIngresos.svc" />
     <Content Include="Logica\Servicios\ServicioMonedas.svc" />
     <Content Include="Model_MB.Context.tt">
@@ -88,7 +89,7 @@
     <Compile Include="CATEGORIA.cs">
       <DependentUpon>Model_MB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContract\CDHisCapitalFinanciero.cs" />
+    <Compile Include="DataContract\DCHisCapitalFinanciero.cs" />
     <Compile Include="DataContract\DCCategorias.cs" />
     <Compile Include="DataContract\DCFormaPago.cs" />
     <Compile Include="DataContract\DCGastos.cs" />
@@ -112,17 +113,23 @@
       <DependentUpon>Model_MB.tt</DependentUpon>
     </Compile>
     <Compile Include="Logica\Acciones\AccionCategorias.cs" />
+    <Compile Include="Logica\Acciones\AccionHistorialCapital.cs" />
     <Compile Include="Logica\Acciones\AccionIngresos.cs" />
     <Compile Include="Logica\Acciones\AccionMonedas.cs" />
+    <Compile Include="Logica\Especificaciones\EspecificacionHistCapital.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionIngresos.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioIngresos.cs" />
+    <Compile Include="Logica\Interfaces\IServicioHistorialCapital.cs" />
     <Compile Include="Logica\Servicios\ServicioCategorias.svc.cs">
       <DependentUpon>ServicioCategorias.svc</DependentUpon>
     </Compile>
     <Compile Include="Logica\Interfaces\IServicioCategorias.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionCategorias.cs" />
+    <Compile Include="Logica\Servicios\ServicioHistorialCapital.svc.cs">
+      <DependentUpon>ServicioHistorialCapital.svc</DependentUpon>
+    </Compile>
     <Compile Include="Logica\Servicios\ServicioIngresos.svc.cs">
       <DependentUpon>ServicioIngresos.svc</DependentUpon>
     </Compile>
