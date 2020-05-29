@@ -10,13 +10,14 @@ namespace MB.WEB.Controllers
 {
     public class IngresosController : Controller
     {
-        ServicioMonedas.ServicioMonedasClient ur = new ServicioMonedas.ServicioMonedasClient();
+        ServicioMonedas.ServicioMonedasClient urServMoneda = new ServicioMonedas.ServicioMonedasClient();
         ServicioIngresos.ServicioIngresosClient urServIngreso = new ServicioIngresos.ServicioIngresosClient();
+        ServicioHistorialCapital.ServicioHistorialCapitalClient urServIngreCapital= new ServicioHistorialCapital.ServicioHistorialCapitalClient();
         // GET: Ingresos
         public ActionResult crearIngresos()
         {
             List<SelectListItem> Monedas = new List<SelectListItem>();
-            var listaMonedas = new SelectList(ur.listaMonedas(), "iIdMoneda","vMoneda" );
+            var listaMonedas = new SelectList(urServMoneda.listaMonedas(), "iIdMoneda","vMoneda" );
             ViewBag.Moneda = listaMonedas;
             return View();
         }
@@ -24,8 +25,8 @@ namespace MB.WEB.Controllers
         [HttpPost]
         public ActionResult crearIngresos(IngresosRegistrar ingreso)
         {
-            //Ingresos dcingresoR = new Ingresos();
             WCF.DataContract.DCIngresos dcingresoR = new WCF.DataContract.DCIngresos();
+            WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
             if (ModelState.IsValid)
             {
                 dcingresoR.dMonto = ingreso.dMonto;
@@ -33,6 +34,10 @@ namespace MB.WEB.Controllers
                 dcingresoR.vConcepto = ingreso.vConcepto;
                 dcingresoR.iMoneda = ingreso.iMoneda;
                 urServIngreso.registroIngresos(dcingresoR);
+                ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
+                //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
+                urServIngreCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+
             }
             return RedirectToAction("crearIngresos");
         }

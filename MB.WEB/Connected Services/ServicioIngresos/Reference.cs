@@ -20,6 +20,12 @@ namespace MB.WEB.ServicioIngresos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/registroIngresos", ReplyAction="http://tempuri.org/IServicioIngresos/registroIngresosResponse")]
         System.Threading.Tasks.Task registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/obtenerUltimoIngreso", ReplyAction="http://tempuri.org/IServicioIngresos/obtenerUltimoIngresoResponse")]
+        MB.WCF.DataContract.DCIngresos obtenerUltimoIngreso();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/obtenerUltimoIngreso", ReplyAction="http://tempuri.org/IServicioIngresos/obtenerUltimoIngresoResponse")]
+        System.Threading.Tasks.Task<MB.WCF.DataContract.DCIngresos> obtenerUltimoIngresoAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace MB.WEB.ServicioIngresos {
         
         public System.Threading.Tasks.Task registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos) {
             return base.Channel.registroIngresosAsync(dcIngresos);
+        }
+        
+        public MB.WCF.DataContract.DCIngresos obtenerUltimoIngreso() {
+            return base.Channel.obtenerUltimoIngreso();
+        }
+        
+        public System.Threading.Tasks.Task<MB.WCF.DataContract.DCIngresos> obtenerUltimoIngresoAsync() {
+            return base.Channel.obtenerUltimoIngresoAsync();
         }
     }
 }

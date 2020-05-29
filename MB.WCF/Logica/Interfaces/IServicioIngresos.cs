@@ -14,5 +14,7 @@ namespace MB.WCF.Logica.Servicios
     {
         [OperationContract]
         void registroIngresos(DCIngresos dcIngresos);
+        [OperationContract]
+        DCIngresos obtenerUltimoIngreso();
     }
 }

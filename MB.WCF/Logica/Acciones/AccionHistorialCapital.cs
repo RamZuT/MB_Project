@@ -8,23 +8,54 @@ namespace MB.WCF.Logica.Acciones
 {
     public class AccionHistorialCapital
     {
-        public void registroHistCapital(DCHisCapitalFinanciero dcHisCapital)
+        public void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto)
         {
-                    /*id se auto genera
-                     * Monto se calcula
-                     fecha de corte = fecha del movimiento viene desde la vista
-                     Estato para identificar si es suma o resta viene desde vista
-                     id de ingreso o gasto viene desde vista*/
+            HIS_CAPITAL_FINANCIERO capitalActual = new HIS_CAPITAL_FINANCIERO();
+            using (var context = new MBEntities())
+            {
+                if (estado == true)
+                     {
+                    capitalActual.dMontoCF = this.capitalActual().dMontoCF + monto;
+                    capitalActual.dFechaDeCorte = fechaCorte;
+                    capitalActual.bEstado = estado;
+                    capitalActual.iIdIngreso = ingresoGasto;
+                    capitalActual.iIdGastos = ' ';
+                    context.HIS_CAPITAL_FINANCIERO.Add(capitalActual);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    capitalActual.dMontoCF = this.capitalActual().dMontoCF - monto;
+                    capitalActual.dFechaDeCorte = fechaCorte;
+                    capitalActual.bEstado = estado;
+                    capitalActual.iIdIngreso = ingresoGasto;
+                    capitalActual.iIdGastos = ' ';
+                    context.HIS_CAPITAL_FINANCIERO.Add(capitalActual);
+                    context.SaveChanges();
+                }   
+            }
         }
 
-        public DCHisCapitalFinanciero capitalActual()
+        public HIS_CAPITAL_FINANCIERO capitalActual()
         {
-            return null;
+            HIS_CAPITAL_FINANCIERO DCCapitalActual = new HIS_CAPITAL_FINANCIERO();
+            using (var context = new MBEntities())
+            {
+                DCCapitalActual = (from HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO orderby HIS_CAPITAL_FINANCIERO.iIdCapitalF
+                                   descending select HIS_CAPITAL_FINANCIERO).FirstOrDefault();
+            }
+            return DCCapitalActual;
         }
 
         public DCHisCapitalFinanciero capitalInicial()
         {
             return null;
+        }
+
+        public decimal calcularIngresoOGasto()
+        {
+            decimal num = 10;
+            return num;
         }
     }
 }

@@ -13,6 +13,6 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioHistorialCapital
     {
         [OperationContract]
-        void registroHistCapital(DCHisCapitalFinanciero dcHistCapital);
+        void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
     }
 }

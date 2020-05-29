@@ -13,6 +13,6 @@ namespace MB.WCF.Logica.Especificaciones
         /// Funcioón que inserta cada cambio relacionado a la suma del total del capital
         /// </summary>
         /// <param name="dcHisCapital"> Objeto que almacena lo relacionado al capital</param>
-        public void registroHistCapital(DCHisCapitalFinanciero dcHisCapital) => new AccionHistorialCapital().registroHistCapital(dcHisCapital);
+        public void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) => new AccionHistorialCapital().registroHistCapital(fechaCorte, estado, ingresoGasto, monto);
     }
 }

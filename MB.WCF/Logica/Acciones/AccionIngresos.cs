@@ -22,5 +22,23 @@ namespace MB.WCF.Logica.Acciones
                 context.SaveChanges();
             }
         }
+
+        public DCIngresos obtenerUltimoIngreso()
+        {
+            DCIngresos DCIngresos = new DCIngresos();
+            using (var context = new MBEntities())
+            {
+                var Ingresos = (from INGRESOS in context.INGRESOS
+                                   orderby INGRESOS.iIdIngreso
+                                   descending
+                                   select INGRESOS).FirstOrDefault();
+                DCIngresos.iIdIngresos = Ingresos.iIdIngreso;
+                DCIngresos.dMonto = Ingresos.dMonto;
+                DCIngresos.dFecha = Ingresos.dFecha;
+                DCIngresos.vConcepto = Ingresos.vConcepto;
+                DCIngresos.iMoneda = Convert.ToInt32(Ingresos.iMoneda);
+            }
+            return DCIngresos;
+        }
     }
 }

@@ -14,5 +14,12 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <param name="dcIngresos">Modelo ingresos</param>
         public void registroIngresos(DCIngresos dcIngresos) => new AccionIngresos().registroIngresos(dcIngresos);
+
+        /// <summary>
+        /// Función que obtiene el objeto del último ingreso registrado
+        /// </summary>
+        /// <param></param>
+        /// <returns>Retorna un objeto de tipo DCIngreso</returns>
+        public DCIngresos obtenerUltimoIngreso() => new AccionIngresos().obtenerUltimoIngreso();
     }
 }

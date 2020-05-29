@@ -14,5 +14,6 @@ namespace MB.WCF.Logica.Servicios
     public class ServicioIngresos : IServicioIngresos
     {
         public void registroIngresos(DCIngresos dcIngersos) => new EspecificacionIngresos().registroIngresos(dcIngersos);
+        public DCIngresos obtenerUltimoIngreso() => new EspecificacionIngresos().obtenerUltimoIngreso();
     }
 }

@@ -13,6 +13,6 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioHistorialCapital.svc or ServicioHistorialCapital.svc.cs at the Solution Explorer and start debugging.
     public class ServicioHistorialCapital : IServicioHistorialCapital
     {
-        public void registroHistCapital(DCHisCapitalFinanciero dcHisCapital) => new EspecificacionHistCapital().registroHistCapital(dcHisCapital);
+        public void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) => new EspecificacionHistCapital().registroHistCapital(fechaCorte, estado, ingresoGasto, monto);
     }
 }
