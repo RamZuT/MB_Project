@@ -237,6 +237,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServicioHistorialCapital\ServicioHistorialCapital2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServicioIngresos\ServicioIngresos.disco" />
     <None Include="Connected Services\ServicioIngresos\configuration91.svcinfo" />
     <None Include="Connected Services\ServicioIngresos\configuration.svcinfo" />
@@ -291,6 +294,7 @@
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCCategorias.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCMoneda.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCIngresos.datasource" />
+    <Content Include="Properties\DataSources\MB.WCF.DataContract.DCHisCapitalFinanciero.datasource" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -25,6 +25,7 @@
     <MetadataFile FileName="ServicioHistorialCapital.xsd" MetadataType="Schema" ID="ce348e3a-c9f9-420e-bff5-0c7d0795205f" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHistorialCapital.svc?xsd=xsd0" />
     <MetadataFile FileName="ServicioHistorialCapital1.xsd" MetadataType="Schema" ID="589a6842-6eb4-4216-a1b2-78d05d399118" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHistorialCapital.svc?xsd=xsd1" />
     <MetadataFile FileName="ServicioHistorialCapital.disco" MetadataType="Disco" ID="ee0e85e4-3597-497e-95b7-7453ffbbf0fc" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHistorialCapital.svc?disco" />
+    <MetadataFile FileName="ServicioHistorialCapital2.xsd" MetadataType="Schema" ID="a9dace50-84e9-494a-aee9-021c8e54119d" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHistorialCapital.svc?xsd=xsd2" />
     <MetadataFile FileName="ServicioHistorialCapital.wsdl" MetadataType="Wsdl" ID="cf0cb164-d914-4e8c-a3f5-19f086b809a2" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHistorialCapital.svc?wsdl" />
   </Metadata>
   <Extensions>

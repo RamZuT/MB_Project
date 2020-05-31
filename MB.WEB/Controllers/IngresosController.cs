@@ -16,10 +16,15 @@ namespace MB.WEB.Controllers
         // GET: Ingresos
         public ActionResult crearIngresos()
         {
+            //Crea la lista de monedas y las muestra en el dropdown de la vista
             List<SelectListItem> Monedas = new List<SelectListItem>();
             var listaMonedas = new SelectList(urServMoneda.listaMonedas(), "iIdMoneda","vMoneda" );
+            //Crea los montos de capital y los muestra en la vista
+            var MontoActual = urServIngreCapital.capitalActual();
+            MB.WEB.Models.IngresosRegistrar ingresoR = new IngresosRegistrar();
+            ingresoR.dMontoCF = MontoActual.dMontoCF;
             ViewBag.Moneda = listaMonedas;
-            return View();
+            return View(ingresoR);
         }
 
         [HttpPost]

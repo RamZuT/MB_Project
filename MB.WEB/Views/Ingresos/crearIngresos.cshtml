@@ -24,18 +24,28 @@
         <table>
             <tr>
                 <td>
-                    <label>Capital inicial: </label>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dMontoCF_Inicial, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Display("dMontoCF_Inicial")
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <label>Celda de capital inicial</label>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dMontoCF, htmlAttributes: new { @class = "" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.dMontoCF, new { @class = "" })
+                        </div>
+                    </div>
                 </td>
-            </tr>
-            <tr>
                 <td>
-                    <label>Capital actual: </label>
-                </td>
-                <td>
-                    <label>Celda de capital actual</label>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dMontoCF_dif, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.Display("dMontoCF_dif")
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table>

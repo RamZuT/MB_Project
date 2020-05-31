@@ -24,5 +24,14 @@ namespace MB.WEB.Models
 
         [Display(Name = "Moneda")]
         public int iMoneda { get; set; }
+
+        [Display(Name = "Capital actual")]
+        public decimal? dMontoCF { get; set; }
+
+        [Display(Name = "Capital Inicial")]
+        public decimal? dMontoCF_Inicial { get; set; }
+
+        [Display(Name = "Diferencia de Capital")]
+        public decimal? dMontoCF_dif { get; set; }
     }
 }

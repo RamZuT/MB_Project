@@ -14,5 +14,7 @@ namespace MB.WCF.Logica.Servicios
     {
         [OperationContract]
         void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
+        [OperationContract]
+        DCHisCapitalFinanciero capitalActual();
     }
 }

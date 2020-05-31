@@ -13,12 +13,12 @@ namespace MB.WCF.DataContract
         [DataMember]
         public decimal dMontoCF { get; set; }
         [DataMember]
-        public DateTime dFechaDeCorte { get; set; }
+        public DateTime? dFechaDeCorte { get; set; }
         [DataMember]
-        public bool bEstado { get; set; }
+        public bool? bEstado { get; set; }
         [DataMember]
-        public int iIdIngreso { get; set; }
+        public int? iIdIngreso { get; set; }
         [DataMember]
-        public int iIdGastos { get; set; }
+        public int? iIdGastos { get; set; }
     }
 }

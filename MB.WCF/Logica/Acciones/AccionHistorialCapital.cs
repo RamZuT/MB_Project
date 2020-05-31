@@ -36,13 +36,19 @@ namespace MB.WCF.Logica.Acciones
             }
         }
 
-        public HIS_CAPITAL_FINANCIERO capitalActual()
+        public DCHisCapitalFinanciero capitalActual()
         {
-            HIS_CAPITAL_FINANCIERO DCCapitalActual = new HIS_CAPITAL_FINANCIERO();
+            DCHisCapitalFinanciero DCCapitalActual = new DCHisCapitalFinanciero();
             using (var context = new MBEntities())
             {
-                DCCapitalActual = (from HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO orderby HIS_CAPITAL_FINANCIERO.iIdCapitalF
+                var CapitalActual = (from HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO orderby HIS_CAPITAL_FINANCIERO.iIdCapitalF
                                    descending select HIS_CAPITAL_FINANCIERO).FirstOrDefault();
+                DCCapitalActual.iIdCapitalF = CapitalActual.iIdCapitalF;
+                DCCapitalActual.dMontoCF = CapitalActual.dMontoCF;
+                DCCapitalActual.dFechaDeCorte = CapitalActual.dFechaDeCorte;
+                DCCapitalActual.bEstado = CapitalActual.bEstado;
+                DCCapitalActual.iIdIngreso = CapitalActual.iIdIngreso;
+                DCCapitalActual.iIdGastos = CapitalActual.iIdGastos;
             }
             return DCCapitalActual;
         }
@@ -52,10 +58,10 @@ namespace MB.WCF.Logica.Acciones
             return null;
         }
 
-        public decimal calcularIngresoOGasto()
+        public decimal calcularDiferenciaCapital()
         {
-            decimal num = 10;
-            return num;
+            decimal diferencia = capitalInicial().dMontoCF - capitalActual().dMontoCF;
+            return diferencia;
         }
     }
 }

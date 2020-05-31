@@ -20,6 +20,12 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/registroHistCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/registroHistCapitalResponse")]
         System.Threading.Tasks.Task registroHistCapitalAsync(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalActual", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalActualResponse")]
+        MB.WCF.DataContract.DCHisCapitalFinanciero capitalActual();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalActual", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalActualResponse")]
+        System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalActualAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         public System.Threading.Tasks.Task registroHistCapitalAsync(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) {
             return base.Channel.registroHistCapitalAsync(fechaCorte, estado, ingresoGasto, monto);
+        }
+        
+        public MB.WCF.DataContract.DCHisCapitalFinanciero capitalActual() {
+            return base.Channel.capitalActual();
+        }
+        
+        public System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalActualAsync() {
+            return base.Channel.capitalActualAsync();
         }
     }
 }
