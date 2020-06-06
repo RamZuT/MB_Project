@@ -97,6 +97,7 @@
     <Compile Include="DataContract\DCIngresos.cs" />
     <Compile Include="DataContract\DCMoneda.cs" />
     <Compile Include="DataContract\DCPagos.cs" />
+    <Compile Include="DataContract\DCUnion_HisCap_InGa.cs" />
     <Compile Include="FORMA_PAGO.cs">
       <DependentUpon>Model_MB.tt</DependentUpon>
     </Compile>

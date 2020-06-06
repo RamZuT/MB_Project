@@ -17,8 +17,5 @@ namespace MB.WCF.DataContract
         [DataMember]
         public bool? bEstado { get; set; }
         [DataMember]
-        public int? iIdIngreso { get; set; }
-        [DataMember]
-        public int? iIdGastos { get; set; }
     }
 }

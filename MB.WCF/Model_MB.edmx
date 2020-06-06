@@ -82,10 +82,10 @@
           <Key>
             <PropertyRef Name="iIdHCP_INGAS" />
           </Key>
-          <Property Name="iIdHCP_INGAS" Type="int" Nullable="false" />
           <Property Name="iIdCapitalF" Type="int" Nullable="false" />
           <Property Name="iIdGastos" Type="int" Nullable="false" />
           <Property Name="iIdIngreso" Type="int" Nullable="false" />
+          <Property Name="iIdHCP_INGAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <Association Name="FK__INGRESOS__iMoned__29572725">
           <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
