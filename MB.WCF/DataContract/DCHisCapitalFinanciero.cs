@@ -16,6 +16,5 @@ namespace MB.WCF.DataContract
         public DateTime? dFechaDeCorte { get; set; }
         [DataMember]
         public bool? bEstado { get; set; }
-        [DataMember]
     }
 }

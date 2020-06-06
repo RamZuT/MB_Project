@@ -277,7 +277,6 @@
           <NavigationProperty Name="CATEGORIA" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATEGORIA" />
           <NavigationProperty Name="FORMA_PAGO" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="GASTOS" ToRole="FORMA_PAGO" />
           <NavigationProperty Name="MONEDA" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="GASTOS" ToRole="MONEDA" />
-          <NavigationProperty Name="HIS_CAPITAL_FINANCIERO" Relationship="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2" FromRole="GASTOS" ToRole="HIS_CAPITAL_FINANCIERO" />
           <NavigationProperty Name="T_UNION_HIS_CF_IG" Relationship="MB_Model.FK_T_union_GASTOS" FromRole="GASTOS" ToRole="T_UNION_HIS_CF_IG" />
         </EntityType>
         <EntityType Name="HIS_TIPO_CAMBIO">
@@ -300,7 +299,6 @@
           <Property Name="vConcepto" Type="String" MaxLength="124" FixedLength="false" Unicode="false" />
           <Property Name="iMoneda" Type="Int32" />
           <NavigationProperty Name="MONEDA" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="INGRESOS" ToRole="MONEDA" />
-          <NavigationProperty Name="HIS_CAPITAL_FINANCIERO" Relationship="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9" FromRole="INGRESOS" ToRole="HIS_CAPITAL_FINANCIERO" />
           <NavigationProperty Name="T_UNION_HIS_CF_IG" Relationship="MB_Model.FK_T_union_INGRESOS" FromRole="INGRESOS" ToRole="T_UNION_HIS_CF_IG" />
         </EntityType>
         <EntityType Name="MONEDA">
@@ -431,14 +429,6 @@
             <End Role="INGRESOS" EntitySet="INGRESOS" />
           </AssociationSet>
           <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" />
-          <AssociationSet Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2" Association="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2">
-            <End Role="GASTOS" EntitySet="GASTOS" />
-            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HIS_CAPIT__iIdIn__5AEE82B9" Association="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9">
-            <End Role="INGRESOS" EntitySet="INGRESOS" />
-            <End Role="HIS_CAPITAL_FINANCIERO" EntitySet="HIS_CAPITAL_FINANCIERO" />
-          </AssociationSet>
           <EntitySet Name="T_UNION_HIS_CF_IG" EntityType="MB_Model.T_UNION_HIS_CF_IG" />
           <AssociationSet Name="FK_T_union_GASTOS" Association="MB_Model.FK_T_union_GASTOS">
             <End Role="GASTOS" EntitySet="GASTOS" />
@@ -461,36 +451,8 @@
           <Property Name="dMontoCF" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="dFechaDeCorte" Type="DateTime" Precision="0" />
           <Property Name="bEstado" Type="Boolean" />
-          <Property Name="iIdIngreso" Type="Int32" />
-          <Property Name="iIdGastos" Type="Int32" />
-          <NavigationProperty Name="GASTOS" Relationship="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2" FromRole="HIS_CAPITAL_FINANCIERO" ToRole="GASTOS" />
-          <NavigationProperty Name="INGRESOS" Relationship="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9" FromRole="HIS_CAPITAL_FINANCIERO" ToRole="INGRESOS" />
           <NavigationProperty Name="T_UNION_HIS_CF_IG" Relationship="MB_Model.FK_T_union_HIS_CAPITAL" FromRole="HIS_CAPITAL_FINANCIERO" ToRole="T_UNION_HIS_CF_IG" />
         </EntityType>
-        <Association Name="FK__HIS_CAPIT__iIdGa__5BE2A6F2">
-          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="0..1" />
-          <End Type="MB_Model.HIS_CAPITAL_FINANCIERO" Role="HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GASTOS">
-              <PropertyRef Name="iIdGastos" />
-            </Principal>
-            <Dependent Role="HIS_CAPITAL_FINANCIERO">
-              <PropertyRef Name="iIdGastos" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HIS_CAPIT__iIdIn__5AEE82B9">
-          <End Type="MB_Model.INGRESOS" Role="INGRESOS" Multiplicity="0..1" />
-          <End Type="MB_Model.HIS_CAPITAL_FINANCIERO" Role="HIS_CAPITAL_FINANCIERO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INGRESOS">
-              <PropertyRef Name="iIdIngreso" />
-            </Principal>
-            <Dependent Role="HIS_CAPITAL_FINANCIERO">
-              <PropertyRef Name="iIdIngreso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="T_UNION_HIS_CF_IG">
           <Key>
             <PropertyRef Name="iIdHCP_INGAS" />

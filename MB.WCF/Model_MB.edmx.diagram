@@ -19,8 +19,6 @@
         <AssociationConnector Association="MB_Model.FK_idMoneda_tipoCambio" ManuallyRouted="false" />
         <AssociationConnector Association="MB_Model.FK__INGRESOS__iMoned__29572725" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="6.375" PointY="8.625" />
-        <AssociationConnector Association="MB_Model.FK__HIS_CAPIT__iIdGa__5BE2A6F2" />
-        <AssociationConnector Association="MB_Model.FK__HIS_CAPIT__iIdIn__5AEE82B9" />
         <EntityTypeShape EntityType="MB_Model.T_UNION_HIS_CF_IG" Width="1.5" PointX="8.625" PointY="8" />
         <AssociationConnector Association="MB_Model.FK_T_union_GASTOS" />
         <AssociationConnector Association="MB_Model.FK_T_union_HIS_CAPITAL" />

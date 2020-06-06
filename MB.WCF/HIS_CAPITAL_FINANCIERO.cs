@@ -24,11 +24,7 @@ namespace MB.WCF
         public Nullable<decimal> dMontoCF { get; set; }
         public Nullable<System.DateTime> dFechaDeCorte { get; set; }
         public Nullable<bool> bEstado { get; set; }
-        public Nullable<int> iIdIngreso { get; set; }
-        public Nullable<int> iIdGastos { get; set; }
     
-        public virtual GASTOS GASTOS { get; set; }
-        public virtual INGRESOS INGRESOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
     }

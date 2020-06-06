@@ -17,7 +17,6 @@ namespace MB.WCF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GASTOS()
         {
-            this.HIS_CAPITAL_FINANCIERO = new HashSet<HIS_CAPITAL_FINANCIERO>();
             this.T_UNION_HIS_CF_IG = new HashSet<T_UNION_HIS_CF_IG>();
         }
     
@@ -32,8 +31,6 @@ namespace MB.WCF
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual FORMA_PAGO FORMA_PAGO { get; set; }
         public virtual MONEDA MONEDA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HIS_CAPITAL_FINANCIERO> HIS_CAPITAL_FINANCIERO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
     }
