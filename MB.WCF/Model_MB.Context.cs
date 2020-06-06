@@ -33,5 +33,6 @@ namespace MB.WCF
         public virtual DbSet<MONEDA> MONEDA { get; set; }
         public virtual DbSet<PAGOS> PAGOS { get; set; }
         public virtual DbSet<HIS_CAPITAL_FINANCIERO> HIS_CAPITAL_FINANCIERO { get; set; }
+        public virtual DbSet<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
     }
 }

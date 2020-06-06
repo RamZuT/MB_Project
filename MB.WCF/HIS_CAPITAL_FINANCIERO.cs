@@ -14,8 +14,14 @@ namespace MB.WCF
     
     public partial class HIS_CAPITAL_FINANCIERO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HIS_CAPITAL_FINANCIERO()
+        {
+            this.T_UNION_HIS_CF_IG = new HashSet<T_UNION_HIS_CF_IG>();
+        }
+    
         public int iIdCapitalF { get; set; }
-        public decimal dMontoCF { get; set; }
+        public Nullable<decimal> dMontoCF { get; set; }
         public Nullable<System.DateTime> dFechaDeCorte { get; set; }
         public Nullable<bool> bEstado { get; set; }
         public Nullable<int> iIdIngreso { get; set; }
@@ -23,5 +29,7 @@ namespace MB.WCF
     
         public virtual GASTOS GASTOS { get; set; }
         public virtual INGRESOS INGRESOS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
     }
 }
