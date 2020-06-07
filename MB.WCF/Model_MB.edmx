@@ -5,12 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CATEGORIA">
+        <EntityType Name="CATALOGO">
           <Key>
-            <PropertyRef Name="iIdCategoria" />
+            <PropertyRef Name="iIdCatalogo" />
           </Key>
-          <Property Name="iIdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdCatalogo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="vDetalle" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdDetalle" />
+          </Key>
+          <Property Name="iIdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdCatalogo" Type="int" Nullable="false" />
+          <Property Name="iIdGasto" Type="int" Nullable="false" />
+          <Property Name="dMonto" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="FORMA_PAGO">
           <Key>
@@ -24,10 +33,10 @@
             <PropertyRef Name="iIdGastos" />
           </Key>
           <Property Name="iIdGastos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="iIdCategoria" Type="int" Nullable="false" />
+          <Property Name="iIdCatalogo" Type="int" Nullable="false" />
           <Property Name="dMonto" Type="decimal" Precision="12" Scale="2" />
           <Property Name="dFecha" Type="date" />
-          <Property Name="iIdMoneda" Type="int" />
+          <Property Name="iIdTipoCambio" Type="int" />
           <Property Name="vDetalle" Type="varchar" MaxLength="125" />
           <Property Name="iIdFormaPago" Type="int" />
         </EntityType>
@@ -57,7 +66,7 @@
           <Property Name="dMonto" Type="decimal" Precision="9" Scale="2" Nullable="false" />
           <Property Name="dFecha" Type="date" Nullable="false" />
           <Property Name="vConcepto" Type="varchar" MaxLength="124" />
-          <Property Name="iMoneda" Type="int" />
+          <Property Name="iIdTipoCambio" Type="int" />
         </EntityType>
         <EntityType Name="MONEDA">
           <Key>
@@ -72,11 +81,28 @@
             <PropertyRef Name="iIdPagos" />
           </Key>
           <Property Name="iIdPagos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="vConcepto" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="dFechaVencePago" Type="date" />
           <Property Name="dMonto" Type="decimal" Precision="9" Scale="2" />
           <Property Name="bEstado" Type="bit" />
-          <Property Name="iIdCategoria" Type="int" />
+          <Property Name="iIdCatalogo" Type="int" />
+        </EntityType>
+        <EntityType Name="PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdPresupuesto" />
+          </Key>
+          <Property Name="iIdPresupuesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFechaInicio" Type="date" />
+          <Property Name="dFechaFinal" Type="date" />
+          <Property Name="dMontoPresupuesto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dMontoReal" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="T_UNION_DETALLE_PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdUnion" />
+          </Key>
+          <Property Name="iIdUnion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdDetalle" Type="int" Nullable="false" />
+          <Property Name="iIdPresupuesto" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="T_UNION_HIS_CF_IG">
           <Key>
@@ -87,27 +113,51 @@
           <Property Name="iIdIngreso" Type="int" Nullable="false" />
           <Property Name="iIdHCP_INGAS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <Association Name="FK__INGRESOS__iMoned__29572725">
-          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
-          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
+        <Association Name="FK_DETALLE_CATALOGO">
+          <End Role="CATALOGO" Type="Self.CATALOGO" Multiplicity="1" />
+          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MONEDA">
-              <PropertyRef Name="iIdMoneda" />
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
             </Principal>
-            <Dependent Role="INGRESOS">
-              <PropertyRef Name="iMoneda" />
+            <Dependent Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_GASTO">
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="1" />
+          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTO_TIPOCAMBIO">
+          <End Role="HIS_TIPO_CAMBIO" Type="Self.HIS_TIPO_CAMBIO" Multiplicity="0..1" />
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdTipoCambio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IDCATEGORIS_PAGOS">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+          <End Role="CATALOGO" Type="Self.CATALOGO" Multiplicity="0..1" />
           <End Role="PAGOS" Type="Self.PAGOS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="iIdCategoria" />
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
             </Principal>
             <Dependent Role="PAGOS">
-              <PropertyRef Name="iIdCategoria" />
+              <PropertyRef Name="iIdCatalogo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -171,32 +221,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FR_IDMONEDA_GASTOS">
-          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
-          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
+        <Association Name="FK_UNION_DETALLE">
+          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="1" />
+          <End Role="T_UNION_DETALLE_PRESUPUESTO" Type="Self.T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MONEDA">
-              <PropertyRef Name="iIdMoneda" />
+            <Principal Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
             </Principal>
-            <Dependent Role="GASTOS">
-              <PropertyRef Name="iIdMoneda" />
+            <Dependent Role="T_UNION_DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNION_PRESUPUESTO">
+          <End Role="PRESUPUESTO" Type="Self.PRESUPUESTO" Multiplicity="1" />
+          <End Role="T_UNION_DETALLE_PRESUPUESTO" Type="Self.T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESUPUESTO">
+              <PropertyRef Name="iIdPresupuesto" />
+            </Principal>
+            <Dependent Role="T_UNION_DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdPresupuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKs_INGRESOS_Y_TIPOCAMBIOS_">
+          <End Role="HIS_TIPO_CAMBIO" Type="Self.HIS_TIPO_CAMBIO" Multiplicity="0..1" />
+          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Principal>
+            <Dependent Role="INGRESOS">
+              <PropertyRef Name="iIdTipoCambio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="RK_IDCATEGORIA_GASTOS">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="CATALOGO" Type="Self.CATALOGO" Multiplicity="1" />
           <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="iIdCategoria" />
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
             </Principal>
             <Dependent Role="GASTOS">
-              <PropertyRef Name="iIdCategoria" />
+              <PropertyRef Name="iIdCatalogo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MB_ModelStoreContainer">
-          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOGO" EntityType="Self.CATALOGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLE_PRESUPUESTO" EntityType="Self.DETALLE_PRESUPUESTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GASTOS" EntityType="Self.GASTOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="Self.HIS_CAPITAL_FINANCIERO" Schema="dbo" store:Type="Tables" />
@@ -204,13 +279,23 @@
           <EntitySet Name="INGRESOS" EntityType="Self.INGRESOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MONEDA" EntityType="Self.MONEDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAGOS" EntityType="Self.PAGOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRESUPUESTO" EntityType="Self.PRESUPUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_UNION_DETALLE_PRESUPUESTO" EntityType="Self.T_UNION_DETALLE_PRESUPUESTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_HIS_CF_IG" EntityType="Self.T_UNION_HIS_CF_IG" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__INGRESOS__iMoned__29572725" Association="Self.FK__INGRESOS__iMoned__29572725">
-            <End Role="MONEDA" EntitySet="MONEDA" />
-            <End Role="INGRESOS" EntitySet="INGRESOS" />
+          <AssociationSet Name="FK_DETALLE_CATALOGO" Association="Self.FK_DETALLE_CATALOGO">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_GASTO" Association="Self.FK_DETALLE_GASTO">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTO_TIPOCAMBIO" Association="Self.FK_GASTO_TIPOCAMBIO">
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
           </AssociationSet>
           <AssociationSet Name="FK_IDCATEGORIS_PAGOS" Association="Self.FK_IDCATEGORIS_PAGOS">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
             <End Role="PAGOS" EntitySet="PAGOS" />
           </AssociationSet>
           <AssociationSet Name="FK_IDFORMAP_GASTOS" Association="Self.FK_IDFORMAP_GASTOS">
@@ -233,12 +318,20 @@
             <End Role="INGRESOS" EntitySet="INGRESOS" />
             <End Role="T_UNION_HIS_CF_IG" EntitySet="T_UNION_HIS_CF_IG" />
           </AssociationSet>
-          <AssociationSet Name="FR_IDMONEDA_GASTOS" Association="Self.FR_IDMONEDA_GASTOS">
-            <End Role="MONEDA" EntitySet="MONEDA" />
-            <End Role="GASTOS" EntitySet="GASTOS" />
+          <AssociationSet Name="FK_UNION_DETALLE" Association="Self.FK_UNION_DETALLE">
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+            <End Role="T_UNION_DETALLE_PRESUPUESTO" EntitySet="T_UNION_DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNION_PRESUPUESTO" Association="Self.FK_UNION_PRESUPUESTO">
+            <End Role="PRESUPUESTO" EntitySet="PRESUPUESTO" />
+            <End Role="T_UNION_DETALLE_PRESUPUESTO" EntitySet="T_UNION_DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FKs_INGRESOS_Y_TIPOCAMBIOS_" Association="Self.FKs_INGRESOS_Y_TIPOCAMBIOS_">
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
           </AssociationSet>
           <AssociationSet Name="RK_IDCATEGORIA_GASTOS" Association="Self.RK_IDCATEGORIA_GASTOS">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
             <End Role="GASTOS" EntitySet="GASTOS" />
           </AssociationSet>
         </EntityContainer>
@@ -246,15 +339,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CATEGORIA">
-          <Key>
-            <PropertyRef Name="iIdCategoria" />
-          </Key>
-          <Property Name="iIdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="vDetalle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PAGOS" Relationship="Self.FK_IDCATEGORIS_PAGOS" FromRole="CATEGORIA" ToRole="PAGOS" />
-          <NavigationProperty Name="GASTOS" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="CATEGORIA" ToRole="GASTOS" />
-        </EntityType>
         <EntityType Name="FORMA_PAGO">
           <Key>
             <PropertyRef Name="iIdFormaPago" />
@@ -268,16 +352,19 @@
             <PropertyRef Name="iIdGastos" />
           </Key>
           <Property Name="iIdGastos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="iIdCategoria" Type="Int32" Nullable="false" />
           <Property Name="dMonto" Type="Decimal" Precision="12" Scale="2" />
           <Property Name="dFecha" Type="DateTime" Precision="0" />
           <Property Name="iIdMoneda" Type="Int32" />
           <Property Name="vDetalle" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
           <Property Name="iIdFormaPago" Type="Int32" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATEGORIA" />
           <NavigationProperty Name="FORMA_PAGO" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="GASTOS" ToRole="FORMA_PAGO" />
-          <NavigationProperty Name="MONEDA" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="GASTOS" ToRole="MONEDA" />
           <NavigationProperty Name="T_UNION_HIS_CF_IG" Relationship="MB_Model.FK_T_union_GASTOS" FromRole="GASTOS" ToRole="T_UNION_HIS_CF_IG" />
+          <NavigationProperty Name="CATALOGO" Relationship="MB_Model.RK_IDCATEGORIA_GASTOS1" FromRole="GASTOS" ToRole="CATALOGO" />
+          <Property Name="iIdCatalogo" Type="Int32" Nullable="false" />
+          <Property Name="iIdTipoCambio" Type="Int32" />
+          <NavigationProperty Name="CATALOGO1" Relationship="MB_Model.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATALOGO" />
+          <NavigationProperty Name="HIS_TIPO_CAMBIO" Relationship="MB_Model.FK_GASTO_TIPOCAMBIO" FromRole="GASTOS" ToRole="HIS_TIPO_CAMBIO" />
+          <NavigationProperty Name="DETALLE_PRESUPUESTO" Relationship="MB_Model.FK_DETALLE_GASTO" FromRole="GASTOS" ToRole="DETALLE_PRESUPUESTO" />
         </EntityType>
         <EntityType Name="HIS_TIPO_CAMBIO">
           <Key>
@@ -288,6 +375,8 @@
           <Property Name="dFecha" Type="DateTime" Precision="0" />
           <Property Name="iIdMoneda" Type="Int32" />
           <NavigationProperty Name="MONEDA" Relationship="Self.FK_idMoneda_tipoCambio" FromRole="HIS_TIPO_CAMBIO" ToRole="MONEDA" />
+          <NavigationProperty Name="GASTOS" Relationship="MB_Model.FK_GASTO_TIPOCAMBIO" FromRole="HIS_TIPO_CAMBIO" ToRole="GASTOS" />
+          <NavigationProperty Name="INGRESOS" Relationship="MB_Model.FKs_INGRESOS_Y_TIPOCAMBIOS_" FromRole="HIS_TIPO_CAMBIO" ToRole="INGRESOS" />
         </EntityType>
         <EntityType Name="INGRESOS">
           <Key>
@@ -298,8 +387,9 @@
           <Property Name="dFecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="vConcepto" Type="String" MaxLength="124" FixedLength="false" Unicode="false" />
           <Property Name="iMoneda" Type="Int32" />
-          <NavigationProperty Name="MONEDA" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="INGRESOS" ToRole="MONEDA" />
           <NavigationProperty Name="T_UNION_HIS_CF_IG" Relationship="MB_Model.FK_T_union_INGRESOS" FromRole="INGRESOS" ToRole="T_UNION_HIS_CF_IG" />
+          <Property Name="iIdTipoCambio" Type="Int32" />
+          <NavigationProperty Name="HIS_TIPO_CAMBIO" Relationship="MB_Model.FKs_INGRESOS_Y_TIPOCAMBIOS_" FromRole="INGRESOS" ToRole="HIS_TIPO_CAMBIO" />
         </EntityType>
         <EntityType Name="MONEDA">
           <Key>
@@ -308,46 +398,19 @@
           <Property Name="iIdMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="vCodMoneda" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="vMoneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="GASTOS" Relationship="Self.FR_IDMONEDA_GASTOS" FromRole="MONEDA" ToRole="GASTOS" />
           <NavigationProperty Name="HIS_TIPO_CAMBIO" Relationship="Self.FK_idMoneda_tipoCambio" FromRole="MONEDA" ToRole="HIS_TIPO_CAMBIO" />
-          <NavigationProperty Name="INGRESOS" Relationship="Self.FK__INGRESOS__iMoned__29572725" FromRole="MONEDA" ToRole="INGRESOS" />
         </EntityType>
         <EntityType Name="PAGOS">
           <Key>
             <PropertyRef Name="iIdPagos" />
           </Key>
           <Property Name="iIdPagos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="vConcepto" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dFechaVencePago" Type="DateTime" Precision="0" />
           <Property Name="dMonto" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="bEstado" Type="Boolean" />
-          <Property Name="iIdCategoria" Type="Int32" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_IDCATEGORIS_PAGOS" FromRole="PAGOS" ToRole="CATEGORIA" />
+          <Property Name="iIdCatalogo" Type="Int32" />
+          <NavigationProperty Name="CATALOGO" Relationship="MB_Model.FK_IDCATEGORIS_PAGOS" FromRole="PAGOS" ToRole="CATALOGO" />
         </EntityType>
-        <Association Name="FK_IDCATEGORIS_PAGOS">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
-          <End Role="PAGOS" Type="Self.PAGOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="iIdCategoria" />
-            </Principal>
-            <Dependent Role="PAGOS">
-              <PropertyRef Name="iIdCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RK_IDCATEGORIA_GASTOS">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="iIdCategoria" />
-            </Principal>
-            <Dependent Role="GASTOS">
-              <PropertyRef Name="iIdCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_IDFORMAP_GASTOS">
           <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="0..1" />
           <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
@@ -357,18 +420,6 @@
             </Principal>
             <Dependent Role="GASTOS">
               <PropertyRef Name="iIdFormaPago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FR_IDMONEDA_GASTOS">
-          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
-          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MONEDA">
-              <PropertyRef Name="iIdMoneda" />
-            </Principal>
-            <Dependent Role="GASTOS">
-              <PropertyRef Name="iIdMoneda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -384,49 +435,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__INGRESOS__iMoned__29572725">
-          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
-          <End Role="INGRESOS" Type="Self.INGRESOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MONEDA">
-              <PropertyRef Name="iIdMoneda" />
-            </Principal>
-            <Dependent Role="INGRESOS">
-              <PropertyRef Name="iMoneda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
           <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" />
           <EntitySet Name="GASTOS" EntityType="Self.GASTOS" />
           <EntitySet Name="HIS_TIPO_CAMBIO" EntityType="Self.HIS_TIPO_CAMBIO" />
           <EntitySet Name="INGRESOS" EntityType="Self.INGRESOS" />
           <EntitySet Name="MONEDA" EntityType="Self.MONEDA" />
           <EntitySet Name="PAGOS" EntityType="Self.PAGOS" />
-          <AssociationSet Name="FK_IDCATEGORIS_PAGOS" Association="Self.FK_IDCATEGORIS_PAGOS">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="PAGOS" EntitySet="PAGOS" />
-          </AssociationSet>
-          <AssociationSet Name="RK_IDCATEGORIA_GASTOS" Association="Self.RK_IDCATEGORIA_GASTOS">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="GASTOS" EntitySet="GASTOS" />
-          </AssociationSet>
           <AssociationSet Name="FK_IDFORMAP_GASTOS" Association="Self.FK_IDFORMAP_GASTOS">
             <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
-            <End Role="GASTOS" EntitySet="GASTOS" />
-          </AssociationSet>
-          <AssociationSet Name="FR_IDMONEDA_GASTOS" Association="Self.FR_IDMONEDA_GASTOS">
-            <End Role="MONEDA" EntitySet="MONEDA" />
             <End Role="GASTOS" EntitySet="GASTOS" />
           </AssociationSet>
           <AssociationSet Name="FK_idMoneda_tipoCambio" Association="Self.FK_idMoneda_tipoCambio">
             <End Role="MONEDA" EntitySet="MONEDA" />
             <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK__INGRESOS__iMoned__29572725" Association="Self.FK__INGRESOS__iMoned__29572725">
-            <End Role="MONEDA" EntitySet="MONEDA" />
-            <End Role="INGRESOS" EntitySet="INGRESOS" />
           </AssociationSet>
           <EntitySet Name="HIS_CAPITAL_FINANCIERO" EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" />
           <EntitySet Name="T_UNION_HIS_CF_IG" EntityType="MB_Model.T_UNION_HIS_CF_IG" />
@@ -441,6 +463,46 @@
           <AssociationSet Name="FK_T_union_INGRESOS" Association="MB_Model.FK_T_union_INGRESOS">
             <End Role="INGRESOS" EntitySet="INGRESOS" />
             <End Role="T_UNION_HIS_CF_IG" EntitySet="T_UNION_HIS_CF_IG" />
+          </AssociationSet>
+          <EntitySet Name="CATALOGO" EntityType="MB_Model.CATALOGO" />
+          <AssociationSet Name="RK_IDCATEGORIA_GASTOS1" Association="MB_Model.RK_IDCATEGORIA_GASTOS1">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="RK_IDCATEGORIA_GASTOS" Association="MB_Model.RK_IDCATEGORIA_GASTOS">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTO_TIPOCAMBIO" Association="MB_Model.FK_GASTO_TIPOCAMBIO">
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+            <End Role="GASTOS" EntitySet="GASTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDCATEGORIS_PAGOS" Association="MB_Model.FK_IDCATEGORIS_PAGOS">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="PAGOS" EntitySet="PAGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FKs_INGRESOS_Y_TIPOCAMBIOS_" Association="MB_Model.FKs_INGRESOS_Y_TIPOCAMBIOS_">
+            <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+            <End Role="INGRESOS" EntitySet="INGRESOS" />
+          </AssociationSet>
+          <EntitySet Name="DETALLE_PRESUPUESTO" EntityType="MB_Model.DETALLE_PRESUPUESTO" />
+          <EntitySet Name="PRESUPUESTO" EntityType="MB_Model.PRESUPUESTO" />
+          <EntitySet Name="T_UNION_DETALLE_PRESUPUESTO" EntityType="MB_Model.T_UNION_DETALLE_PRESUPUESTO" />
+          <AssociationSet Name="FK_DETALLE_CATALOGO" Association="MB_Model.FK_DETALLE_CATALOGO">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLE_GASTO" Association="MB_Model.FK_DETALLE_GASTO">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNION_DETALLE" Association="MB_Model.FK_UNION_DETALLE">
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+            <End Role="T_UNION_DETALLE_PRESUPUESTO" EntitySet="T_UNION_DETALLE_PRESUPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNION_PRESUPUESTO" Association="MB_Model.FK_UNION_PRESUPUESTO">
+            <End Role="PRESUPUESTO" EntitySet="PRESUPUESTO" />
+            <End Role="T_UNION_DETALLE_PRESUPUESTO" EntitySet="T_UNION_DETALLE_PRESUPUESTO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="HIS_CAPITAL_FINANCIERO">
@@ -501,20 +563,162 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CATALOGO">
+          <Key>
+            <PropertyRef Name="iIdCatalogo" />
+          </Key>
+          <Property Name="vDetalle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GASTOS" Relationship="MB_Model.RK_IDCATEGORIA_GASTOS1" FromRole="CATALOGO" ToRole="GASTOS" />
+          <Property Name="iIdCatalogo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="GASTOS1" Relationship="MB_Model.RK_IDCATEGORIA_GASTOS" FromRole="CATALOGO" ToRole="GASTOS" />
+          <NavigationProperty Name="PAGOS" Relationship="MB_Model.FK_IDCATEGORIS_PAGOS" FromRole="CATALOGO" ToRole="PAGOS" />
+          <NavigationProperty Name="DETALLE_PRESUPUESTO" Relationship="MB_Model.FK_DETALLE_CATALOGO" FromRole="CATALOGO" ToRole="DETALLE_PRESUPUESTO" />
+        </EntityType>
+        <Association Name="RK_IDCATEGORIA_GASTOS1">
+          <End Type="MB_Model.CATALOGO" Role="CATALOGO" Multiplicity="1" />
+          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+            </Principal>
+            <Dependent Role="GASTOS">
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RK_IDCATEGORIA_GASTOS">
+          <End Type="MB_Model.CATALOGO" Role="CATALOGO" Multiplicity="1" />
+          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTO_TIPOCAMBIO">
+          <End Type="MB_Model.HIS_TIPO_CAMBIO" Role="HIS_TIPO_CAMBIO" Multiplicity="0..1" />
+          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Principal>
+            <Dependent Role="GASTOS">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDCATEGORIS_PAGOS">
+          <End Type="MB_Model.CATALOGO" Role="CATALOGO" Multiplicity="0..1" />
+          <End Type="MB_Model.PAGOS" Role="PAGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
+            </Principal>
+            <Dependent Role="PAGOS">
+              <PropertyRef Name="iIdCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKs_INGRESOS_Y_TIPOCAMBIOS_">
+          <End Type="MB_Model.HIS_TIPO_CAMBIO" Role="HIS_TIPO_CAMBIO" Multiplicity="0..1" />
+          <End Type="MB_Model.INGRESOS" Role="INGRESOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIS_TIPO_CAMBIO">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Principal>
+            <Dependent Role="INGRESOS">
+              <PropertyRef Name="iIdTipoCambio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DETALLE_PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdDetalle" />
+          </Key>
+          <Property Name="iIdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdCatalogo" Type="Int32" Nullable="false" />
+          <Property Name="iIdGasto" Type="Int32" Nullable="false" />
+          <Property Name="dMonto" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="CATALOGO" Relationship="MB_Model.FK_DETALLE_CATALOGO" FromRole="DETALLE_PRESUPUESTO" ToRole="CATALOGO" />
+          <NavigationProperty Name="GASTOS" Relationship="MB_Model.FK_DETALLE_GASTO" FromRole="DETALLE_PRESUPUESTO" ToRole="GASTOS" />
+          <NavigationProperty Name="T_UNION_DETALLE_PRESUPUESTO" Relationship="MB_Model.FK_UNION_DETALLE" FromRole="DETALLE_PRESUPUESTO" ToRole="T_UNION_DETALLE_PRESUPUESTO" />
+        </EntityType>
+        <EntityType Name="PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdPresupuesto" />
+          </Key>
+          <Property Name="iIdPresupuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="dFechaFinal" Type="DateTime" Precision="0" />
+          <Property Name="dMontoPresupuesto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dMontoReal" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="T_UNION_DETALLE_PRESUPUESTO" Relationship="MB_Model.FK_UNION_PRESUPUESTO" FromRole="PRESUPUESTO" ToRole="T_UNION_DETALLE_PRESUPUESTO" />
+        </EntityType>
+        <EntityType Name="T_UNION_DETALLE_PRESUPUESTO">
+          <Key>
+            <PropertyRef Name="iIdUnion" />
+          </Key>
+          <Property Name="iIdUnion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdDetalle" Type="Int32" Nullable="false" />
+          <Property Name="iIdPresupuesto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DETALLE_PRESUPUESTO" Relationship="MB_Model.FK_UNION_DETALLE" FromRole="T_UNION_DETALLE_PRESUPUESTO" ToRole="DETALLE_PRESUPUESTO" />
+          <NavigationProperty Name="PRESUPUESTO" Relationship="MB_Model.FK_UNION_PRESUPUESTO" FromRole="T_UNION_DETALLE_PRESUPUESTO" ToRole="PRESUPUESTO" />
+        </EntityType>
+        <Association Name="FK_DETALLE_CATALOGO">
+          <End Type="MB_Model.CATALOGO" Role="CATALOGO" Multiplicity="1" />
+          <End Type="MB_Model.DETALLE_PRESUPUESTO" Role="DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="iIdCatalogo" />
+            </Principal>
+            <Dependent Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLE_GASTO">
+          <End Type="MB_Model.GASTOS" Role="GASTOS" Multiplicity="1" />
+          <End Type="MB_Model.DETALLE_PRESUPUESTO" Role="DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNION_DETALLE">
+          <End Type="MB_Model.DETALLE_PRESUPUESTO" Role="DETALLE_PRESUPUESTO" Multiplicity="1" />
+          <End Type="MB_Model.T_UNION_DETALLE_PRESUPUESTO" Role="T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
+            </Principal>
+            <Dependent Role="T_UNION_DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNION_PRESUPUESTO">
+          <End Type="MB_Model.PRESUPUESTO" Role="PRESUPUESTO" Multiplicity="1" />
+          <End Type="MB_Model.T_UNION_DETALLE_PRESUPUESTO" Role="T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESUPUESTO">
+              <PropertyRef Name="iIdPresupuesto" />
+            </Principal>
+            <Dependent Role="T_UNION_DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdPresupuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MB_ModelStoreContainer" CdmEntityContainer="MBEntities">
-          <EntitySetMapping Name="CATEGORIA">
-            <EntityTypeMapping TypeName="MB_Model.CATEGORIA">
-              <MappingFragment StoreEntitySet="CATEGORIA">
-                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
-                <ScalarProperty Name="vDetalle" ColumnName="vDetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FORMA_PAGO">
             <EntityTypeMapping TypeName="MB_Model.FORMA_PAGO">
               <MappingFragment StoreEntitySet="FORMA_PAGO">
@@ -526,11 +730,11 @@
           <EntitySetMapping Name="GASTOS">
             <EntityTypeMapping TypeName="MB_Model.GASTOS">
               <MappingFragment StoreEntitySet="GASTOS">
+                <ScalarProperty Name="iIdTipoCambio" ColumnName="iIdTipoCambio" />
+                <ScalarProperty Name="iIdCatalogo" ColumnName="iIdCatalogo" />
                 <ScalarProperty Name="iIdGastos" ColumnName="iIdGastos" />
-                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
                 <ScalarProperty Name="dMonto" ColumnName="dMonto" />
                 <ScalarProperty Name="dFecha" ColumnName="dFecha" />
-                <ScalarProperty Name="iIdMoneda" ColumnName="iIdMoneda" />
                 <ScalarProperty Name="vDetalle" ColumnName="vDetalle" />
                 <ScalarProperty Name="iIdFormaPago" ColumnName="iIdFormaPago" />
               </MappingFragment>
@@ -549,11 +753,11 @@
           <EntitySetMapping Name="INGRESOS">
             <EntityTypeMapping TypeName="MB_Model.INGRESOS">
               <MappingFragment StoreEntitySet="INGRESOS">
+                <ScalarProperty Name="iIdTipoCambio" ColumnName="iIdTipoCambio" />
                 <ScalarProperty Name="iIdIngreso" ColumnName="iIdIngreso" />
                 <ScalarProperty Name="dMonto" ColumnName="dMonto" />
                 <ScalarProperty Name="dFecha" ColumnName="dFecha" />
                 <ScalarProperty Name="vConcepto" ColumnName="vConcepto" />
-                <ScalarProperty Name="iMoneda" ColumnName="iMoneda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -569,12 +773,11 @@
           <EntitySetMapping Name="PAGOS">
             <EntityTypeMapping TypeName="MB_Model.PAGOS">
               <MappingFragment StoreEntitySet="PAGOS">
+                <ScalarProperty Name="iIdCatalogo" ColumnName="iIdCatalogo" />
                 <ScalarProperty Name="iIdPagos" ColumnName="iIdPagos" />
-                <ScalarProperty Name="vConcepto" ColumnName="vConcepto" />
                 <ScalarProperty Name="dFechaVencePago" ColumnName="dFechaVencePago" />
                 <ScalarProperty Name="dMonto" ColumnName="dMonto" />
                 <ScalarProperty Name="bEstado" ColumnName="bEstado" />
-                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -595,6 +798,44 @@
                 <ScalarProperty Name="iIdGastos" ColumnName="iIdGastos" />
                 <ScalarProperty Name="iIdCapitalF" ColumnName="iIdCapitalF" />
                 <ScalarProperty Name="iIdHCP_INGAS" ColumnName="iIdHCP_INGAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGO">
+            <EntityTypeMapping TypeName="MB_Model.CATALOGO">
+              <MappingFragment StoreEntitySet="CATALOGO">
+                <ScalarProperty Name="iIdCatalogo" ColumnName="iIdCatalogo" />
+                <ScalarProperty Name="vDetalle" ColumnName="vDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_PRESUPUESTO">
+            <EntityTypeMapping TypeName="MB_Model.DETALLE_PRESUPUESTO">
+              <MappingFragment StoreEntitySet="DETALLE_PRESUPUESTO">
+                <ScalarProperty Name="dMonto" ColumnName="dMonto" />
+                <ScalarProperty Name="iIdGasto" ColumnName="iIdGasto" />
+                <ScalarProperty Name="iIdCatalogo" ColumnName="iIdCatalogo" />
+                <ScalarProperty Name="iIdDetalle" ColumnName="iIdDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRESUPUESTO">
+            <EntityTypeMapping TypeName="MB_Model.PRESUPUESTO">
+              <MappingFragment StoreEntitySet="PRESUPUESTO">
+                <ScalarProperty Name="dMontoReal" ColumnName="dMontoReal" />
+                <ScalarProperty Name="dMontoPresupuesto" ColumnName="dMontoPresupuesto" />
+                <ScalarProperty Name="dFechaFinal" ColumnName="dFechaFinal" />
+                <ScalarProperty Name="dFechaInicio" ColumnName="dFechaInicio" />
+                <ScalarProperty Name="iIdPresupuesto" ColumnName="iIdPresupuesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_UNION_DETALLE_PRESUPUESTO">
+            <EntityTypeMapping TypeName="MB_Model.T_UNION_DETALLE_PRESUPUESTO">
+              <MappingFragment StoreEntitySet="T_UNION_DETALLE_PRESUPUESTO">
+                <ScalarProperty Name="iIdPresupuesto" ColumnName="iIdPresupuesto" />
+                <ScalarProperty Name="iIdDetalle" ColumnName="iIdDetalle" />
+                <ScalarProperty Name="iIdUnion" ColumnName="iIdUnion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

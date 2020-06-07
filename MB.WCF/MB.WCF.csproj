@@ -86,9 +86,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CATEGORIA.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataContract\DCHisCapitalFinanciero.cs" />
     <Compile Include="DataContract\DCCategorias.cs" />
     <Compile Include="DataContract\DCFormaPago.cs" />
@@ -98,21 +95,6 @@
     <Compile Include="DataContract\DCMoneda.cs" />
     <Compile Include="DataContract\DCPagos.cs" />
     <Compile Include="DataContract\DCUnion_HisCap_InGa.cs" />
-    <Compile Include="FORMA_PAGO.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GASTOS.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HIS_CAPITAL_FINANCIERO.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HIS_TIPO_CAMBIO.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="INGRESOS.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Logica\Acciones\AccionCategorias.cs" />
     <Compile Include="Logica\Acciones\AccionHistorialCapital.cs" />
     <Compile Include="Logica\Acciones\AccionIngresos.cs" />
@@ -152,16 +134,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_MB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MONEDA.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PAGOS.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="T_UNION_HIS_CF_IG.cs">
-      <DependentUpon>Model_MB.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
