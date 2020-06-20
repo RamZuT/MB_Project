@@ -10,9 +10,9 @@ namespace MB.WCF.Logica.Service
 {
     // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de interfaz "ICategoriesServices" en el código y en el archivo de configuración a la vez.
     [ServiceContract]
-    public interface IServicioCategorias
+    public interface IServicioCatalogo
     {
         [OperationContract]
-        List<DCCategorias> ObtenerCategorias();
+        List<DCCatalogo> ObtenerCatalogo();
     }
 }

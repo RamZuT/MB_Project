@@ -5,9 +5,9 @@ using System.Web;
 
 namespace MB.WEB.Models
 {
-    public class Categorias
+    public class CatalogoRegistrar
     {
-        public int idCategoria { get; set; }
-        public string categoria { get; set; }
+        public int idCatalogo { get; set; }
+        public string catalogo { get; set; }
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b2b1d538-0b0f-4d4b-9892-283fbb5ddf44" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioCatalogo.xsd" MetadataType="Schema" ID="4af55829-fbca-466d-aae8-20c9ac9fb83e" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioCatalogo.disco" MetadataType="Disco" ID="67adc1f0-b187-4a85-b097-fd52eec133c9" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc?disco" />
+    <MetadataFile FileName="ServicioCatalogo1.xsd" MetadataType="Schema" ID="4b23721e-4209-4f30-9f6e-5fc5c62a8406" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioCatalogo.wsdl" MetadataType="Wsdl" ID="c40178e1-0fca-4444-ba7b-5c5b0bc2b191" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc?wsdl" />
+    <MetadataFile FileName="ServicioCatalogo2.xsd" MetadataType="Schema" ID="6c787178-5d9b-45e0-9210-d5cd58570848" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioCatalogo.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

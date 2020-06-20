@@ -26,6 +26,18 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalActual", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalActualResponse")]
         System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalActualAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalInicial", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalInicialResponse")]
+        MB.WCF.DataContract.DCHisCapitalFinanciero capitalInicial();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalInicial", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalInicialResponse")]
+        System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalInicialAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapitalResponse")]
+        System.Nullable<decimal> calcularDiferenciaCapital();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapitalResponse")]
+        System.Threading.Tasks.Task<System.Nullable<decimal>> calcularDiferenciaCapitalAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +81,22 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         public System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalActualAsync() {
             return base.Channel.capitalActualAsync();
+        }
+        
+        public MB.WCF.DataContract.DCHisCapitalFinanciero capitalInicial() {
+            return base.Channel.capitalInicial();
+        }
+        
+        public System.Threading.Tasks.Task<MB.WCF.DataContract.DCHisCapitalFinanciero> capitalInicialAsync() {
+            return base.Channel.capitalInicialAsync();
+        }
+        
+        public System.Nullable<decimal> calcularDiferenciaCapital() {
+            return base.Channel.calcularDiferenciaCapital();
+        }
+        
+        public System.Threading.Tasks.Task<System.Nullable<decimal>> calcularDiferenciaCapitalAsync() {
+            return base.Channel.calcularDiferenciaCapitalAsync();
         }
     }
 }

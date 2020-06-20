@@ -19,6 +19,18 @@
   <wsdl:message name="IServicioHistorialCapital_capitalActual_OutputMessage">
     <wsdl:part name="parameters" element="tns:capitalActualResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_capitalInicial_InputMessage">
+    <wsdl:part name="parameters" element="tns:capitalInicial" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_capitalInicial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:capitalInicialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_calcularDiferenciaCapital_InputMessage">
+    <wsdl:part name="parameters" element="tns:calcularDiferenciaCapital" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_calcularDiferenciaCapital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:calcularDiferenciaCapitalResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioHistorialCapital">
     <wsdl:operation name="registroHistCapital">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/registroHistCapital" message="tns:IServicioHistorialCapital_registroHistCapital_InputMessage" />
@@ -27,6 +39,14 @@
     <wsdl:operation name="capitalActual">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/capitalActual" message="tns:IServicioHistorialCapital_capitalActual_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioHistorialCapital/capitalActualResponse" message="tns:IServicioHistorialCapital_capitalActual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="capitalInicial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/capitalInicial" message="tns:IServicioHistorialCapital_capitalInicial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioHistorialCapital/capitalInicialResponse" message="tns:IServicioHistorialCapital_capitalInicial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="calcularDiferenciaCapital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital" message="tns:IServicioHistorialCapital_calcularDiferenciaCapital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapitalResponse" message="tns:IServicioHistorialCapital_calcularDiferenciaCapital_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioHistorialCapital" type="tns:IServicioHistorialCapital">
@@ -42,6 +62,24 @@
     </wsdl:operation>
     <wsdl:operation name="capitalActual">
       <soap:operation soapAction="http://tempuri.org/IServicioHistorialCapital/capitalActual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="capitalInicial">
+      <soap:operation soapAction="http://tempuri.org/IServicioHistorialCapital/capitalInicial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calcularDiferenciaCapital">
+      <soap:operation soapAction="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

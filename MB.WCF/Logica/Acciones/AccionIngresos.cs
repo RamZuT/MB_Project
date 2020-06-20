@@ -10,12 +10,12 @@ namespace MB.WCF.Logica.Acciones
     {
         public void registroIngresos(DCIngresos dcIngresos)
         {
-            using (var context = new MBEntities())
+            using (var context = new MBEntities2())
             {
                 context.INGRESOS.Add(new INGRESOS
                 {
                 dFecha = dcIngresos.dFecha,
-                iMoneda = dcIngresos.iMoneda,
+                iIdTipoCambio = dcIngresos.iIdTipoCambio,
                 dMonto = dcIngresos.dMonto,
                 vConcepto = dcIngresos.vConcepto,
                 });
@@ -26,7 +26,7 @@ namespace MB.WCF.Logica.Acciones
         public DCIngresos obtenerUltimoIngreso()
         {
             DCIngresos DCIngresos = new DCIngresos();
-            using (var context = new MBEntities())
+            using (var context = new MBEntities2())
             {
                 var Ingresos = (from INGRESOS in context.INGRESOS
                                    orderby INGRESOS.iIdIngreso
@@ -36,7 +36,7 @@ namespace MB.WCF.Logica.Acciones
                 DCIngresos.dMonto = Ingresos.dMonto;
                 DCIngresos.dFecha = Ingresos.dFecha;
                 DCIngresos.vConcepto = Ingresos.vConcepto;
-                DCIngresos.iMoneda = Convert.ToInt32(Ingresos.iMoneda);
+                DCIngresos.iIdTipoCambio = Ingresos.iIdTipoCambio;
             }
             return DCIngresos;
         }

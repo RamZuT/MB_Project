@@ -4,8 +4,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="dFecha" type="xs:dateTime" />
       <xs:element minOccurs="0" name="dMonto" type="xs:decimal" />
-      <xs:element minOccurs="0" name="iIdIngresos" type="xs:int" />
-      <xs:element minOccurs="0" name="iMoneda" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdIngresos" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdTipoCambio" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="vConcepto" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

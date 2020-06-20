@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MB.WEB.Models.Categorias>
+﻿@model IEnumerable<MB.WEB.Models.Catalogo>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idCategoria)
+            @Html.DisplayNameFor(model => model.idCatalogo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.categoria)
+            @Html.DisplayNameFor(model => model.catalogo)
         </th>
         <th></th>
     </tr>
@@ -24,10 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.idCategoria)
+            @Html.DisplayFor(modelItem => item.idCatalogo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.categoria)
+            @Html.DisplayFor(modelItem => item.catalogo)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

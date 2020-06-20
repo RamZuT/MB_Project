@@ -4,33 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c268c8ecc4774e63a44f5fd7e52fd4e9" Name="Diagram1">
-        <EntityTypeShape EntityType="MB_Model.FORMA_PAGO" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MB_Model.GASTOS" Width="1.5" PointX="2.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="MB_Model.HIS_TIPO_CAMBIO" Width="1.5" PointX="2.875" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MB_Model.INGRESOS" Width="1.5" PointX="3.625" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MB_Model.MONEDA" Width="1.5" PointX="0.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MB_Model.PAGOS" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
-        <AssociationConnector Association="MB_Model.FK_IDFORMAP_GASTOS" ManuallyRouted="false" />
-        <AssociationConnector Association="MB_Model.FK_idMoneda_tipoCambio" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MB_Model.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="5.75" PointY="9.25" />
-        <EntityTypeShape EntityType="MB_Model.T_UNION_HIS_CF_IG" Width="1.5" PointX="5.875" PointY="6.375" />
-        <AssociationConnector Association="MB_Model.FK_T_union_GASTOS" />
-        <AssociationConnector Association="MB_Model.FK_T_union_HIS_CAPITAL" />
-        <AssociationConnector Association="MB_Model.FK_T_union_INGRESOS" />
-        <EntityTypeShape EntityType="MB_Model.CATALOGO" Width="1.5" PointX="0.5" PointY="0.5" />
-        <AssociationConnector Association="MB_Model.RK_IDCATEGORIA_GASTOS1" />
-        <AssociationConnector Association="MB_Model.RK_IDCATEGORIA_GASTOS" />
-        <AssociationConnector Association="MB_Model.FK_GASTO_TIPOCAMBIO" />
-        <AssociationConnector Association="MB_Model.FK_IDCATEGORIS_PAGOS" />
-        <AssociationConnector Association="MB_Model.FKs_INGRESOS_Y_TIPOCAMBIOS_" />
-        <EntityTypeShape EntityType="MB_Model.DETALLE_PRESUPUESTO" Width="1.5" PointX="5.375" PointY="3.625" />
-        <EntityTypeShape EntityType="MB_Model.PRESUPUESTO" Width="1.5" PointX="8.125" PointY="6.875" />
-        <EntityTypeShape EntityType="MB_Model.T_UNION_DETALLE_PRESUPUESTO" Width="1.5" PointX="8" PointY="3.75" />
-        <AssociationConnector Association="MB_Model.FK_DETALLE_CATALOGO" />
-        <AssociationConnector Association="MB_Model.FK_DETALLE_GASTO" />
-        <AssociationConnector Association="MB_Model.FK_UNION_DETALLE" />
-        <AssociationConnector Association="MB_Model.FK_UNION_PRESUPUESTO" />
+      <Diagram DiagramId="5ad66890e94047a2b86a944ca4bf3409" Name="Diagram1">
+        <EntityTypeShape EntityType="MBModel.CATALOGO" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.DETALLE_PRESUPUESTO" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.FORMA_PAGO" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.GASTOS" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.HIS_TIPO_CAMBIO" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.INGRESOS" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.MONEDA" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.PAGOS" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.PRESUPUESTO" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.T_UNION_DETALLE_PRESUPUESTO" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.T_UNION_HIS_CF_IG" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="MBModel.FK_DETALLE_CATALOGO" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_IDCATEGORIS_PAGOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.RK_IDCATEGORIA_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_DETALLE_GASTO" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_UNION_DETALLE" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_IDFORMAP_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_GASTO_TIPOCAMBIO" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_T_union_GASTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_T_union_HIS_CAPITAL" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_idMoneda_tipoCambio" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FKs_INGRESOS_Y_TIPOCAMBIOS_" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_T_union_INGRESOS" ManuallyRouted="false" />
+        <AssociationConnector Association="MBModel.FK_UNION_PRESUPUESTO" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

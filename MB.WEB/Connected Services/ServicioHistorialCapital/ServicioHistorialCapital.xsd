@@ -28,4 +28,28 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="capitalInicial">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="capitalInicialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="capitalInicialResult" nillable="true" type="q2:DCHisCapitalFinanciero" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="calcularDiferenciaCapital">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="calcularDiferenciaCapitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="calcularDiferenciaCapitalResult" nillable="true" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

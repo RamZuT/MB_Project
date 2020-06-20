@@ -11,14 +11,12 @@ namespace MB.WCF.DataContract
         [DataMember]
         public int iIdPagos { get; set; }
         [DataMember]
-        public string vConcepto { get; set; }
-        [DataMember]
         public DateTime dFechaVencePago { get; set; }
         [DataMember]
         public double dMonto { get; set; }
         [DataMember]
         public bool  bEstado { get; set; }
         [DataMember]
-        public int iIdCategoria { get; set; }
+        public int iIdCatalogo { get; set; }
     }
 }

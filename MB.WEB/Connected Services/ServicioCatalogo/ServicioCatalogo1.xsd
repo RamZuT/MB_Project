@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfDCCategorias">
+  <xs:complexType name="ArrayOfDCCatalogo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCCategorias" nillable="true" type="tns:DCCategorias" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DCCatalogo" nillable="true" type="tns:DCCatalogo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfDCCategorias" nillable="true" type="tns:ArrayOfDCCategorias" />
-  <xs:complexType name="DCCategorias">
+  <xs:element name="ArrayOfDCCatalogo" nillable="true" type="tns:ArrayOfDCCatalogo" />
+  <xs:complexType name="DCCatalogo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="iIdCategoria" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdCatalogo" type="xs:int" />
       <xs:element minOccurs="0" name="vDetalle" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="DCCategorias" nillable="true" type="tns:DCCategorias" />
+  <xs:element name="DCCatalogo" nillable="true" type="tns:DCCatalogo" />
 </xs:schema>

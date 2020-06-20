@@ -9,7 +9,7 @@ namespace MB.WCF.DataContract
     public class DCIngresos
     {
         [DataMember]
-        public int iIdIngresos { get; set; }
+        public int? iIdIngresos { get; set; }
         [DataMember]
         public decimal dMonto { get; set; }
         [DataMember]
@@ -17,6 +17,6 @@ namespace MB.WCF.DataContract
         [DataMember]
         public string vConcepto { get; set; }
         [DataMember]
-        public int iMoneda { get; set; }
+        public int? iIdTipoCambio { get; set; }
     }
 }

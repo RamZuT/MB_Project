@@ -16,5 +16,9 @@ namespace MB.WCF.Logica.Servicios
         void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
         [OperationContract]
         DCHisCapitalFinanciero capitalActual();
+        [OperationContract]
+        DCHisCapitalFinanciero capitalInicial();
+        [OperationContract]
+        decimal? calcularDiferenciaCapital();
     }
 }

@@ -11,16 +11,19 @@ namespace MB.WCF.Logica.Acciones
         public IEnumerable<DCMoneda> listaMonedas()
         {
             List<DCMoneda> listMonedas = new List<DCMoneda>();
-            using (var context = new MBEntities())
+            using (var context = new MBEntities2())
             {
                 var list = from MONEDA in context.MONEDA select MONEDA;
-                foreach (var _monedas in list)
+                if (list!=null)
                 {
-                    DCMoneda dcmodena = new DCMoneda();
-                    dcmodena.iIdMoneda = _monedas.iIdMoneda;
-                    dcmodena.vCodMoneda = _monedas.vCodMoneda;
-                    dcmodena.vMoneda = _monedas.vMoneda;
-                    listMonedas.Add(dcmodena);
+                    foreach (var _monedas in list)
+                    {
+                        DCMoneda dcmodena = new DCMoneda();
+                        dcmodena.iIdMoneda = _monedas.iIdMoneda;
+                        dcmodena.vCodMoneda = _monedas.vCodMoneda;
+                        dcmodena.vMoneda = _monedas.vMoneda;
+                        listMonedas.Add(dcmodena);
+                    }
                 }
             }
             return listMonedas;

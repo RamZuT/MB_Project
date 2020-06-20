@@ -20,5 +20,15 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <returns>Objeto Historial Capital Financiero</returns>
         public DCHisCapitalFinanciero capitalActual() => new AccionHistorialCapital().capitalActual();
+        /// <summary>
+        /// Función que retorna el capital de inicio 
+        /// </summary>
+        /// <returns>Objeto Historial Capital Financiero principal</returns>
+        public DCHisCapitalFinanciero capitalInicial() => new AccionHistorialCapital().capitalInicial();
+        /// <summary>
+        /// Función que retorna el resultado de la resta entre el capital inicial y el capital actual
+        /// </summary>
+        /// <returns>Decimal como resultado de la resta</returns>
+        public decimal? calcularDiferenciaCapital() => new AccionHistorialCapital().calcularDiferenciaCapital();
     }
 }

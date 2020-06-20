@@ -6,15 +6,16 @@ using System.Web;
 
 namespace MB.WCF.DataContract
 {
-    public class DCHisCapitalFinanciero
+    public class DCDetallePresupuesto
     {
         [DataMember]
-        public int iIdCapitalF { get; set; }
+        public int iIdDetalle { get; set; }
         [DataMember]
-        public decimal? dMontoCF { get; set; }
+        public int iIdCatalogo { get; set; }
         [DataMember]
-        public DateTime? dFechaDeCorte { get; set; }
+        public int iIdGasto { get; set; }
         [DataMember]
-        public bool? bEstado { get; set; }
+        public decimal? dMonto { get; set; }
+
     }
 }

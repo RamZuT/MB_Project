@@ -7,12 +7,12 @@ using MB.WCF.Logica.Accion;
 
 namespace MB.WCF.Logica.Especificaciones
 {
-    public class EspecificacionCategorias
+    public class EspecificacionCatalogo
     {
         /// <summary>
         /// Función que obtiene la lista completa de categorías
         /// </summary>
         /// <returns>Retorna la lista de categorías</returns>
-        public List<DCCategorias> ObtenerCategorias() => new AccionCategorias().ObtenerCategorias();
+        public List<DCCatalogo> ObtenerCatalogo() => new AccionCatalogo().ObtenerCatalogo();
     }
 }

@@ -25,9 +25,9 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.dMontoCF_Inicial, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.dMontoCF_Inicial, htmlAttributes: new { @class = "" })
                         <div class="col-md-10">
-                            @Html.Display("dMontoCF_Inicial")
+                            @Html.DisplayFor(model => model.dMontoCF_Inicial, new { @class = "" })
                         </div>
                     </div>
                 </td>
@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.dMontoCF_dif, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.dMontoCF_dif, htmlAttributes: new { @class = "" })
                         <div class="col-md-10">
                             @Html.Display("dMontoCF_dif")
                         </div>

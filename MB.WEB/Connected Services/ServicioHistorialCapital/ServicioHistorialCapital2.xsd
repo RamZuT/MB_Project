@@ -4,10 +4,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="bEstado" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="dFechaDeCorte" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="dMontoCF" type="xs:decimal" />
+      <xs:element minOccurs="0" name="dMontoCF" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="iIdCapitalF" type="xs:int" />
-      <xs:element minOccurs="0" name="iIdGastos" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="iIdIngreso" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DCHisCapitalFinanciero" nillable="true" type="tns:DCHisCapitalFinanciero" />

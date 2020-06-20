@@ -12,17 +12,23 @@ namespace MB.WEB.Controllers
     {
         ServicioMonedas.ServicioMonedasClient urServMoneda = new ServicioMonedas.ServicioMonedasClient();
         ServicioIngresos.ServicioIngresosClient urServIngreso = new ServicioIngresos.ServicioIngresosClient();
-        ServicioHistorialCapital.ServicioHistorialCapitalClient urServIngreCapital= new ServicioHistorialCapital.ServicioHistorialCapitalClient();
+        ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital= new ServicioHistorialCapital.ServicioHistorialCapitalClient();
         // GET: Ingresos
         public ActionResult crearIngresos()
         {
             //Crea la lista de monedas y las muestra en el dropdown de la vista
             List<SelectListItem> Monedas = new List<SelectListItem>();
-            var listaMonedas = new SelectList(urServMoneda.listaMonedas(), "iIdMoneda","vMoneda" );
+            var listaMonedas = new SelectList(urServMoneda.listaMonedas(), "iIdMoneda", "vMoneda" );
             //Crea los montos de capital y los muestra en la vista
-            var MontoActual = urServIngreCapital.capitalActual();
+            var MontoActual = urServHistCapital.capitalActual();
+            var MontoInicial = urServHistCapital.capitalInicial();
+            var Diferencia = urServHistCapital.calcularDiferenciaCapital();
+
             MB.WEB.Models.IngresosRegistrar ingresoR = new IngresosRegistrar();
             ingresoR.dMontoCF = MontoActual.dMontoCF;
+            ingresoR.dMontoCF_Inicial = MontoInicial.dMontoCF;
+            ingresoR.dMontoCF_dif = Diferencia;
+
             ViewBag.Moneda = listaMonedas;
             return View(ingresoR);
         }
@@ -37,11 +43,11 @@ namespace MB.WEB.Controllers
                 dcingresoR.dMonto = ingreso.dMonto;
                 dcingresoR.dFecha = ingreso.dFecha;
                 dcingresoR.vConcepto = ingreso.vConcepto;
-                dcingresoR.iMoneda = ingreso.iMoneda;
+                dcingresoR.iIdTipoCambio = ingreso.iMoneda;
                 urServIngreso.registroIngresos(dcingresoR);
                 ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
                 //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
-                urServIngreCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
 
             }
             return RedirectToAction("crearIngresos");

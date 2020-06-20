@@ -16,5 +16,7 @@ namespace MB.WCF.Logica.Servicios
         public void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) => 
             new EspecificacionHistCapital().registroHistCapital(fechaCorte, estado, ingresoGasto, monto);
         public DCHisCapitalFinanciero capitalActual() => new EspecificacionHistCapital().capitalActual();
+        public DCHisCapitalFinanciero capitalInicial() => new EspecificacionHistCapital().capitalInicial();
+        public decimal? calcularDiferenciaCapital() => new EspecificacionHistCapital().calcularDiferenciaCapital();
     }
 }
