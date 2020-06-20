@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5ad66890e94047a2b86a944ca4bf3409" Name="Diagram1">
-        <EntityTypeShape EntityType="MBModel.CATALOGO" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MBModel.DETALLE_PRESUPUESTO" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MBModel.FORMA_PAGO" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.CATALOGO" Width="1.5" PointX="0.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.DETALLE_PRESUPUESTO" Width="1.5" PointX="2.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.FORMA_PAGO" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.GASTOS" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MBModel.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.HIS_CAPITAL_FINANCIERO" Width="1.5" PointX="9.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.HIS_TIPO_CAMBIO" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.INGRESOS" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.MONEDA" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.PAGOS" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MBModel.PRESUPUESTO" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.PRESUPUESTO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MBModel.T_UNION_DETALLE_PRESUPUESTO" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MBModel.T_UNION_HIS_CF_IG" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MBModel.T_UNION_HIS_CF_IG" Width="1.5" PointX="6.375" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="MBModel.FK_DETALLE_CATALOGO" ManuallyRouted="false" />
         <AssociationConnector Association="MBModel.FK_IDCATEGORIS_PAGOS" ManuallyRouted="false" />
         <AssociationConnector Association="MBModel.RK_IDCATEGORIA_GASTOS" ManuallyRouted="false" />

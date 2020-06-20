@@ -14,7 +14,7 @@ namespace MB.WCF.Logica.Acciones
         public void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto)
         {
             HIS_CAPITAL_FINANCIERO capitalActual = new HIS_CAPITAL_FINANCIERO();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 if (estado == true)
                      {
@@ -38,7 +38,7 @@ namespace MB.WCF.Logica.Acciones
         public DCHisCapitalFinanciero capitalActual()
         {
             DCHisCapitalFinanciero DCCapitalActual = new DCHisCapitalFinanciero();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var CapitalActual = (from HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO orderby HIS_CAPITAL_FINANCIERO.iIdCapitalF
                                    descending select HIS_CAPITAL_FINANCIERO).FirstOrDefault();
@@ -86,7 +86,7 @@ namespace MB.WCF.Logica.Acciones
         public DCHisCapitalFinanciero ObtieneCapitalPorFechaCorte(DateTime fechaCorte)
         {
             DCHisCapitalFinanciero DCCapitalInicialPorFecha = new DCHisCapitalFinanciero();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var CapitalInicial = (from _HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO
                                       where _HIS_CAPITAL_FINANCIERO.dFechaDeCorte == fechaCorte
@@ -108,7 +108,7 @@ namespace MB.WCF.Logica.Acciones
         public DCHisCapitalFinanciero ObtienePrimerCapital()
         {
             DCHisCapitalFinanciero DCCapitalInicial = new DCHisCapitalFinanciero();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var CapitalActual = (from HIS_CAPITAL_FINANCIERO in context.HIS_CAPITAL_FINANCIERO
                                      orderby HIS_CAPITAL_FINANCIERO.iIdCapitalF

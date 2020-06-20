@@ -11,7 +11,7 @@ namespace MB.WCF.Logica.Accion
         public List<DCCatalogo> ObtenerCatalogo()
         {
             List<DCCatalogo> listCatalogo = new List<DCCatalogo>();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var list = from CATALOGO in context.CATALOGO select CATALOGO;
                 foreach (var _catalogo in list)

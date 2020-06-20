@@ -13,10 +13,10 @@ namespace MB.WCF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MBEntities2 : DbContext
+    public partial class MBEntities : DbContext
     {
-        public MBEntities2()
-            : base("name=MBEntities2")
+        public MBEntities()
+            : base("name=MBEntities")
         {
         }
     

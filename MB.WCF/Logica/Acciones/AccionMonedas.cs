@@ -11,7 +11,7 @@ namespace MB.WCF.Logica.Acciones
         public IEnumerable<DCMoneda> listaMonedas()
         {
             List<DCMoneda> listMonedas = new List<DCMoneda>();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var list = from MONEDA in context.MONEDA select MONEDA;
                 if (list!=null)

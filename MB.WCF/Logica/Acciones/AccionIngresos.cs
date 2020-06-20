@@ -10,7 +10,7 @@ namespace MB.WCF.Logica.Acciones
     {
         public void registroIngresos(DCIngresos dcIngresos)
         {
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 context.INGRESOS.Add(new INGRESOS
                 {
@@ -26,7 +26,7 @@ namespace MB.WCF.Logica.Acciones
         public DCIngresos obtenerUltimoIngreso()
         {
             DCIngresos DCIngresos = new DCIngresos();
-            using (var context = new MBEntities2())
+            using (var context = new MBEntities())
             {
                 var Ingresos = (from INGRESOS in context.INGRESOS
                                    orderby INGRESOS.iIdIngreso
