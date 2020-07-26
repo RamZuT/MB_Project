@@ -10,9 +10,11 @@ namespace MB.WEB.Controllers
 {
     public class IngresosController : Controller
     {
+        Utilidades.CrearObjetos crearObjetos = new Utilidades.CrearObjetos();
         ServicioMonedas.ServicioMonedasClient urServMoneda = new ServicioMonedas.ServicioMonedasClient();
         ServicioIngresos.ServicioIngresosClient urServIngreso = new ServicioIngresos.ServicioIngresosClient();
         ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital= new ServicioHistorialCapital.ServicioHistorialCapitalClient();
+        ServicioHisTipoCambio.ServicioHisTipoCambioClient urSercHisTipoCambio = new ServicioHisTipoCambio.ServicioHisTipoCambioClient();
         // GET: Ingresos
         public ActionResult crearIngresos()
         {
@@ -29,7 +31,9 @@ namespace MB.WEB.Controllers
             ingresoR.dMontoCF_Inicial = MontoInicial.dMontoCF;
             ingresoR.dMontoCF_dif = Diferencia;
 
+           // ViewBag.Readonly = true;
             ViewBag.Moneda = listaMonedas;
+
             return View(ingresoR);
         }
 
@@ -38,16 +42,34 @@ namespace MB.WEB.Controllers
         {
             WCF.DataContract.DCIngresos dcingresoR = new WCF.DataContract.DCIngresos();
             WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
+
             if (ModelState.IsValid)
             {
-                dcingresoR.dMonto = ingreso.dMonto;
-                dcingresoR.dFecha = ingreso.dFecha;
-                dcingresoR.vConcepto = ingreso.vConcepto;
-                dcingresoR.iIdTipoCambio = ingreso.iMoneda;
-                urServIngreso.registroIngresos(dcingresoR);
-                ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
-                //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
-                //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                if (ingreso.iMoneda==1)
+                {
+                    dcingresoR.dMonto = ingreso.dMonto;
+                    dcingresoR.dFecha = ingreso.dFecha;
+                    dcingresoR.vConcepto = ingreso.vConcepto;
+                    dcingresoR.iIdTipoCambio = ingreso.iMoneda;
+
+                    //urSercHisTipoCambio.registroTipoCambio();
+                    urServIngreso.registroIngresos(dcingresoR);
+                    ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
+                    //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
+                    //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                }
+                else
+                {
+                    dcingresoR.dMonto = ingreso.dMonto;
+                    dcingresoR.dFecha = ingreso.dFecha;
+                    dcingresoR.vConcepto = ingreso.vConcepto;
+                    dcingresoR.iIdTipoCambio = ingreso.iMoneda;
+
+                    urServIngreso.registroIngresos(dcingresoR);
+                    ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
+                    //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
+                    //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                }
 
             }
             return RedirectToAction("crearIngresos");

@@ -37,6 +37,12 @@ video {
   vertical-align: baseline;
 }
 
+/*Prueba para ocultar textbox*/
+#hidden {
+    display:none;
+}
+
+
 #izquierda {
     margin:0px;
 }

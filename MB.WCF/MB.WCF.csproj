@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logica\Servicios\ServicioCatalogo.svc" />
+    <Content Include="Logica\Servicios\ServicioHisTipoCambio.svc" />
     <Content Include="Logica\Servicios\ServicioHistorialCapital.svc" />
     <Content Include="Logica\Servicios\ServicioIngresos.svc" />
     <Content Include="Logica\Servicios\ServicioMonedas.svc" />
@@ -123,17 +124,23 @@
     <Compile Include="Logica\Acciones\AccionHistorialCapital.cs" />
     <Compile Include="Logica\Acciones\AccionIngresos.cs" />
     <Compile Include="Logica\Acciones\AccionMonedas.cs" />
+    <Compile Include="Logica\Acciones\AccionTipoCambio.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionHistCapital.cs" />
+    <Compile Include="Logica\Especificaciones\EspecificacionHisTipoCambio.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionIngresos.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioIngresos.cs" />
     <Compile Include="Logica\Interfaces\IServicioHistorialCapital.cs" />
+    <Compile Include="Logica\Interfaces\IServicioHisTipoCambio.cs" />
     <Compile Include="Logica\Servicios\ServicioCatalogo.svc.cs">
       <DependentUpon>ServicioCatalogo.svc</DependentUpon>
     </Compile>
     <Compile Include="Logica\Interfaces\IServicioCatalogo.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionCatalogo.cs" />
+    <Compile Include="Logica\Servicios\ServicioHisTipoCambio.svc.cs">
+      <DependentUpon>ServicioHisTipoCambio.svc</DependentUpon>
+    </Compile>
     <Compile Include="Logica\Servicios\ServicioHistorialCapital.svc.cs">
       <DependentUpon>ServicioHistorialCapital.svc</DependentUpon>
     </Compile>

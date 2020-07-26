@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="225368fc-51b9-4290-b208-fa552acdf9d8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioHisTipoCambio.xsd" MetadataType="Schema" ID="81252220-c0b9-4e81-ac7a-567fa6f8feb9" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioHisTipoCambio1.xsd" MetadataType="Schema" ID="cd767619-9bc5-419f-b6cf-99fab59e6357" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioHisTipoCambio.disco" MetadataType="Disco" ID="d12e8c9c-222b-495f-9a64-7b3f323ac982" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc?disco" />
+    <MetadataFile FileName="ServicioHisTipoCambio.wsdl" MetadataType="Wsdl" ID="289290d3-8db3-4dff-8905-0d1a8dd8b326" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc?wsdl" />
+    <MetadataFile FileName="ServicioHisTipoCambio2.xsd" MetadataType="Schema" ID="fac72f06-e469-4974-aec1-196fb816a9c9" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioHisTipoCambio.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

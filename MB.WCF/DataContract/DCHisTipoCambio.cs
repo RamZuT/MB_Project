@@ -11,7 +11,7 @@ namespace MB.WCF.DataContract
         [DataMember]
         public int iIdTipoCambio { get; set; }
         [DataMember]
-        public double vDecimal { get; set; }
+        public decimal vMonto { get; set; }
         [DataMember]
         public DateTime dFecha { get; set; }
         [DataMember]

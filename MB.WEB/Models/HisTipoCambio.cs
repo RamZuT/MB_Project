@@ -8,7 +8,7 @@ namespace MB.WEB.Models
     public class HisTipoCambio
     {
         public int iIdTipoCambio { get; set; }
-        public double vDecimal { get; set; }
+        public decimal? vMonto { get; set; }
         public DateTime dFecha { get; set; }
         public int iIdMoneda { get; set; }
     }

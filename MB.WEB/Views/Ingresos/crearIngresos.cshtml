@@ -4,94 +4,106 @@
     ViewBag.Title = "Crear ingresos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/funciones.js"></script>
+
 <div>
     <div>
         <h2>Ingresos</h2>
     </div>
-</div>  
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <!--h4>Registrar</!--h4-->
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group" id="izquierda">
-        <table>
-            <tr>
-                <td>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.dMontoCF_Inicial, htmlAttributes: new { @class = "" })
-                        <div class="col-md-10">
-                            @Html.DisplayFor(model => model.dMontoCF_Inicial, new { @class = "" })
+    <div class="form-horizontal">
+        <!--h4>Registrar</!--h4-->
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group" id="izquierda">
+            <table>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dMontoCF_Inicial, htmlAttributes: new { @class = "" })
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.dMontoCF_Inicial, new { @class = "" })
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.dMontoCF, htmlAttributes: new { @class = "" })
-                        <div class="col-md-10">
-                            @Html.DisplayFor(model => model.dMontoCF, new { @class = "" })
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dMontoCF, htmlAttributes: new { @class = "" })
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.dMontoCF, new { @class = "" })
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.dMontoCF_dif, htmlAttributes: new { @class = "" })
-                        <div class="col-md-10">
-                            @Html.Display("dMontoCF_dif")
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dMontoCF_dif, htmlAttributes: new { @class = "" })
+                            <div class="col-md-10">
+                                @Html.Display("dMontoCF_dif")
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-     </div>  
-    Ingresos por cuenta
-    <div class="form-group">
-        @Html.LabelFor(model => model.dFecha, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.dFecha, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.dFecha, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
         </div>
-    </div>
+        Ingresos por cuenta
+        <div class="form-group">
+            @Html.LabelFor(model => model.dFecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dFecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dFecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.iMoneda, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.iMoneda, ViewBag.Moneda as SelectList, "Seleccione la moneda", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.iMoneda, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.iMoneda, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.iMoneda, ViewBag.Moneda as SelectList, "Seleccione la moneda", new { @class = "form-control",
+               onchange= "mostrarTipoCambio(this)"
+           })
+                @Html.ValidationMessageFor(model => model.iMoneda, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.dMonto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.dMonto, new { htmlAttributes = new { Type = "text", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.dMonto, "", new { @class = "text-danger" })
+        <div class="form-group" id="hidden" runat="server">
+            @Html.LabelFor(model => model.tipoCambio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tipoCambio, new { htmlAttributes = new { Type = "text", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tipoCambio, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.vConcepto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.vConcepto, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.vConcepto, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.dMonto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dMonto, new { htmlAttributes = new { Type = "text", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dMonto, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Ingresar" class="btn btn-default" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.vConcepto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vConcepto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.vConcepto, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Regresar" class="btn btn-default" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ingresar" class="btn btn-default" />
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Regresar" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
 
 @section Scripts {

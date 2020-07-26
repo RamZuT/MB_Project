@@ -25,6 +25,9 @@ namespace MB.WEB.Models
         [Display(Name = "Moneda")]
         public int iMoneda { get; set; }
 
+        [Display(Name = "Tipo de Cambio")]
+        public decimal? tipoCambio { get; set; }
+
         [Display(Name = "Capital actual")]
         public decimal? dMontoCF { get; set; }
 
