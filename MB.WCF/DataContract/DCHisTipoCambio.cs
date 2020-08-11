@@ -16,5 +16,9 @@ namespace MB.WCF.DataContract
         public DateTime dFecha { get; set; }
         [DataMember]
         public int iIdMoneda { get; set; }
+        [DataMember]
+        public int iIdIngreso { get; set; }
+        [DataMember]
+        public int iIdGasto { get; set; }
     }
 }

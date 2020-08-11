@@ -15,6 +15,7 @@ namespace MB.WEB.Controllers
         ServicioIngresos.ServicioIngresosClient urServIngreso = new ServicioIngresos.ServicioIngresosClient();
         ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital= new ServicioHistorialCapital.ServicioHistorialCapitalClient();
         ServicioHisTipoCambio.ServicioHisTipoCambioClient urSercHisTipoCambio = new ServicioHisTipoCambio.ServicioHisTipoCambioClient();
+        Utilidades.Utilidades utilitarios = new Utilidades.Utilidades();
         // GET: Ingresos
         public ActionResult crearIngresos()
         {
@@ -40,35 +41,69 @@ namespace MB.WEB.Controllers
         [HttpPost]
         public ActionResult crearIngresos(IngresosRegistrar ingreso)
         {
-            WCF.DataContract.DCIngresos dcingresoR = new WCF.DataContract.DCIngresos();
             WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
+            var continua = false;
 
             if (ModelState.IsValid)
             {
                 if (ingreso.iMoneda==1)
                 {
-                    dcingresoR.dMonto = ingreso.dMonto;
-                    dcingresoR.dFecha = ingreso.dFecha;
-                    dcingresoR.vConcepto = ingreso.vConcepto;
-                    dcingresoR.iIdTipoCambio = ingreso.iMoneda;
-
-                    //urSercHisTipoCambio.registroTipoCambio();
-                    urServIngreso.registroIngresos(dcingresoR);
-                    ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
-                    //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
-                    //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                    continua = (urServIngreso.registroIngresos(crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto)));
+                    if (continua == true)
+                    {
+                        var _ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
+                        continua = (urSercHisTipoCambio.registroTipoCambio(crearObjetos.crearTipoCambio(ingreso.iMoneda, ingreso.tipoCambio, ingreso.dFecha, _ultimoIngreso.iIdIngresos, 0)));
+                        if (continua == true)
+                        {
+                            var _idUltimoTipoCambio = urSercHisTipoCambio.obtenerUltimoIdTipoCambio();
+                            continua = (urServHistCapital.registroHistCapital(utilitarios.convertirDolarAColon(_ultimoIngreso.dMonto, ingreso.tipoCambio),
+                                _ultimoIngreso.dFecha,true));
+                            if (continua == true)
+                            {
+                                var UltimoHistorial = urServHistCapital.capitalActual();
+                                continua = ( urServIngreso.registroUnionIngreso(_ultimoIngreso.iIdIngresos, UltimoHistorial.iIdCapitalF));
+                                if (continua != true)
+                                {
+                                    urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
+                                    urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
+                                    urServHistCapital.eliminarHisCapitalPorId(UltimoHistorial.iIdCapitalF);
+                                }
+                            }
+                            else
+                            {
+                                urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
+                                urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
+                            }
+                        }
+                        else
+                        {
+                            urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
+                        }
+                    }
                 }
                 else
                 {
-                    dcingresoR.dMonto = ingreso.dMonto;
-                    dcingresoR.dFecha = ingreso.dFecha;
-                    dcingresoR.vConcepto = ingreso.vConcepto;
-                    dcingresoR.iIdTipoCambio = ingreso.iMoneda;
-
-                    urServIngreso.registroIngresos(dcingresoR);
-                    ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
-                    //el true no va parametrizado por que es un ingreso por ahora permanece de esta forma.
-                    //urServHistCapital.registroHistCapital(ultimoIngreso.dFecha, true, ultimoIngreso.iIdIngresos, ultimoIngreso.dMonto);
+                    continua = urServIngreso.registroIngresos(crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto));
+                    if (continua == true)
+                    {
+                        var _ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
+                        var UltimoHistorial = urServHistCapital.capitalActual();
+                        continua = (urServHistCapital.registroHistCapital(_ultimoIngreso.dMonto, _ultimoIngreso.dFecha, true));
+                        if (continua == true)
+                        {
+                            continua = (urServIngreso.registroUnionIngreso(_ultimoIngreso.iIdIngresos, UltimoHistorial.iIdCapitalF));
+                            if (continua != true)
+                            {
+                                urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
+                                urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
+                                urServHistCapital.eliminarHisCapitalPorId(UltimoHistorial.iIdCapitalF);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
+                    }
                 }
 
             }

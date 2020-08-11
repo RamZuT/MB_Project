@@ -11,5 +11,7 @@ namespace MB.WEB.Models
         public decimal? vMonto { get; set; }
         public DateTime dFecha { get; set; }
         public int iIdMoneda { get; set; }
+        public int iIdGasto { get; set; }
+        public int iIdIngreso { get; set; }
     }
 }

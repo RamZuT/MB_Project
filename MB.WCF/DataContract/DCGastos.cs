@@ -17,8 +17,6 @@ namespace MB.WCF.DataContract
         [DataMember]
         public DateTime dFecha { get; set; }
         [DataMember]
-        public int iIdTipoCambio { get; set; }
-        [DataMember]
         public string vDetalle { get; set; }
         [DataMember]
         public int iIdFormaPago { get; set; }

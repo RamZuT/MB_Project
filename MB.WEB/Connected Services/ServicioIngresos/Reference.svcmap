@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4162b638-b95b-44d2-8403-bb48cca5c7fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a3cd5fe8-4c15-4267-9eac-0e3193548efd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServicioIngresos.xsd" MetadataType="Schema" ID="246e2a52-a5ef-4e4f-b4bf-8a895a63f817" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServicioIngresos1.xsd" MetadataType="Schema" ID="6a8edea7-dd8b-4dec-85c5-d68d50664611" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd2" />
-    <MetadataFile FileName="ServicioIngresos.wsdl" MetadataType="Wsdl" ID="1108fbc8-17a9-403f-8b26-82496e2e73b2" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?wsdl" />
-    <MetadataFile FileName="ServicioIngresos.disco" MetadataType="Disco" ID="df7c7bc9-d74c-47e4-9570-60929718f77c" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?disco" />
-    <MetadataFile FileName="ServicioIngresos2.xsd" MetadataType="Schema" ID="8de5a49a-3015-4c40-b6bd-e823c75dff6d" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioIngresos.xsd" MetadataType="Schema" ID="4788120a-b79a-401d-86e2-7515c70e99cc" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioIngresos1.xsd" MetadataType="Schema" ID="4344bcdc-d67d-49c5-9fb7-03455eec88b7" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioIngresos.wsdl" MetadataType="Wsdl" ID="cfd5cc14-cc6f-4d14-aa23-07c992a0dbce" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?wsdl" />
+    <MetadataFile FileName="ServicioIngresos.disco" MetadataType="Disco" ID="a45ac21d-f084-4bbb-bfc5-e1e0e76bbe74" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?disco" />
+    <MetadataFile FileName="ServicioIngresos2.xsd" MetadataType="Schema" ID="94ce4b0a-feef-4b71-9084-4c383b870b65" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioIngresos.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

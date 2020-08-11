@@ -12,17 +12,13 @@ namespace MB.WCF
     using System;
     using System.Collections.Generic;
     
-    public partial class HIS_TIPO_CAMBIO
+    public partial class T_UNION_HIS_CF_GS
     {
-        public int iIdTipoCambio { get; set; }
-        public decimal vMonto { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public Nullable<int> iIdMoneda { get; set; }
-        public Nullable<int> iIdIngreso { get; set; }
+        public int iIdHCP_GAST { get; set; }
         public Nullable<int> iIdGasto { get; set; }
+        public Nullable<int> iIdCapitalF { get; set; }
     
-        public virtual MONEDA MONEDA { get; set; }
-        public virtual INGRESOS INGRESOS1 { get; set; }
-        public virtual GASTOS GASTOS1 { get; set; }
+        public virtual GASTOS GASTOS { get; set; }
+        public virtual HIS_CAPITAL_FINANCIERO HIS_CAPITAL_FINANCIERO { get; set; }
     }
 }

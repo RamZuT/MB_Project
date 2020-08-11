@@ -15,11 +15,9 @@ namespace MB.WCF
     public partial class T_UNION_HIS_CF_IG
     {
         public int iIdCapitalF { get; set; }
-        public int iIdGastos { get; set; }
         public int iIdIngreso { get; set; }
         public int iIdHCP_INGAS { get; set; }
     
-        public virtual GASTOS GASTOS { get; set; }
         public virtual HIS_CAPITAL_FINANCIERO HIS_CAPITAL_FINANCIERO { get; set; }
         public virtual INGRESOS INGRESOS { get; set; }
     }

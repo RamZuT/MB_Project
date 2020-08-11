@@ -16,10 +16,10 @@ namespace MB.WEB.ServicioHistorialCapital {
     public interface IServicioHistorialCapital {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/registroHistCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/registroHistCapitalResponse")]
-        void registroHistCapital(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
+        bool registroHistCapital(decimal monto, System.DateTime fechaCorte, bool estado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/registroHistCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/registroHistCapitalResponse")]
-        System.Threading.Tasks.Task registroHistCapitalAsync(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
+        System.Threading.Tasks.Task<bool> registroHistCapitalAsync(decimal monto, System.DateTime fechaCorte, bool estado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/capitalActual", ReplyAction="http://tempuri.org/IServicioHistorialCapital/capitalActualResponse")]
         MB.WCF.DataContract.DCHisCapitalFinanciero capitalActual();
@@ -38,6 +38,12 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital", ReplyAction="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapitalResponse")]
         System.Threading.Tasks.Task<System.Nullable<decimal>> calcularDiferenciaCapitalAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorId", ReplyAction="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorIdResponse")]
+        bool eliminarHisCapitalPorId(int idHistorial);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorId", ReplyAction="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorIdResponse")]
+        System.Threading.Tasks.Task<bool> eliminarHisCapitalPorIdAsync(int idHistorial);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,12 +73,12 @@ namespace MB.WEB.ServicioHistorialCapital {
                 base(binding, remoteAddress) {
         }
         
-        public void registroHistCapital(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) {
-            base.Channel.registroHistCapital(fechaCorte, estado, ingresoGasto, monto);
+        public bool registroHistCapital(decimal monto, System.DateTime fechaCorte, bool estado) {
+            return base.Channel.registroHistCapital(monto, fechaCorte, estado);
         }
         
-        public System.Threading.Tasks.Task registroHistCapitalAsync(System.DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto) {
-            return base.Channel.registroHistCapitalAsync(fechaCorte, estado, ingresoGasto, monto);
+        public System.Threading.Tasks.Task<bool> registroHistCapitalAsync(decimal monto, System.DateTime fechaCorte, bool estado) {
+            return base.Channel.registroHistCapitalAsync(monto, fechaCorte, estado);
         }
         
         public MB.WCF.DataContract.DCHisCapitalFinanciero capitalActual() {
@@ -97,6 +103,14 @@ namespace MB.WEB.ServicioHistorialCapital {
         
         public System.Threading.Tasks.Task<System.Nullable<decimal>> calcularDiferenciaCapitalAsync() {
             return base.Channel.calcularDiferenciaCapitalAsync();
+        }
+        
+        public bool eliminarHisCapitalPorId(int idHistorial) {
+            return base.Channel.eliminarHisCapitalPorId(idHistorial);
+        }
+        
+        public System.Threading.Tasks.Task<bool> eliminarHisCapitalPorIdAsync(int idHistorial) {
+            return base.Channel.eliminarHisCapitalPorIdAsync(idHistorial);
         }
     }
 }

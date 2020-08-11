@@ -13,8 +13,12 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioIngresos
     {
         [OperationContract]
-        void registroIngresos(DCIngresos dcIngresos);
+        bool registroIngresos(DCIngresos dcIngresos);
         [OperationContract]
         DCIngresos obtenerUltimoIngreso();
+        [OperationContract]
+        bool eliminarIngresoPorId(int idIngreso);
+        [OperationContract]
+        bool registroUnionIngreso(int ingreso, int capital);
     }
 }

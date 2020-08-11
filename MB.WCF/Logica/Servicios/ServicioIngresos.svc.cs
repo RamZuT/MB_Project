@@ -13,7 +13,9 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioIngresos.svc or ServicioIngresos.svc.cs at the Solution Explorer and start debugging.
     public class ServicioIngresos : IServicioIngresos
     {
-        public void registroIngresos(DCIngresos dcIngersos) => new EspecificacionIngresos().registroIngresos(dcIngersos);
+        public bool registroIngresos(DCIngresos dcIngersos) => new EspecificacionIngresos().registroIngresos(dcIngersos);
         public DCIngresos obtenerUltimoIngreso() => new EspecificacionIngresos().obtenerUltimoIngreso();
+        public bool eliminarIngresoPorId(int idIngreso) => new EspecificacionIngresos().eliminarIngresoPorId(idIngreso);
+        public bool registroUnionIngreso(int ingreso, int capital) => new EspecificacionIngresos().registroUnionIngreso(ingreso, capital);
     }
 }

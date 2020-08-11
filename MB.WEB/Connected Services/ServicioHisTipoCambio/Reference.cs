@@ -16,10 +16,22 @@ namespace MB.WEB.ServicioHisTipoCambio {
     public interface IServicioHisTipoCambio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambio", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambioResponse")]
-        void registroTipoCambio(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio);
+        bool registroTipoCambio(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambio", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambioResponse")]
-        System.Threading.Tasks.Task registroTipoCambioAsync(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio);
+        System.Threading.Tasks.Task<bool> registroTipoCambioAsync(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambio", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambioResponse")]
+        int obtenerUltimoIdTipoCambio();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambio", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambioResponse")]
+        System.Threading.Tasks.Task<int> obtenerUltimoIdTipoCambioAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorId", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorIdResponse")]
+        bool eliminarTipoCambioPorId(int idTipoCambio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorId", ReplyAction="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorIdResponse")]
+        System.Threading.Tasks.Task<bool> eliminarTipoCambioPorIdAsync(int idTipoCambio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +61,28 @@ namespace MB.WEB.ServicioHisTipoCambio {
                 base(binding, remoteAddress) {
         }
         
-        public void registroTipoCambio(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio) {
-            base.Channel.registroTipoCambio(dcHisTipoCambio);
+        public bool registroTipoCambio(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio) {
+            return base.Channel.registroTipoCambio(dcHisTipoCambio);
         }
         
-        public System.Threading.Tasks.Task registroTipoCambioAsync(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio) {
+        public System.Threading.Tasks.Task<bool> registroTipoCambioAsync(MB.WCF.DataContract.DCHisTipoCambio dcHisTipoCambio) {
             return base.Channel.registroTipoCambioAsync(dcHisTipoCambio);
+        }
+        
+        public int obtenerUltimoIdTipoCambio() {
+            return base.Channel.obtenerUltimoIdTipoCambio();
+        }
+        
+        public System.Threading.Tasks.Task<int> obtenerUltimoIdTipoCambioAsync() {
+            return base.Channel.obtenerUltimoIdTipoCambioAsync();
+        }
+        
+        public bool eliminarTipoCambioPorId(int idTipoCambio) {
+            return base.Channel.eliminarTipoCambioPorId(idTipoCambio);
+        }
+        
+        public System.Threading.Tasks.Task<bool> eliminarTipoCambioPorIdAsync(int idTipoCambio) {
+            return base.Channel.eliminarTipoCambioPorIdAsync(idTipoCambio);
         }
     }
 }

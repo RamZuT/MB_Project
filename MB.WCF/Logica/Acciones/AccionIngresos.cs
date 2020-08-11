@@ -8,19 +8,20 @@ namespace MB.WCF.Logica.Acciones
 {
     public class AccionIngresos
     {
-        public void registroIngresos(DCIngresos dcIngresos)
+        public bool registroIngresos(DCIngresos dcIngresos)
         {
+            bool resultado = false;
             using (var context = new MBEntities())
             {
                 context.INGRESOS.Add(new INGRESOS
                 {
                 dFecha = dcIngresos.dFecha,
-                iIdTipoCambio = dcIngresos.iIdTipoCambio,
                 dMonto = dcIngresos.dMonto,
                 vConcepto = dcIngresos.vConcepto,
                 });
-                context.SaveChanges();
+                resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
             }
+            return resultado;
         }
 
         public DCIngresos obtenerUltimoIngreso()
@@ -36,9 +37,40 @@ namespace MB.WCF.Logica.Acciones
                 DCIngresos.dMonto = Ingresos.dMonto;
                 DCIngresos.dFecha = Ingresos.dFecha;
                 DCIngresos.vConcepto = Ingresos.vConcepto;
-                DCIngresos.iIdTipoCambio = Ingresos.iIdTipoCambio;
             }
             return DCIngresos;
+        }
+        public bool eliminarIngresoPorId(int idIngreso)
+        {
+            INGRESOS Ingresos = new INGRESOS();
+            bool resultado = false;
+            using (var context = new MBEntities())
+            {
+                var registro = (from _INGRESOS in context.INGRESOS
+                                where _INGRESOS.iIdIngreso == idIngreso
+                                select _INGRESOS).FirstOrDefault();
+                if (registro != null)
+                {
+                    context.INGRESOS.Remove(registro);
+                    resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+                }
+            }
+            return resultado;
+        }
+
+        public bool registroUnionIngreso(int ingreso, int capital)
+        {
+            bool resultado = false;
+            using (var context = new MBEntities())
+            {
+                context.T_UNION_HIS_CF_IG.Add(new T_UNION_HIS_CF_IG
+                {
+                    iIdIngreso = ingreso,
+                    iIdCapitalF = capital
+                });
+                resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+            }
+            return resultado;
         }
     }
 }

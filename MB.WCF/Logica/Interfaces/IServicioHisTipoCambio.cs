@@ -13,6 +13,12 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioHisTipoCambio
     {
         [OperationContract]
-        void registroTipoCambio(DCHisTipoCambio dcHisTipoCambio);
+        bool registroTipoCambio(DCHisTipoCambio dcHisTipoCambio);
+
+        [OperationContract]
+        int obtenerUltimoIdTipoCambio();
+
+        [OperationContract]
+        bool eliminarTipoCambioPorId(int idTipoCambio);
     }
 }

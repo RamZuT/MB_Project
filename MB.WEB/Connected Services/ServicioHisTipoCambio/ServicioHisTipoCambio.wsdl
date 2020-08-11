@@ -13,16 +13,54 @@
   <wsdl:message name="IServicioHisTipoCambio_registroTipoCambio_OutputMessage">
     <wsdl:part name="parameters" element="tns:registroTipoCambioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioHisTipoCambio_obtenerUltimoIdTipoCambio_InputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerUltimoIdTipoCambio" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHisTipoCambio_obtenerUltimoIdTipoCambio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerUltimoIdTipoCambioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHisTipoCambio_eliminarTipoCambioPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarTipoCambioPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHisTipoCambio_eliminarTipoCambioPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarTipoCambioPorIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioHisTipoCambio">
     <wsdl:operation name="registroTipoCambio">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambio" message="tns:IServicioHisTipoCambio_registroTipoCambio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambioResponse" message="tns:IServicioHisTipoCambio_registroTipoCambio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtenerUltimoIdTipoCambio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambio" message="tns:IServicioHisTipoCambio_obtenerUltimoIdTipoCambio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambioResponse" message="tns:IServicioHisTipoCambio_obtenerUltimoIdTipoCambio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminarTipoCambioPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorId" message="tns:IServicioHisTipoCambio_eliminarTipoCambioPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorIdResponse" message="tns:IServicioHisTipoCambio_eliminarTipoCambioPorId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioHisTipoCambio" type="tns:IServicioHisTipoCambio">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="registroTipoCambio">
       <soap:operation soapAction="http://tempuri.org/IServicioHisTipoCambio/registroTipoCambio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerUltimoIdTipoCambio">
+      <soap:operation soapAction="http://tempuri.org/IServicioHisTipoCambio/obtenerUltimoIdTipoCambio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarTipoCambioPorId">
+      <soap:operation soapAction="http://tempuri.org/IServicioHisTipoCambio/eliminarTipoCambioPorId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

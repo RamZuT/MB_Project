@@ -19,6 +19,18 @@
   <wsdl:message name="IServicioIngresos_obtenerUltimoIngreso_OutputMessage">
     <wsdl:part name="parameters" element="tns:obtenerUltimoIngresoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioIngresos_eliminarIngresoPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarIngresoPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioIngresos_eliminarIngresoPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarIngresoPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioIngresos_registroUnionIngreso_InputMessage">
+    <wsdl:part name="parameters" element="tns:registroUnionIngreso" />
+  </wsdl:message>
+  <wsdl:message name="IServicioIngresos_registroUnionIngreso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:registroUnionIngresoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioIngresos">
     <wsdl:operation name="registroIngresos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioIngresos/registroIngresos" message="tns:IServicioIngresos_registroIngresos_InputMessage" />
@@ -27,6 +39,14 @@
     <wsdl:operation name="obtenerUltimoIngreso">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioIngresos/obtenerUltimoIngreso" message="tns:IServicioIngresos_obtenerUltimoIngreso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioIngresos/obtenerUltimoIngresoResponse" message="tns:IServicioIngresos_obtenerUltimoIngreso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminarIngresoPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioIngresos/eliminarIngresoPorId" message="tns:IServicioIngresos_eliminarIngresoPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioIngresos/eliminarIngresoPorIdResponse" message="tns:IServicioIngresos_eliminarIngresoPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="registroUnionIngreso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioIngresos/registroUnionIngreso" message="tns:IServicioIngresos_registroUnionIngreso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioIngresos/registroUnionIngresoResponse" message="tns:IServicioIngresos_registroUnionIngreso_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioIngresos" type="tns:IServicioIngresos">
@@ -42,6 +62,24 @@
     </wsdl:operation>
     <wsdl:operation name="obtenerUltimoIngreso">
       <soap:operation soapAction="http://tempuri.org/IServicioIngresos/obtenerUltimoIngreso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarIngresoPorId">
+      <soap:operation soapAction="http://tempuri.org/IServicioIngresos/eliminarIngresoPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registroUnionIngreso">
+      <soap:operation soapAction="http://tempuri.org/IServicioIngresos/registroUnionIngreso" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

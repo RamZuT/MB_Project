@@ -12,8 +12,9 @@ namespace MB.WCF.Logica.Especificaciones
         /// <summary>
         /// Función para registrar los ingresos de manera manual
         /// </summary>
-        /// <param name="dcIngresos">Modelo ingresos</param>
-        public void registroIngresos(DCIngresos dcIngresos) => new AccionIngresos().registroIngresos(dcIngresos);
+        /// <param name="dcIngresos">Tipo de objeto del modelo WCF que representa un ingreso</param>
+        /// <returns>Verdadero o false si se almacena en Base de datos.</returns>
+        public bool registroIngresos(DCIngresos dcIngresos) => new AccionIngresos().registroIngresos(dcIngresos);
 
         /// <summary>
         /// Función que obtiene el objeto del último ingreso registrado
@@ -21,5 +22,19 @@ namespace MB.WCF.Logica.Especificaciones
         /// <param></param>
         /// <returns>Retorna un objeto de tipo DCIngreso</returns>
         public DCIngresos obtenerUltimoIngreso() => new AccionIngresos().obtenerUltimoIngreso();
+
+        /// <summary>
+        /// Función que elimina registros individuales de ingresos por medio del id
+        /// </summary>
+        /// <param name="idIngreso"></param>
+        /// <returns> retorna verdadero o false de acuerdo al resultado del query</returns>
+        public bool eliminarIngresoPorId(int idIngreso) => new AccionIngresos().eliminarIngresoPorId(idIngreso);
+
+        /// <summary>
+        /// Función que almacena la unión de las tablas historial de ingresos e ingresos
+        /// </summary>
+        /// <returns>Retorna verdadero o falso al insert</returns>
+        public bool registroUnionIngreso(int ingreso, int capital) => new AccionIngresos().registroUnionIngreso(ingreso, capital);
+
     }
 }

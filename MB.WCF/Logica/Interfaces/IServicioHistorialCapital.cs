@@ -13,12 +13,14 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioHistorialCapital
     {
         [OperationContract]
-        void registroHistCapital(DateTime fechaCorte, bool estado, int ingresoGasto, decimal monto);
+        bool registroHistCapital(decimal monto, DateTime fechaCorte, bool estado);
         [OperationContract]
         DCHisCapitalFinanciero capitalActual();
         [OperationContract]
         DCHisCapitalFinanciero capitalInicial();
         [OperationContract]
         decimal? calcularDiferenciaCapital();
+        [OperationContract]
+        bool eliminarHisCapitalPorId(int idHistorial);
     }
 }

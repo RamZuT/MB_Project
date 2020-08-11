@@ -3,6 +3,8 @@
   <xs:complexType name="DCHisTipoCambio">
     <xs:sequence>
       <xs:element minOccurs="0" name="dFecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="iIdGasto" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdIngreso" type="xs:int" />
       <xs:element minOccurs="0" name="iIdMoneda" type="xs:int" />
       <xs:element minOccurs="0" name="iIdTipoCambio" type="xs:int" />
       <xs:element minOccurs="0" name="vMonto" type="xs:decimal" />

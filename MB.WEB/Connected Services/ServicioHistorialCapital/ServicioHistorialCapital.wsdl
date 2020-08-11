@@ -31,6 +31,12 @@
   <wsdl:message name="IServicioHistorialCapital_calcularDiferenciaCapital_OutputMessage">
     <wsdl:part name="parameters" element="tns:calcularDiferenciaCapitalResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_eliminarHisCapitalPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarHisCapitalPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioHistorialCapital_eliminarHisCapitalPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarHisCapitalPorIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioHistorialCapital">
     <wsdl:operation name="registroHistCapital">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/registroHistCapital" message="tns:IServicioHistorialCapital_registroHistCapital_InputMessage" />
@@ -47,6 +53,10 @@
     <wsdl:operation name="calcularDiferenciaCapital">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital" message="tns:IServicioHistorialCapital_calcularDiferenciaCapital_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapitalResponse" message="tns:IServicioHistorialCapital_calcularDiferenciaCapital_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminarHisCapitalPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorId" message="tns:IServicioHistorialCapital_eliminarHisCapitalPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorIdResponse" message="tns:IServicioHistorialCapital_eliminarHisCapitalPorId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioHistorialCapital" type="tns:IServicioHistorialCapital">
@@ -80,6 +90,15 @@
     </wsdl:operation>
     <wsdl:operation name="calcularDiferenciaCapital">
       <soap:operation soapAction="http://tempuri.org/IServicioHistorialCapital/calcularDiferenciaCapital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarHisCapitalPorId">
+      <soap:operation soapAction="http://tempuri.org/IServicioHistorialCapital/eliminarHisCapitalPorId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

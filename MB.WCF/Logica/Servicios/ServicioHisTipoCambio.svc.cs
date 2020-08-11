@@ -13,7 +13,8 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioHisTipoCambio.svc or ServicioHisTipoCambio.svc.cs at the Solution Explorer and start debugging.
     public class ServicioHisTipoCambio : IServicioHisTipoCambio
     {
-        public void registroTipoCambio(DCHisTipoCambio dcHisTipoCambio) => new EspecificacionHisTipoCambio().registroTipoCambio(dcHisTipoCambio);
-
+        public bool registroTipoCambio(DCHisTipoCambio dcHisTipoCambio) => new EspecificacionHisTipoCambio().registroTipoCambio(dcHisTipoCambio);
+        public int obtenerUltimoIdTipoCambio() => new EspecificacionHisTipoCambio().obtenerUltimoIdTipoCambio();
+        public bool eliminarTipoCambioPorId(int idTipoCambio) => new EspecificacionHisTipoCambio().eliminarTipoCambioPorId(idTipoCambio);
     }
 }

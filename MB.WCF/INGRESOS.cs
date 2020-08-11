@@ -18,16 +18,17 @@ namespace MB.WCF
         public INGRESOS()
         {
             this.T_UNION_HIS_CF_IG = new HashSet<T_UNION_HIS_CF_IG>();
+            this.HIS_TIPO_CAMBIO1 = new HashSet<HIS_TIPO_CAMBIO>();
         }
     
         public int iIdIngreso { get; set; }
         public decimal dMonto { get; set; }
         public System.DateTime dFecha { get; set; }
         public string vConcepto { get; set; }
-        public Nullable<int> iIdTipoCambio { get; set; }
     
-        public virtual HIS_TIPO_CAMBIO HIS_TIPO_CAMBIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HIS_TIPO_CAMBIO> HIS_TIPO_CAMBIO1 { get; set; }
     }
 }

@@ -18,14 +18,14 @@ namespace MB.WCF
         public GASTOS()
         {
             this.DETALLE_PRESUPUESTO = new HashSet<DETALLE_PRESUPUESTO>();
-            this.T_UNION_HIS_CF_IG = new HashSet<T_UNION_HIS_CF_IG>();
+            this.T_UNION_HIS_CF_GS = new HashSet<T_UNION_HIS_CF_GS>();
+            this.HIS_TIPO_CAMBIO1 = new HashSet<HIS_TIPO_CAMBIO>();
         }
     
         public int iIdGastos { get; set; }
         public int iIdCatalogo { get; set; }
         public Nullable<decimal> dMonto { get; set; }
         public Nullable<System.DateTime> dFecha { get; set; }
-        public Nullable<int> iIdTipoCambio { get; set; }
         public string vDetalle { get; set; }
         public Nullable<int> iIdFormaPago { get; set; }
     
@@ -33,8 +33,9 @@ namespace MB.WCF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETALLE_PRESUPUESTO> DETALLE_PRESUPUESTO { get; set; }
         public virtual FORMA_PAGO FORMA_PAGO { get; set; }
-        public virtual HIS_TIPO_CAMBIO HIS_TIPO_CAMBIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
+        public virtual ICollection<T_UNION_HIS_CF_GS> T_UNION_HIS_CF_GS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HIS_TIPO_CAMBIO> HIS_TIPO_CAMBIO1 { get; set; }
     }
 }

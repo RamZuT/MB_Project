@@ -18,6 +18,7 @@ namespace MB.WCF
         public HIS_CAPITAL_FINANCIERO()
         {
             this.T_UNION_HIS_CF_IG = new HashSet<T_UNION_HIS_CF_IG>();
+            this.T_UNION_HIS_CF_GS = new HashSet<T_UNION_HIS_CF_GS>();
         }
     
         public int iIdCapitalF { get; set; }
@@ -27,5 +28,7 @@ namespace MB.WCF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_UNION_HIS_CF_GS> T_UNION_HIS_CF_GS { get; set; }
     }
 }

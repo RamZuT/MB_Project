@@ -37,5 +37,6 @@ namespace MB.WCF
         public virtual DbSet<PRESUPUESTO> PRESUPUESTO { get; set; }
         public virtual DbSet<T_UNION_DETALLE_PRESUPUESTO> T_UNION_DETALLE_PRESUPUESTO { get; set; }
         public virtual DbSet<T_UNION_HIS_CF_IG> T_UNION_HIS_CF_IG { get; set; }
+        public virtual DbSet<T_UNION_HIS_CF_GS> T_UNION_HIS_CF_GS { get; set; }
     }
 }

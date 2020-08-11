@@ -101,6 +101,7 @@
     <Compile Include="DataContract\DCPagos.cs" />
     <Compile Include="DataContract\DCPresupuesto.cs" />
     <Compile Include="DataContract\DCUnionDetallePresupuesto.cs" />
+    <Compile Include="DataContract\DCUnion_HisCap_Gasto.cs" />
     <Compile Include="DataContract\DCUnion_HisCap_InGa.cs" />
     <Compile Include="DETALLE_PRESUPUESTO.cs">
       <DependentUpon>Model_MB.tt</DependentUpon>
@@ -150,6 +151,7 @@
     <Compile Include="Logica\Servicios\ServicioMonedas.svc.cs">
       <DependentUpon>ServicioMonedas.svc</DependentUpon>
     </Compile>
+    <Compile Include="Logica\Utilidades\CrearObjetosWFC.cs" />
     <Compile Include="Logica\Utilidades\Utilitarios.cs" />
     <Compile Include="Model_MB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -177,6 +179,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T_UNION_DETALLE_PRESUPUESTO.cs">
+      <DependentUpon>Model_MB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_UNION_HIS_CF_GS.cs">
       <DependentUpon>Model_MB.tt</DependentUpon>
     </Compile>
     <Compile Include="T_UNION_HIS_CF_IG.cs">

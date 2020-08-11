@@ -1,4 +1,5 @@
-﻿using MB.WEB.Models;
+﻿using MB.WCF.DataContract;
+using MB.WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,32 @@ namespace MB.WEB.Utilidades
 {
     public class CrearObjetos
     {
-        public HisTipoCambio crearTipoCambio(int idMoneda, decimal monto, DateTime fecha)
+        WCF.DataContract.DCIngresos dcingresoR = new WCF.DataContract.DCIngresos();
+        WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
+        WCF.DataContract.DCHisTipoCambio tipoCambio = new WCF.DataContract.DCHisTipoCambio();
+
+        public DCHisTipoCambio crearTipoCambio(int idMoneda, decimal monto, DateTime fecha, int ultimoIngreso, int ultimoGasto)
         {
-            HisTipoCambio hisTipoCambio = new HisTipoCambio();
             if (!idMoneda.Equals(null) || !monto.Equals(null) || !fecha.Equals(null))
             {
-                hisTipoCambio.iIdMoneda = idMoneda;
-                hisTipoCambio.vMonto = monto;
-                hisTipoCambio.dFecha = fecha;
+                tipoCambio.iIdMoneda = idMoneda;
+                tipoCambio.vMonto = monto;
+                tipoCambio.dFecha = fecha;
+                tipoCambio.iIdIngreso = ultimoIngreso;
+                tipoCambio.iIdGasto = ultimoGasto;
             }
-            return hisTipoCambio;
+            return tipoCambio;
+        }
+
+        public DCIngresos crearIngreso(decimal monto, DateTime fecha, string concepto)
+        {
+            if (!monto.Equals(null) || !fecha.Equals(null) || !concepto.Equals(null))
+            {
+                dcingresoR.dMonto = monto;
+                dcingresoR.dFecha = fecha;
+                dcingresoR.vConcepto = concepto;
+            }
+            return dcingresoR;
         }
     }
 }
