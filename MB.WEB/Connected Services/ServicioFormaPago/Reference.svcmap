@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2891e6fc-267c-4eb5-b636-50466c5b681e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioFormaPago.xsd" MetadataType="Schema" ID="1c9cae7e-5ae9-4072-8589-484cf2f69103" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioFormaPago1.xsd" MetadataType="Schema" ID="29a79cde-2bb7-49fc-8274-a4307cb69f25" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioFormaPago.disco" MetadataType="Disco" ID="430da106-349e-4fa7-8e80-fb737d05fa77" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc?disco" />
+    <MetadataFile FileName="ServicioFormaPago.wsdl" MetadataType="Wsdl" ID="69f2170d-411a-4355-8fb1-ab015cc88013" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc?wsdl" />
+    <MetadataFile FileName="ServicioFormaPago2.xsd" MetadataType="Schema" ID="ecb2c633-0cf7-44e8-88ab-6783d41128a0" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioFormaPago.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
