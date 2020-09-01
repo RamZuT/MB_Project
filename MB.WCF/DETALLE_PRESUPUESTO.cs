@@ -18,16 +18,17 @@ namespace MB.WCF
         public DETALLE_PRESUPUESTO()
         {
             this.T_UNION_DETALLE_PRESUPUESTO = new HashSet<T_UNION_DETALLE_PRESUPUESTO>();
+            this.T_UNION_GAS_DET_PRESUP = new HashSet<T_UNION_GAS_DET_PRESUP>();
         }
     
         public int iIdDetalle { get; set; }
         public int iIdCatalogo { get; set; }
-        public int iIdGasto { get; set; }
         public Nullable<decimal> dMonto { get; set; }
     
         public virtual CATALOGO CATALOGO { get; set; }
-        public virtual GASTOS GASTOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_DETALLE_PRESUPUESTO> T_UNION_DETALLE_PRESUPUESTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_UNION_GAS_DET_PRESUP> T_UNION_GAS_DET_PRESUP { get; set; }
     }
 }

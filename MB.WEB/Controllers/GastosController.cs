@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MB.WEB.Models;
 
 namespace MB.WEB.Controllers
 {
     public class GastosController : Controller
     {
+        Utilidades.CrearObjetos crearObjetos = new Utilidades.CrearObjetos();
+        Utilidades.Utilidades utilidades = new Utilidades.Utilidades();
         ServicioCatalogo.ServicioCatalogoClient urServCatalogo = new ServicioCatalogo.ServicioCatalogoClient();
         ServicioMonedas.ServicioMonedasClient urServMonedas = new ServicioMonedas.ServicioMonedasClient();
         ServicioFormaPago.ServicioFormaPagoClient urServFormaPago = new ServicioFormaPago.ServicioFormaPagoClient();
+        ServicioHisTipoCambio.ServicioHisTipoCambioClient urSercHisTipoCambio = new ServicioHisTipoCambio.ServicioHisTipoCambioClient();
+        ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital = new ServicioHistorialCapital.ServicioHistorialCapitalClient();
+        ServicioGastos.ServicioGastosClient urServGastos = new ServicioGastos.ServicioGastosClient();
 
         // GET: Gastos
         public ActionResult Gastos()
@@ -30,71 +36,75 @@ namespace MB.WEB.Controllers
             return View();
         }
 
-        // GET: Gastos/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Gastos/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Gastos/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult guardarGastos (Gastos nuevoGasto)
         {
             try
             {
-                // TODO: Add insert logic here
+                var continua = false;
+                if (ModelState.IsValid)
+                {
+                    if (nuevoGasto.iIdMoneda == 1)
+                    {
+                        continua = (urServGastos.guardarGasto(crearObjetos.crearGasto(nuevoGasto.iIdCatalogo, nuevoGasto.dMonto,
+                            nuevoGasto.dFecha, nuevoGasto.vDetalle, nuevoGasto.iIdFormaPago)));
+                        if (continua == true)
+                        {
+                            var ultimoGasto = urServGastos.obtenerUltimoGasto();
+                            continua = (urSercHisTipoCambio.registroTipoCambio(crearObjetos.crearTipoCambio(nuevoGasto.iIdMoneda, nuevoGasto.tipoCambio,
+                                nuevoGasto.dFecha, 0, ultimoGasto.iIdGastos)));
+                            if (continua == true)
+                            {
+                                var detallePresupuesto = urServDetallePresupuesto.obtenerDetPresPorFechaYCatalogo(nuevoGasto.dFecha,
+                                    nuevoGasto.iIdCatalogo);
+                                continua = (urServGastos.guardarUnionDetalleGasto(ultimoGasto.iIdGastos,
+                                    detallePresupuesto.iIdDetalle));
+                                if (continua == true)
+                                {
+                                    var ultimoPresupuesto = urServPresupuesto.ObtenerPresupuestoPorFecha(nuevoGasto.dFecha);
+                                    continua = (urServPresupuesto.actualizaMontoRealPresupuesto(ultimoPresupuesto.iIdPresupuesto, 
+                                        utilidades.sumaMontoRealPresupuesto(ultimoPresupuesto.dMontoReal, nuevoGasto.dMonto))));
+                                    if (continua == true)
+                                    {
+                                        urServHistCapital.actualizarCapitalPorGasto(ultimoGasto);
+                                        //Afectar el control de gastos
+                                        //Si no funciona debe eliminar la actualizacion del capital
+                                        //Detalle de presupuesto
+                                        //borrar historial de tipo de cambio
+                                        //borrar ultimo gasto
+                                    }
+                                    else
+                                    {
+                                        urServDetallePresupuesto.eliminarDetPresupuestoPorId(ultimoPresupuesto.iIdPresupuesto);
+                                        urServGastos.eliminarUnionDetalleGasto();
+                                        //borrar historial de tipo de cambio
+                                        //borrar ultimo gasto
+                                    }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Gastos/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Gastos/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Gastos/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Gastos/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                                }
+                                else
+                                {
+                                    //borrar historial de tipo de cambio
+                                    //borrar ultimo gasto
+                                }
+                            }
+                            else
+                            {
+                                //borrar ultimo gasto
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Primero guardar el gasto
+                        //Segundo union del detalle y gasto
+                        //Tercero Actualizar el monto en la tabla presupuesto
+                        //Afectar el capital
+                        //Afectar el control de gastos
+                    }
+                }
+                return RedirectToAction("Gastos");
             }
             catch
             {

@@ -18,7 +18,6 @@
           </Key>
           <Property Name="iIdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="iIdCatalogo" Type="int" Nullable="false" />
-          <Property Name="iIdGasto" Type="int" Nullable="false" />
           <Property Name="dMonto" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="FORMA_PAGO">
@@ -104,6 +103,16 @@
           <Property Name="iIdDetalle" Type="int" Nullable="false" />
           <Property Name="iIdPresupuesto" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MB.dbo.T_UNION_GAS_DET_PRESUP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T_UNION_GAS_DET_PRESUP">
+          <Key>
+            <PropertyRef Name="iIdUnionGDP" />
+          </Key>
+          <Property Name="iIdUnionGDP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdGasto" Type="int" />
+          <Property Name="iIdDetallePresupuesto" Type="int" />
+        </EntityType>
         <EntityType Name="T_UNION_HIS_CF_GS">
           <Key>
             <PropertyRef Name="iIdHCP_GAST" />
@@ -153,18 +162,6 @@
             </Principal>
             <Dependent Role="DETALLE_PRESUPUESTO">
               <PropertyRef Name="iIdCatalogo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DETALLE_GASTO">
-          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="1" />
-          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GASTOS">
-              <PropertyRef Name="iIdGastos" />
-            </Principal>
-            <Dependent Role="DETALLE_PRESUPUESTO">
-              <PropertyRef Name="iIdGasto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -252,6 +249,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_U_DETALLE">
+          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="0..1" />
+          <End Role="T_UNION_GAS_DET_PRESUP" Type="Self.T_UNION_GAS_DET_PRESUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
+            </Principal>
+            <Dependent Role="T_UNION_GAS_DET_PRESUP">
+              <PropertyRef Name="iIdDetallePresupuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_U_GASTO">
+          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="0..1" />
+          <End Role="T_UNION_GAS_DET_PRESUP" Type="Self.T_UNION_GAS_DET_PRESUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="T_UNION_GAS_DET_PRESUP">
+              <PropertyRef Name="iIdGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UNION_DETALLE">
           <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="1" />
           <End Role="T_UNION_DETALLE_PRESUPUESTO" Type="Self.T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
@@ -302,6 +323,13 @@
           <EntitySet Name="T_UNION_DETALLE_PRESUPUESTO" EntityType="Self.T_UNION_DETALLE_PRESUPUESTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_HIS_CF_GS" EntityType="Self.T_UNION_HIS_CF_GS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_HIS_CF_IG" EntityType="Self.T_UNION_HIS_CF_IG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_UNION_GAS_DET_PRESUP" EntityType="Self.T_UNION_GAS_DET_PRESUP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_UNION_GAS_DET_PRESUP].[iIdUnionGDP] AS [iIdUnionGDP], 
+    [T_UNION_GAS_DET_PRESUP].[iIdGasto] AS [iIdGasto], 
+    [T_UNION_GAS_DET_PRESUP].[iIdDetallePresupuesto] AS [iIdDetallePresupuesto]
+    FROM [dbo].[T_UNION_GAS_DET_PRESUP] AS [T_UNION_GAS_DET_PRESUP]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__HIS_TIPO___iIdGa__1BC821DD" Association="Self.FK__HIS_TIPO___iIdGa__1BC821DD">
             <End Role="GASTOS" EntitySet="GASTOS" />
             <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
@@ -312,10 +340,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_DETALLE_CATALOGO" Association="Self.FK_DETALLE_CATALOGO">
             <End Role="CATALOGO" EntitySet="CATALOGO" />
-            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DETALLE_GASTO" Association="Self.FK_DETALLE_GASTO">
-            <End Role="GASTOS" EntitySet="GASTOS" />
             <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
           </AssociationSet>
           <AssociationSet Name="FK_GASTOS" Association="Self.FK_GASTOS">
@@ -345,6 +369,14 @@
           <AssociationSet Name="FK_T_union_INGRESOS" Association="Self.FK_T_union_INGRESOS">
             <End Role="INGRESOS" EntitySet="INGRESOS" />
             <End Role="T_UNION_HIS_CF_IG" EntitySet="T_UNION_HIS_CF_IG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_U_DETALLE" Association="Self.FK_U_DETALLE">
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+            <End Role="T_UNION_GAS_DET_PRESUP" EntitySet="T_UNION_GAS_DET_PRESUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_U_GASTO" Association="Self.FK_U_GASTO">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="T_UNION_GAS_DET_PRESUP" EntitySet="T_UNION_GAS_DET_PRESUP" />
           </AssociationSet>
           <AssociationSet Name="FK_UNION_DETALLE" Association="Self.FK_UNION_DETALLE">
             <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
@@ -379,11 +411,10 @@
           </Key>
           <Property Name="iIdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iIdCatalogo" Type="Int32" Nullable="false" />
-          <Property Name="iIdGasto" Type="Int32" Nullable="false" />
           <Property Name="dMonto" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="CATALOGO" Relationship="Self.FK_DETALLE_CATALOGO" FromRole="DETALLE_PRESUPUESTO" ToRole="CATALOGO" />
-          <NavigationProperty Name="GASTOS" Relationship="Self.FK_DETALLE_GASTO" FromRole="DETALLE_PRESUPUESTO" ToRole="GASTOS" />
           <NavigationProperty Name="T_UNION_DETALLE_PRESUPUESTO" Relationship="Self.FK_UNION_DETALLE" FromRole="DETALLE_PRESUPUESTO" ToRole="T_UNION_DETALLE_PRESUPUESTO" />
+          <NavigationProperty Name="T_UNION_GAS_DET_PRESUP" Relationship="MBModel.FK_U_DETALLE" FromRole="DETALLE_PRESUPUESTO" ToRole="T_UNION_GAS_DET_PRESUP" />
         </EntityType>
         <EntityType Name="FORMA_PAGO">
           <Key>
@@ -404,10 +435,10 @@
           <Property Name="vDetalle" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
           <Property Name="iIdFormaPago" Type="Int32" />
           <NavigationProperty Name="CATALOGO" Relationship="Self.RK_IDCATEGORIA_GASTOS" FromRole="GASTOS" ToRole="CATALOGO" />
-          <NavigationProperty Name="DETALLE_PRESUPUESTO" Relationship="Self.FK_DETALLE_GASTO" FromRole="GASTOS" ToRole="DETALLE_PRESUPUESTO" />
           <NavigationProperty Name="FORMA_PAGO" Relationship="Self.FK_IDFORMAP_GASTOS" FromRole="GASTOS" ToRole="FORMA_PAGO" />
           <NavigationProperty Name="T_UNION_HIS_CF_GS" Relationship="MBModel.FK_GASTOS" FromRole="GASTOS" ToRole="T_UNION_HIS_CF_GS" />
           <NavigationProperty Name="HIS_TIPO_CAMBIO1" Relationship="MBModel.FK__HIS_TIPO___iIdGa__1BC821DD" FromRole="GASTOS" ToRole="HIS_TIPO_CAMBIO" />
+          <NavigationProperty Name="T_UNION_GAS_DET_PRESUP" Relationship="MBModel.FK_U_GASTO" FromRole="GASTOS" ToRole="T_UNION_GAS_DET_PRESUP" />
         </EntityType>
         <EntityType Name="HIS_CAPITAL_FINANCIERO">
           <Key>
@@ -532,18 +563,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DETALLE_GASTO">
-          <End Role="GASTOS" Type="Self.GASTOS" Multiplicity="1" />
-          <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GASTOS">
-              <PropertyRef Name="iIdGastos" />
-            </Principal>
-            <Dependent Role="DETALLE_PRESUPUESTO">
-              <PropertyRef Name="iIdGasto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UNION_DETALLE">
           <End Role="DETALLE_PRESUPUESTO" Type="Self.DETALLE_PRESUPUESTO" Multiplicity="1" />
           <End Role="T_UNION_DETALLE_PRESUPUESTO" Type="Self.T_UNION_DETALLE_PRESUPUESTO" Multiplicity="*" />
@@ -641,10 +660,6 @@
             <End Role="CATALOGO" EntitySet="CATALOGO" />
             <End Role="GASTOS" EntitySet="GASTOS" />
           </AssociationSet>
-          <AssociationSet Name="FK_DETALLE_GASTO" Association="Self.FK_DETALLE_GASTO">
-            <End Role="GASTOS" EntitySet="GASTOS" />
-            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
-          </AssociationSet>
           <AssociationSet Name="FK_UNION_DETALLE" Association="Self.FK_UNION_DETALLE">
             <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
             <End Role="T_UNION_DETALLE_PRESUPUESTO" EntitySet="T_UNION_DETALLE_PRESUPUESTO" />
@@ -685,6 +700,15 @@
           <AssociationSet Name="FK__HIS_TIPO___iIdGa__1BC821DD" Association="MBModel.FK__HIS_TIPO___iIdGa__1BC821DD">
             <End Role="GASTOS" EntitySet="GASTOS" />
             <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />
+          </AssociationSet>
+          <EntitySet Name="T_UNION_GAS_DET_PRESUP" EntityType="MBModel.T_UNION_GAS_DET_PRESUP" />
+          <AssociationSet Name="FK_U_DETALLE" Association="MBModel.FK_U_DETALLE">
+            <End Role="DETALLE_PRESUPUESTO" EntitySet="DETALLE_PRESUPUESTO" />
+            <End Role="T_UNION_GAS_DET_PRESUP" EntitySet="T_UNION_GAS_DET_PRESUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_U_GASTO" Association="MBModel.FK_U_GASTO">
+            <End Role="GASTOS" EntitySet="GASTOS" />
+            <End Role="T_UNION_GAS_DET_PRESUP" EntitySet="T_UNION_GAS_DET_PRESUP" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="T_UNION_HIS_CF_GS">
@@ -745,6 +769,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="T_UNION_GAS_DET_PRESUP">
+          <Key>
+            <PropertyRef Name="iIdUnionGDP" />
+          </Key>
+          <Property Name="iIdUnionGDP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdGasto" Type="Int32" />
+          <Property Name="iIdDetallePresupuesto" Type="Int32" />
+          <NavigationProperty Name="DETALLE_PRESUPUESTO" Relationship="MBModel.FK_U_DETALLE" FromRole="T_UNION_GAS_DET_PRESUP" ToRole="DETALLE_PRESUPUESTO" />
+          <NavigationProperty Name="GASTOS" Relationship="MBModel.FK_U_GASTO" FromRole="T_UNION_GAS_DET_PRESUP" ToRole="GASTOS" />
+        </EntityType>
+        <Association Name="FK_U_DETALLE">
+          <End Type="MBModel.DETALLE_PRESUPUESTO" Role="DETALLE_PRESUPUESTO" Multiplicity="0..1" />
+          <End Type="MBModel.T_UNION_GAS_DET_PRESUP" Role="T_UNION_GAS_DET_PRESUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DETALLE_PRESUPUESTO">
+              <PropertyRef Name="iIdDetalle" />
+            </Principal>
+            <Dependent Role="T_UNION_GAS_DET_PRESUP">
+              <PropertyRef Name="iIdDetallePresupuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_U_GASTO">
+          <End Type="MBModel.GASTOS" Role="GASTOS" Multiplicity="0..1" />
+          <End Type="MBModel.T_UNION_GAS_DET_PRESUP" Role="T_UNION_GAS_DET_PRESUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTOS">
+              <PropertyRef Name="iIdGastos" />
+            </Principal>
+            <Dependent Role="T_UNION_GAS_DET_PRESUP">
+              <PropertyRef Name="iIdGasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -764,7 +822,6 @@
               <MappingFragment StoreEntitySet="DETALLE_PRESUPUESTO">
                 <ScalarProperty Name="iIdDetalle" ColumnName="iIdDetalle" />
                 <ScalarProperty Name="iIdCatalogo" ColumnName="iIdCatalogo" />
-                <ScalarProperty Name="iIdGasto" ColumnName="iIdGasto" />
                 <ScalarProperty Name="dMonto" ColumnName="dMonto" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -876,6 +933,15 @@
                 <ScalarProperty Name="iIdCapitalF" ColumnName="iIdCapitalF" />
                 <ScalarProperty Name="iIdGasto" ColumnName="iIdGasto" />
                 <ScalarProperty Name="iIdHCP_GAST" ColumnName="iIdHCP_GAST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_UNION_GAS_DET_PRESUP">
+            <EntityTypeMapping TypeName="MBModel.T_UNION_GAS_DET_PRESUP">
+              <MappingFragment StoreEntitySet="T_UNION_GAS_DET_PRESUP">
+                <ScalarProperty Name="iIdDetallePresupuesto" ColumnName="iIdDetallePresupuesto" />
+                <ScalarProperty Name="iIdGasto" ColumnName="iIdGasto" />
+                <ScalarProperty Name="iIdUnionGDP" ColumnName="iIdUnionGDP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

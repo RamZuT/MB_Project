@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bed86d44-b003-4873-8795-f4e8cf26e017" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioGastos.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioGastos.xsd" MetadataType="Schema" ID="98d51ebc-6b39-46ec-8209-20fed7cca941" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioGastos.disco" MetadataType="Disco" ID="11b6eb0b-ce16-4285-ac01-055d01442c46" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?disco" />
+    <MetadataFile FileName="ServicioGastos1.xsd" MetadataType="Schema" ID="29163b20-5b98-4250-b1a8-5926d4484d5f" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioGastos.wsdl" MetadataType="Wsdl" ID="46b9e50c-00e5-4e09-b7b9-cf95331dc164" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?wsdl" />
+    <MetadataFile FileName="ServicioGastos2.xsd" MetadataType="Schema" ID="8068cf25-fdaf-424d-8c2a-82b71064e465" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

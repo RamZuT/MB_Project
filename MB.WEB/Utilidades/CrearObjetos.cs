@@ -12,6 +12,7 @@ namespace MB.WEB.Utilidades
         WCF.DataContract.DCIngresos dcingresoR = new WCF.DataContract.DCIngresos();
         WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
         WCF.DataContract.DCHisTipoCambio tipoCambio = new WCF.DataContract.DCHisTipoCambio();
+        DCGastos dcGasto = new DCGastos();
 
         public DCHisTipoCambio crearTipoCambio(int idMoneda, decimal monto, DateTime fecha, int ultimoIngreso, int ultimoGasto)
         {
@@ -35,6 +36,19 @@ namespace MB.WEB.Utilidades
                 dcingresoR.vConcepto = concepto;
             }
             return dcingresoR;
+        }
+
+        public DCGastos crearGasto(int iIdCatalogo, decimal? dMonto, DateTime? dFecha, string vDetalle, int iIdFormaPago)
+        {
+            if (iIdCatalogo.Equals(null) || dMonto.Equals(null) || dFecha.Equals(null) || vDetalle.Equals(null) ||iIdFormaPago.Equals(null))
+            {
+                dcGasto.iIdCatalogo = iIdCatalogo;
+                dcGasto.dMonto = dMonto;
+                dcGasto.dFecha = dFecha;
+                dcGasto.vDetalle = vDetalle;
+                dcGasto.iIdFormaPago = iIdFormaPago;
+            }
+            return dcGasto;
         }
     }
 }

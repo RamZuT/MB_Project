@@ -11,11 +11,11 @@ namespace MB.WEB.Models
         public int iIdGastos { get; set; }
 
         [Display(Name = "Catálogo")]
-        public int iIdCategoria { get; set; }
+        public int iIdCatalogo { get; set; }
 
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
         [Display(Name = "Monto")]
-        public double dMonto { get; set; }
+        public decimal? dMonto { get; set; }
 
         [Display(Name = "Fecha")]
         [DataType(DataType.Date)]
@@ -29,5 +29,8 @@ namespace MB.WEB.Models
 
         [Display(Name = "Forma de pago")]
         public int iIdFormaPago { get; set; }
+
+        [Display(Name = "Tipo de Cambio")]
+        public decimal tipoCambio { get; set; }
     }
 }

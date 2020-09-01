@@ -13,8 +13,6 @@ namespace MB.WCF.DataContract
         [DataMember]
         public int iIdCatalogo { get; set; }
         [DataMember]
-        public int iIdGasto { get; set; }
-        [DataMember]
         public decimal? dMonto { get; set; }
 
     }

@@ -180,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServicioGastos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServicioHisTipoCambio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +250,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFormaPago\ServicioFormaPago2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioGastos\ServicioGastos.wsdl" />
+    <None Include="Connected Services\ServicioGastos\ServicioGastos.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioGastos\ServicioGastos1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioGastos\ServicioGastos2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioHisTipoCambio\ServicioHisTipoCambio.wsdl" />
@@ -320,6 +335,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServicioGastos\ServicioGastos.disco" />
+    <None Include="Connected Services\ServicioGastos\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioGastos\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioGastos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -346,6 +368,7 @@
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCHisCapitalFinanciero.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCCatalogo.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCFormaPago.datasource" />
+    <Content Include="Properties\DataSources\MB.WCF.DataContract.DCGastos.datasource" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\funciones.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -418,6 +441,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServicioCatalogo\" />
     <WCFMetadataStorage Include="Connected Services\ServicioFormaPago\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioGastos\" />
     <WCFMetadataStorage Include="Connected Services\ServicioHisTipoCambio\" />
     <WCFMetadataStorage Include="Connected Services\ServicioHistorialCapital\" />
     <WCFMetadataStorage Include="Connected Services\ServicioIngresos\" />

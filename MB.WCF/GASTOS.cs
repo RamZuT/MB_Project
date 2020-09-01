@@ -17,9 +17,9 @@ namespace MB.WCF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GASTOS()
         {
-            this.DETALLE_PRESUPUESTO = new HashSet<DETALLE_PRESUPUESTO>();
             this.T_UNION_HIS_CF_GS = new HashSet<T_UNION_HIS_CF_GS>();
             this.HIS_TIPO_CAMBIO1 = new HashSet<HIS_TIPO_CAMBIO>();
+            this.T_UNION_GAS_DET_PRESUP = new HashSet<T_UNION_GAS_DET_PRESUP>();
         }
     
         public int iIdGastos { get; set; }
@@ -30,12 +30,12 @@ namespace MB.WCF
         public Nullable<int> iIdFormaPago { get; set; }
     
         public virtual CATALOGO CATALOGO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETALLE_PRESUPUESTO> DETALLE_PRESUPUESTO { get; set; }
         public virtual FORMA_PAGO FORMA_PAGO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<T_UNION_HIS_CF_GS> T_UNION_HIS_CF_GS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HIS_TIPO_CAMBIO> HIS_TIPO_CAMBIO1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<T_UNION_GAS_DET_PRESUP> T_UNION_GAS_DET_PRESUP { get; set; }
     }
 }

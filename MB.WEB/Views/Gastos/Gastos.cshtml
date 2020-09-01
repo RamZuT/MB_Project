@@ -4,6 +4,7 @@
     ViewBag.Title = "Gastos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/funciones.js"></script>
 
 <h2>Gastos</h2>
 
@@ -18,11 +19,11 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(model => model.iIdCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.iIdCatalogo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.iIdCategoria, ViewBag.Catalogo as SelectList, "Seleccione el catálogo", new
-            { @class = "form-control"})
-            @Html.ValidationMessageFor(model => model.iIdCategoria, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.iIdCatalogo, ViewBag.Catalogo as SelectList, "Seleccione el catálogo", new
+       { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.iIdCatalogo, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -46,8 +47,16 @@
         @Html.LabelFor(model => model.iIdMoneda, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.iIdMoneda, ViewBag.Moneda as SelectList, "Seleccione la moneda", new
-            { @class = "form-control" })
+            { @class = "form-control", onchange="mostrarTipoCambio(this)" })
             @Html.ValidationMessageFor(model => model.iIdMoneda, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="hidden" runat="server">
+        @Html.LabelFor(model => model.tipoCambio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tipoCambio, new { htmlAttributes = new { Type = "text", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tipoCambio, "", new { @class = "text-danger" })
         </div>
     </div>
 
