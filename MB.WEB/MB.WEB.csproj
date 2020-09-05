@@ -53,6 +53,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -61,6 +64,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -170,7 +179,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Connected Services\ServicioCatalogo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioDetPresupuesto\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -240,6 +255,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioCatalogo\ServicioCatalogo2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioDetPresupuesto\ServicioDetPresupuesto.wsdl" />
+    <None Include="Connected Services\ServicioDetPresupuesto\ServicioDetPresupuesto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioDetPresupuesto\ServicioDetPresupuesto1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioDetPresupuesto\ServicioDetPresupuesto2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFormaPago\ServicioFormaPago.wsdl" />
@@ -342,6 +367,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServicioDetPresupuesto\ServicioDetPresupuesto.disco" />
+    <None Include="Connected Services\ServicioDetPresupuesto\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioDetPresupuesto\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioDetPresupuesto\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -369,6 +401,7 @@
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCCatalogo.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCFormaPago.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCGastos.datasource" />
+    <Content Include="Properties\DataSources\MB.WCF.DataContract.DCDetallePresupuesto.datasource" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\funciones.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -417,7 +450,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Catalogo\Index.cshtml" />
     <Content Include="Views\Ingresos\crearIngresos.cshtml" />
-    <Content Include="Views\Gastos\Gastos.cshtml" />
+    <Content Include="Views\Gastos\crearGastos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -440,6 +473,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServicioCatalogo\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioDetPresupuesto\" />
     <WCFMetadataStorage Include="Connected Services\ServicioFormaPago\" />
     <WCFMetadataStorage Include="Connected Services\ServicioGastos\" />
     <WCFMetadataStorage Include="Connected Services\ServicioHisTipoCambio\" />

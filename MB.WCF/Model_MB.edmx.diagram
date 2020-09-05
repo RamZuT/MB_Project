@@ -31,7 +31,7 @@
         <AssociationConnector Association="MBModel.FK_CAPITAL_GASTO" />
         <AssociationConnector Association="MBModel.FK__HIS_TIPO___iIdIn__19DFD96B" />
         <AssociationConnector Association="MBModel.FK__HIS_TIPO___iIdGa__1BC821DD" />
-        <EntityTypeShape EntityType="MBModel.T_UNION_GAS_DET_PRESUP" Width="1.5" PointX="6.875" PointY="6.5" />
+        <EntityTypeShape EntityType="MBModel.T_UNION_GAS_DET_PRESUP" Width="1.5" PointX="7.875" PointY="6.125" />
         <AssociationConnector Association="MBModel.FK_U_DETALLE" />
         <AssociationConnector Association="MBModel.FK_U_GASTO" />
       </Diagram>

@@ -27,4 +27,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="guardarUnionDetalleGasto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="presupuesto" type="xs:int" />
+        <xs:element minOccurs="0" name="detalle" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarUnionDetalleGastoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="guardarUnionDetalleGastoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

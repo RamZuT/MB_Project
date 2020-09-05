@@ -16,5 +16,7 @@ namespace MB.WCF.Logica.Servicios
         public bool guardarGasto(DCGastos gastos) => new EspecificacionGastos().guardarGasto(gastos);
 
         public DCGastos obtenerUltimoGasto() => new EspecificacionGastos().obtenerUltimoGasto();
+
+        public bool guardarUnionDetalleGasto(int presupuesto, int detalle) => new EspecificacionGastos().guardarUnionDetalleGasto(presupuesto, detalle);
     }
 }

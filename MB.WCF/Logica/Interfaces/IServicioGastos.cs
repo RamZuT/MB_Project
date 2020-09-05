@@ -18,5 +18,8 @@ namespace MB.WCF.Logica.Servicios
 
         [OperationContract]
         DCGastos obtenerUltimoGasto();
+
+        [OperationContract]
+        bool guardarUnionDetalleGasto(int presupuesto, int detalle);
     }
 }

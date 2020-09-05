@@ -21,5 +21,11 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <returns>Retorna un objeto DCGastos</returns>
         public DCGastos obtenerUltimoGasto() => new AccionGastos().obtenerUltimoGasto();
+        /// <summary>
+        /// Función  para almacenar la unión de las tablas presupuesto y detalle de presupuesto
+        /// </summary>
+        /// <param name="union"></param>
+        /// <returns>Retorna un verdadero o falso dependiendo del resultado</returns>
+        public bool guardarUnionDetalleGasto(int presupuesto, int detalle) => new AccionGastos().guardarUnionDetalleGasto(presupuesto, detalle);
     }
 }

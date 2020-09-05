@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3c1ffeff-5129-42df-bf1f-7060e02de1d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioDetPresupuesto.xsd" MetadataType="Schema" ID="c5a3591d-6601-4545-9dcc-18100089f402" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioDetPresupuesto1.xsd" MetadataType="Schema" ID="f787403f-2677-4694-befc-1599f69ffd93" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioDetPresupuesto.wsdl" MetadataType="Wsdl" ID="47f60837-f25e-41bd-8d4f-e36b850bfb86" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc?wsdl" />
+    <MetadataFile FileName="ServicioDetPresupuesto.disco" MetadataType="Disco" ID="142e7fc7-8cc8-4894-a67d-cc7ab7038efd" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc?disco" />
+    <MetadataFile FileName="ServicioDetPresupuesto2.xsd" MetadataType="Schema" ID="530fc227-0f91-4a02-9353-84d04a4f2241" SourceId="1" SourceUrl="http://localhost:63860/Logica/Servicios/ServicioDetPresupuesto.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

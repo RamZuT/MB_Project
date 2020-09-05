@@ -26,6 +26,12 @@ namespace MB.WEB.ServicioGastos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/obtenerUltimoGasto", ReplyAction="http://tempuri.org/IServicioGastos/obtenerUltimoGastoResponse")]
         System.Threading.Tasks.Task<MB.WCF.DataContract.DCGastos> obtenerUltimoGastoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/guardarUnionDetalleGasto", ReplyAction="http://tempuri.org/IServicioGastos/guardarUnionDetalleGastoResponse")]
+        bool guardarUnionDetalleGasto(int presupuesto, int detalle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/guardarUnionDetalleGasto", ReplyAction="http://tempuri.org/IServicioGastos/guardarUnionDetalleGastoResponse")]
+        System.Threading.Tasks.Task<bool> guardarUnionDetalleGastoAsync(int presupuesto, int detalle);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace MB.WEB.ServicioGastos {
         
         public System.Threading.Tasks.Task<MB.WCF.DataContract.DCGastos> obtenerUltimoGastoAsync() {
             return base.Channel.obtenerUltimoGastoAsync();
+        }
+        
+        public bool guardarUnionDetalleGasto(int presupuesto, int detalle) {
+            return base.Channel.guardarUnionDetalleGasto(presupuesto, detalle);
+        }
+        
+        public System.Threading.Tasks.Task<bool> guardarUnionDetalleGastoAsync(int presupuesto, int detalle) {
+            return base.Channel.guardarUnionDetalleGastoAsync(presupuesto, detalle);
         }
     }
 }

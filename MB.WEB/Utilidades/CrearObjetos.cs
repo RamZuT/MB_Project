@@ -40,7 +40,7 @@ namespace MB.WEB.Utilidades
 
         public DCGastos crearGasto(int iIdCatalogo, decimal? dMonto, DateTime? dFecha, string vDetalle, int iIdFormaPago)
         {
-            if (iIdCatalogo.Equals(null) || dMonto.Equals(null) || dFecha.Equals(null) || vDetalle.Equals(null) ||iIdFormaPago.Equals(null))
+            if (!iIdCatalogo.Equals(null) || !dMonto.Equals(null) || !dFecha.Equals(null) || !iIdFormaPago.Equals(null))
             {
                 dcGasto.iIdCatalogo = iIdCatalogo;
                 dcGasto.dMonto = dMonto;

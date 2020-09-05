@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 using MB.WEB.Models;
-
 namespace MB.WEB.Controllers
 {
     public class GastosController : Controller
@@ -17,9 +17,10 @@ namespace MB.WEB.Controllers
         ServicioHisTipoCambio.ServicioHisTipoCambioClient urSercHisTipoCambio = new ServicioHisTipoCambio.ServicioHisTipoCambioClient();
         ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital = new ServicioHistorialCapital.ServicioHistorialCapitalClient();
         ServicioGastos.ServicioGastosClient urServGastos = new ServicioGastos.ServicioGastosClient();
+        ServicioDetPresupuesto.ServicioDetPresupuestoClient urServDetallePresupuesto = new ServicioDetPresupuesto.ServicioDetPresupuestoClient();
 
         // GET: Gastos
-        public ActionResult Gastos()
+        public ActionResult crearGastos()
         {
             //Crear las listas para dropdownList
             List<SelectListItem> Catalogos = new List<SelectListItem>();
@@ -36,9 +37,9 @@ namespace MB.WEB.Controllers
             return View();
         }
 
-        // POST: Gastos/Create
         [HttpPost]
-        public ActionResult guardarGastos (Gastos nuevoGasto)
+        [ValidateAntiForgeryToken]
+        public ActionResult crearGastos(Gastos nuevoGasto)
         {
             try
             {
@@ -57,7 +58,7 @@ namespace MB.WEB.Controllers
                             if (continua == true)
                             {
                                 var detallePresupuesto = urServDetallePresupuesto.obtenerDetPresPorFechaYCatalogo(nuevoGasto.dFecha,
-                                    nuevoGasto.iIdCatalogo);
+                                    nuevoGasto.iIdCatalogo);                            
                                 continua = (urServGastos.guardarUnionDetalleGasto(ultimoGasto.iIdGastos,
                                     detallePresupuesto.iIdDetalle));
                                 if (continua == true)
@@ -76,8 +77,7 @@ namespace MB.WEB.Controllers
                                     }
                                     else
                                     {
-                                        urServDetallePresupuesto.eliminarDetPresupuestoPorId(ultimoPresupuesto.iIdPresupuesto);
-                                        urServGastos.eliminarUnionDetalleGasto();
+                                        //urServGastos.eliminarUnionDetalleGasto();
                                         //borrar historial de tipo de cambio
                                         //borrar ultimo gasto
                                     }
@@ -104,11 +104,11 @@ namespace MB.WEB.Controllers
                         //Afectar el control de gastos
                     }
                 }
-                return RedirectToAction("Gastos");
+                return RedirectToAction("crearGastos");
             }
             catch
             {
-                return View();
+                return RedirectToAction("crearGastos");
             }
         }
     }

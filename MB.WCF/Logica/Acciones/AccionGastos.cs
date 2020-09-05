@@ -45,5 +45,20 @@ namespace MB.WCF.Logica.Acciones
             }
             return dcGastos;
         }
+        public bool guardarUnionDetalleGasto(int presupuesto, int detalle)
+        {
+            bool resultado = false;
+            using (var context = new MBEntities())
+            {
+                context.T_UNION_DETALLE_PRESUPUESTO.Add(new T_UNION_DETALLE_PRESUPUESTO
+                {
+                    iIdDetalle = detalle,
+                    iIdPresupuesto = presupuesto
+                });
+                resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+            }
+
+            return resultado;
+        }
     }
 }
