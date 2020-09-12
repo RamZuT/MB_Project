@@ -220,6 +220,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServicioPagos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioPresupuesto\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\GastosController.cs" />
@@ -374,6 +384,27 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServicioPagos\ServicioPagos.wsdl" />
+    <None Include="Connected Services\ServicioPagos\ServicioPagos.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPagos\ServicioPagos1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPresupuesto\ServicioPresupuesto.disco" />
+    <None Include="Connected Services\ServicioPresupuesto\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioPresupuesto\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioPresupuesto\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServicioPagos\ServicioPagos.disco" />
+    <None Include="Connected Services\ServicioPagos\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioPagos\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioPagos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -402,6 +433,17 @@
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCFormaPago.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCGastos.datasource" />
     <Content Include="Properties\DataSources\MB.WCF.DataContract.DCDetallePresupuesto.datasource" />
+    <None Include="Connected Services\ServicioPresupuesto\ServicioPresupuesto.wsdl" />
+    <None Include="Connected Services\ServicioPresupuesto\ServicioPresupuesto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPresupuesto\ServicioPresupuesto1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioPresupuesto\ServicioPresupuesto2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\MB.WCF.DataContract.DCPresupuesto.datasource" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\funciones.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -480,6 +522,8 @@
     <WCFMetadataStorage Include="Connected Services\ServicioHistorialCapital\" />
     <WCFMetadataStorage Include="Connected Services\ServicioIngresos\" />
     <WCFMetadataStorage Include="Connected Services\ServicioMonedas\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioPagos\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioPresupuesto\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MB.WCF\MB.WCF.csproj">

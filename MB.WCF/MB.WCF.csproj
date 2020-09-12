@@ -77,6 +77,8 @@
     <Content Include="Logica\Servicios\ServicioHistorialCapital.svc" />
     <Content Include="Logica\Servicios\ServicioIngresos.svc" />
     <Content Include="Logica\Servicios\ServicioMonedas.svc" />
+    <Content Include="Logica\Servicios\ServicioPagos.svc" />
+    <Content Include="Logica\Servicios\ServicioPresupuesto.svc" />
     <Content Include="Model_MB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_MB.edmx</DependentUpon>
@@ -131,6 +133,8 @@
     <Compile Include="Logica\Acciones\AccionHistorialCapital.cs" />
     <Compile Include="Logica\Acciones\AccionIngresos.cs" />
     <Compile Include="Logica\Acciones\AccionMonedas.cs" />
+    <Compile Include="Logica\Acciones\AccionPagos.cs" />
+    <Compile Include="Logica\Acciones\AccionPresupuestos.cs" />
     <Compile Include="Logica\Acciones\AccionTipoCambio.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionDetPresupuesto.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionFormaPago.cs" />
@@ -139,6 +143,8 @@
     <Compile Include="Logica\Especificaciones\EspecificacionHisTipoCambio.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionIngresos.cs" />
     <Compile Include="Logica\Especificaciones\EspecificacionMonedas.cs" />
+    <Compile Include="Logica\Especificaciones\EspecificacionPagos.cs" />
+    <Compile Include="Logica\Especificaciones\EspecificacionPresupuestos.cs" />
     <Compile Include="Logica\Interfaces\IServicioMonedas.cs" />
     <Compile Include="Logica\Interfaces\IServicioIngresos.cs" />
     <Compile Include="Logica\Interfaces\IServicioHistorialCapital.cs" />
@@ -146,6 +152,8 @@
     <Compile Include="Logica\Interfaces\IServicioFormaPago.cs" />
     <Compile Include="Logica\Interfaces\IServicioGastos.cs" />
     <Compile Include="Logica\Interfaces\IServicioDetPresupuesto.cs" />
+    <Compile Include="Logica\Interfaces\IServicioPresupuesto.cs" />
+    <Compile Include="Logica\Interfaces\IServicioPagos.cs" />
     <Compile Include="Logica\Servicios\ServicioCatalogo.svc.cs">
       <DependentUpon>ServicioCatalogo.svc</DependentUpon>
     </Compile>
@@ -171,6 +179,12 @@
     </Compile>
     <Compile Include="Logica\Servicios\ServicioMonedas.svc.cs">
       <DependentUpon>ServicioMonedas.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\Servicios\ServicioPagos.svc.cs">
+      <DependentUpon>ServicioPagos.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\Servicios\ServicioPresupuesto.svc.cs">
+      <DependentUpon>ServicioPresupuesto.svc</DependentUpon>
     </Compile>
     <Compile Include="Logica\Utilidades\CrearObjetosWFC.cs" />
     <Compile Include="Logica\Utilidades\Utilitarios.cs" />

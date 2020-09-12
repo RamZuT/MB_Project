@@ -25,6 +25,12 @@
   <wsdl:message name="IServicioGastos_guardarUnionDetalleGasto_OutputMessage">
     <wsdl:part name="parameters" element="tns:guardarUnionDetalleGastoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioGastos_registroUnionGasto_InputMessage">
+    <wsdl:part name="parameters" element="tns:registroUnionGasto" />
+  </wsdl:message>
+  <wsdl:message name="IServicioGastos_registroUnionGasto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:registroUnionGastoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicioGastos">
     <wsdl:operation name="guardarGasto">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/guardarGasto" message="tns:IServicioGastos_guardarGasto_InputMessage" />
@@ -37,6 +43,10 @@
     <wsdl:operation name="guardarUnionDetalleGasto">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/guardarUnionDetalleGasto" message="tns:IServicioGastos_guardarUnionDetalleGasto_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioGastos/guardarUnionDetalleGastoResponse" message="tns:IServicioGastos_guardarUnionDetalleGasto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="registroUnionGasto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/registroUnionGasto" message="tns:IServicioGastos_registroUnionGasto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioGastos/registroUnionGastoResponse" message="tns:IServicioGastos_registroUnionGasto_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioGastos" type="tns:IServicioGastos">
@@ -61,6 +71,15 @@
     </wsdl:operation>
     <wsdl:operation name="guardarUnionDetalleGasto">
       <soap:operation soapAction="http://tempuri.org/IServicioGastos/guardarUnionDetalleGasto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registroUnionGasto">
+      <soap:operation soapAction="http://tempuri.org/IServicioGastos/registroUnionGasto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

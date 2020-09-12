@@ -12,6 +12,13 @@ namespace MB.WCF.Logica.Servicios
     [ServiceContract]
     public interface IServicioHistorialCapital
     {
+        /// <summary>
+        /// Función que inserta cada cambio relacionado a la suma o resta del total del capital
+        /// </summary>
+        /// <param name="monto"></param>
+        /// <param name="fechaCorte"></param>
+        /// <param name="estado"></param>
+        /// <returns>Retorna verdadero o falso al registrar correctamente</returns>
         [OperationContract]
         bool registroHistCapital(decimal monto, DateTime fechaCorte, bool estado);
         [OperationContract]

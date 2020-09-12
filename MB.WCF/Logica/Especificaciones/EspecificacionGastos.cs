@@ -27,5 +27,7 @@ namespace MB.WCF.Logica.Especificaciones
         /// <param name="union"></param>
         /// <returns>Retorna un verdadero o falso dependiendo del resultado</returns>
         public bool guardarUnionDetalleGasto(int presupuesto, int detalle) => new AccionGastos().guardarUnionDetalleGasto(presupuesto, detalle);
+
+        public bool registroUnionGasto(int idGasto, int idCapital) => new AccionGastos().registroUnionGasto(idGasto, idCapital);
     }
 }

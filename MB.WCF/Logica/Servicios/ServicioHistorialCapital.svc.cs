@@ -13,6 +13,13 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioHistorialCapital.svc or ServicioHistorialCapital.svc.cs at the Solution Explorer and start debugging.
     public class ServicioHistorialCapital : IServicioHistorialCapital
     {
+        /// <summary>
+        /// Función que inserta cada cambio relacionado a la suma o resta del total del capital
+        /// </summary>
+        /// <param name="monto"></param>
+        /// <param name="fechaCorte"></param>
+        /// <param name="estado"></param>
+        /// <returns>Retorna verdadero o falso al registrar correctamente</returns>
         public bool registroHistCapital(decimal monto, DateTime fechaCorte, bool estado) => 
             new EspecificacionHistCapital().registroHistCapital(monto, fechaCorte, estado);
         public DCHisCapitalFinanciero capitalActual() => new EspecificacionHistCapital().capitalActual();

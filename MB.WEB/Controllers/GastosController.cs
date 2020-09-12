@@ -18,6 +18,8 @@ namespace MB.WEB.Controllers
         ServicioHistorialCapital.ServicioHistorialCapitalClient urServHistCapital = new ServicioHistorialCapital.ServicioHistorialCapitalClient();
         ServicioGastos.ServicioGastosClient urServGastos = new ServicioGastos.ServicioGastosClient();
         ServicioDetPresupuesto.ServicioDetPresupuestoClient urServDetallePresupuesto = new ServicioDetPresupuesto.ServicioDetPresupuestoClient();
+        ServicioPresupuesto.ServicioPresupuestoClient urServPresupuesto = new ServicioPresupuesto.ServicioPresupuestoClient();
+        ServicioPagos.ServicioPagosClient urServPagos = new ServicioPagos.ServicioPagosClient();
 
         // GET: Gastos
         public ActionResult crearGastos()
@@ -63,17 +65,41 @@ namespace MB.WEB.Controllers
                                     detallePresupuesto.iIdDetalle));
                                 if (continua == true)
                                 {
-                                    var ultimoPresupuesto = urServPresupuesto.ObtenerPresupuestoPorFecha(nuevoGasto.dFecha);
-                                    continua = (urServPresupuesto.actualizaMontoRealPresupuesto(ultimoPresupuesto.iIdPresupuesto, 
-                                        utilidades.sumaMontoRealPresupuesto(ultimoPresupuesto.dMontoReal, nuevoGasto.dMonto))));
+                                    continua = (urServPresupuesto.actualizaMontoRealPresupuesto(nuevoGasto.dFecha, 
+                                        nuevoGasto.dMonto));
                                     if (continua == true)
                                     {
-                                        urServHistCapital.actualizarCapitalPorGasto(ultimoGasto);
-                                        //Afectar el control de gastos
-                                        //Si no funciona debe eliminar la actualizacion del capital
-                                        //Detalle de presupuesto
-                                        //borrar historial de tipo de cambio
-                                        //borrar ultimo gasto
+                                        continua = (urServHistCapital.registroHistCapital(ultimoGasto.dMonto, ultimoGasto.dFecha, false));
+                                        if (continua == true)
+                                        {
+                                            var UltimoHistorial = urServHistCapital.capitalActual();
+                                            continua = (urServGastos.registroUnionGasto(ultimoGasto.iIdGastos, UltimoHistorial.iIdCapitalF));
+                                            if (continua == true)
+                                            {
+                                                urServPagos.actualizarPago(nuevoGasto.iIdCatalogo, nuevoGasto.dFecha);
+                                            }
+                                            else
+                                            {
+                                                /*
+                                             Transacciones para hacer los rollback buscar y evitar tantos if    
+                                             db.alumno.Find(id); para buscar
+                                             */
+
+                                                
+                                                //Si no funciona debe eliminar el capital
+                                                //Retornar el monto del prespuesto real al anterior
+                                                //urServGastos.eliminarUnionDetalleGasto();
+                                                //borrar historial de tipo de cambio
+                                                //borrar ultimo gasto
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //Retornar el monto del prespuesto real al anterior
+                                            //urServGastos.eliminarUnionDetalleGasto();
+                                            //borrar historial de tipo de cambio
+                                            //borrar ultimo gasto
+                                        }
                                     }
                                     else
                                     {

@@ -38,8 +38,8 @@ namespace MB.WCF.Logica.Acciones
                               select GASTOS).FirstOrDefault();
                 dcGastos.iIdGastos = gastos.iIdGastos;
                 dcGastos.iIdCatalogo = gastos.iIdCatalogo;
-                dcGastos.dMonto = gastos.dMonto;
-                dcGastos.dFecha = gastos.dFecha;
+                dcGastos.dMonto = Convert.ToDecimal(gastos.dMonto);
+                dcGastos.dFecha = Convert.ToDateTime(gastos.dFecha);
                 dcGastos.iIdFormaPago = Convert.ToInt32(gastos.iIdFormaPago);
                 dcGastos.vDetalle = gastos.vDetalle;
             }
@@ -58,6 +58,17 @@ namespace MB.WCF.Logica.Acciones
                 resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
             }
 
+            return resultado;
+        }
+
+        public bool registroUnionGasto(int idGasto, int idCapital)
+        {
+            bool resultado = false;
+            using (var context = new MBEntities())
+            {
+                context.T_UNION_HIS_CF_GS.Add(new T_UNION_HIS_CF_GS { iIdGasto = idGasto, iIdCapitalF = idCapital});
+                resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+            }
             return resultado;
         }
     }

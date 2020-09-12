@@ -13,9 +13,9 @@ namespace MB.WCF.DataContract
         [DataMember]
         public int iIdCatalogo { get; set; }
         [DataMember]
-        public decimal? dMonto { get; set; }
+        public decimal dMonto { get; set; }
         [DataMember]
-        public DateTime? dFecha { get; set; }
+        public DateTime dFecha { get; set; }
         [DataMember]
         public string vDetalle { get; set; }
         [DataMember]

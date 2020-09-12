@@ -32,6 +32,12 @@ namespace MB.WEB.ServicioGastos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/guardarUnionDetalleGasto", ReplyAction="http://tempuri.org/IServicioGastos/guardarUnionDetalleGastoResponse")]
         System.Threading.Tasks.Task<bool> guardarUnionDetalleGastoAsync(int presupuesto, int detalle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/registroUnionGasto", ReplyAction="http://tempuri.org/IServicioGastos/registroUnionGastoResponse")]
+        bool registroUnionGasto(int idGasto, int idCapital);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/registroUnionGasto", ReplyAction="http://tempuri.org/IServicioGastos/registroUnionGastoResponse")]
+        System.Threading.Tasks.Task<bool> registroUnionGastoAsync(int idGasto, int idCapital);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +89,14 @@ namespace MB.WEB.ServicioGastos {
         
         public System.Threading.Tasks.Task<bool> guardarUnionDetalleGastoAsync(int presupuesto, int detalle) {
             return base.Channel.guardarUnionDetalleGastoAsync(presupuesto, detalle);
+        }
+        
+        public bool registroUnionGasto(int idGasto, int idCapital) {
+            return base.Channel.registroUnionGasto(idGasto, idCapital);
+        }
+        
+        public System.Threading.Tasks.Task<bool> registroUnionGastoAsync(int idGasto, int idCapital) {
+            return base.Channel.registroUnionGastoAsync(idGasto, idCapital);
         }
     }
 }

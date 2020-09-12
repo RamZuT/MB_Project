@@ -21,5 +21,8 @@ namespace MB.WCF.Logica.Servicios
 
         [OperationContract]
         bool guardarUnionDetalleGasto(int presupuesto, int detalle);
+
+        [OperationContract]
+        bool registroUnionGasto(int idGasto, int idCapital);
     }
 }

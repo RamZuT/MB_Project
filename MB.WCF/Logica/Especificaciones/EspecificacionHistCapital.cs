@@ -10,7 +10,7 @@ namespace MB.WCF.Logica.Especificaciones
     public class EspecificacionHistCapital
     {
         /// <summary>
-        /// Función que inserta cada cambio relacionado a la suma del total del capital
+        /// Función que inserta cada cambio relacionado a la suma o resta del total del capital
         /// </summary>
         /// <param name="monto"></param>
         /// <param name="fechaCorte"></param>

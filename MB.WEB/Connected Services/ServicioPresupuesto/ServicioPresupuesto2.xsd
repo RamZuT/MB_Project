@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:63860/Logica/Servicios/ServicioPresupuesto.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" />
+  <xs:element name="ObtenerPresupuestoPorFecha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerPresupuestoPorFechaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="ObtenerPresupuestoPorFechaResult" nillable="true" type="q1:DCPresupuesto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizaMontoRealPresupuesto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="monto" nillable="true" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizaMontoRealPresupuestoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="actualizaMontoRealPresupuestoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -38,7 +38,7 @@ namespace MB.WEB.Utilidades
             return dcingresoR;
         }
 
-        public DCGastos crearGasto(int iIdCatalogo, decimal? dMonto, DateTime? dFecha, string vDetalle, int iIdFormaPago)
+        public DCGastos crearGasto(int iIdCatalogo, decimal dMonto, DateTime dFecha, string vDetalle, int iIdFormaPago)
         {
             if (!iIdCatalogo.Equals(null) || !dMonto.Equals(null) || !dFecha.Equals(null) || !iIdFormaPago.Equals(null))
             {

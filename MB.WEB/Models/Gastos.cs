@@ -15,7 +15,7 @@ namespace MB.WEB.Models
 
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
         [Display(Name = "Monto")]
-        public decimal? dMonto { get; set; }
+        public decimal dMonto { get; set; }
 
         [Display(Name = "Fecha")]
         [DataType(DataType.Date)]

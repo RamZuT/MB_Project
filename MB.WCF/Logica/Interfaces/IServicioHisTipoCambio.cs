@@ -12,6 +12,7 @@ namespace MB.WCF.Logica.Servicios
     [ServiceContract]
     public interface IServicioHisTipoCambio
     {
+
         [OperationContract]
         bool registroTipoCambio(DCHisTipoCambio dcHisTipoCambio);
 
