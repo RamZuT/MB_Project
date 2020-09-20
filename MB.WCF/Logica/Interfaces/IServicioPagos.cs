@@ -12,6 +12,6 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioPagos
     {
         [OperationContract]
-        bool actualizarPago(int idCatalogo, DateTime fecha);
+        bool actualizarPago(int idCatalogo, DateTime fecha, bool estado);
     }
 }

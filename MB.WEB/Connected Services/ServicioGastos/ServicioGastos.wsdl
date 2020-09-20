@@ -7,11 +7,11 @@
       <xsd:import schemaLocation="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IServicioGastos_guardarGasto_InputMessage">
-    <wsdl:part name="parameters" element="tns:guardarGasto" />
+  <wsdl:message name="IServicioGastos_registroGasto_InputMessage">
+    <wsdl:part name="parameters" element="tns:registroGasto" />
   </wsdl:message>
-  <wsdl:message name="IServicioGastos_guardarGasto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:guardarGastoResponse" />
+  <wsdl:message name="IServicioGastos_registroGasto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:registroGastoResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioGastos_obtenerUltimoGasto_InputMessage">
     <wsdl:part name="parameters" element="tns:obtenerUltimoGasto" />
@@ -32,9 +32,9 @@
     <wsdl:part name="parameters" element="tns:registroUnionGastoResponse" />
   </wsdl:message>
   <wsdl:portType name="IServicioGastos">
-    <wsdl:operation name="guardarGasto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/guardarGasto" message="tns:IServicioGastos_guardarGasto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioGastos/guardarGastoResponse" message="tns:IServicioGastos_guardarGasto_OutputMessage" />
+    <wsdl:operation name="registroGasto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/registroGasto" message="tns:IServicioGastos_registroGasto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioGastos/registroGastoResponse" message="tns:IServicioGastos_registroGasto_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="obtenerUltimoGasto">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioGastos/obtenerUltimoGasto" message="tns:IServicioGastos_obtenerUltimoGasto_InputMessage" />
@@ -51,8 +51,8 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicioGastos" type="tns:IServicioGastos">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="guardarGasto">
-      <soap:operation soapAction="http://tempuri.org/IServicioGastos/guardarGasto" style="document" />
+    <wsdl:operation name="registroGasto">
+      <soap:operation soapAction="http://tempuri.org/IServicioGastos/registroGasto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

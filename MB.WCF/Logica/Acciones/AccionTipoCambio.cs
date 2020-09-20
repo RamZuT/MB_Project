@@ -8,6 +8,38 @@ namespace MB.WCF.Logica.Acciones
 {
     public class AccionTipoCambio
     {
+        public bool guardarTipoCambio(DCHisTipoCambio dcHisTipoCambio, MBEntities context)
+        {
+            bool resultado = false;
+            using (context)
+            {
+                if (dcHisTipoCambio.iIdIngreso != 0)
+                {
+                    context.HIS_TIPO_CAMBIO.Add(new HIS_TIPO_CAMBIO
+                    {
+                        vMonto = dcHisTipoCambio.vMonto,
+                        dFecha = dcHisTipoCambio.dFecha,
+                        iIdMoneda = dcHisTipoCambio.iIdMoneda,
+                        iIdIngreso = dcHisTipoCambio.iIdIngreso
+                    });
+                    resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+                }
+                else
+                {
+                    context.HIS_TIPO_CAMBIO.Add(new HIS_TIPO_CAMBIO
+                    {
+                        vMonto = dcHisTipoCambio.vMonto,
+                        dFecha = dcHisTipoCambio.dFecha,
+                        iIdMoneda = dcHisTipoCambio.iIdMoneda,
+                        iIdGasto = dcHisTipoCambio.iIdGasto
+                    });
+                    resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
+                }
+
+            }
+            return resultado;
+        }
+
         public bool registroTipoCambio(DCHisTipoCambio dcHisTipoCambio)
         {
             bool resultado = false;

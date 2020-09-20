@@ -12,6 +12,6 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioPagos.svc or ServicioPagos.svc.cs at the Solution Explorer and start debugging.
     public class ServicioPagos : IServicioPagos
     {
-        public bool actualizarPago(int idCatalogo, DateTime fecha) => new EspecificacionPagos().actualizarPago(idCatalogo, fecha);
+        public bool actualizarPago(int idCatalogo, DateTime fecha, bool estado) => new EspecificacionPagos().actualizarPago(idCatalogo, fecha, estado);
     }
 }

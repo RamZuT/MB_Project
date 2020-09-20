@@ -14,7 +14,7 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <param name="dcIngresos">Tipo de objeto del modelo WCF que representa un ingreso</param>
         /// <returns>Verdadero o false si se almacena en Base de datos.</returns>
-        public bool registroIngresos(DCIngresos dcIngresos) => new AccionIngresos().registroIngresos(dcIngresos);
+        public bool registroIngresos(DCIngresos dcIngresos, DCHisTipoCambio tipoCambio) => new AccionIngresos().registroIngresos(dcIngresos, tipoCambio);
 
         /// <summary>
         /// Función que obtiene el objeto del último ingreso registrado
@@ -28,13 +28,13 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <param name="idIngreso"></param>
         /// <returns> retorna verdadero o false de acuerdo al resultado del query</returns>
-        public bool eliminarIngresoPorId(int idIngreso) => new AccionIngresos().eliminarIngresoPorId(idIngreso);
+        public void eliminarIngresoPorId(int idIngreso) => new AccionIngresos().eliminarIngresoPorId(idIngreso);
 
         /// <summary>
         /// Función que almacena la unión de las tablas historial de ingresos e ingresos
         /// </summary>
         /// <returns>Retorna verdadero o falso al insert</returns>
-        public bool registroUnionIngreso(int ingreso, int capital) => new AccionIngresos().registroUnionIngreso(ingreso, capital);
+        public void registroUnionIngreso(int ingreso, int capital) => new AccionIngresos().registroUnionIngreso(ingreso, capital);
 
     }
 }

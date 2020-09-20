@@ -14,15 +14,19 @@ namespace MB.WEB.Utilidades
         WCF.DataContract.DCHisTipoCambio tipoCambio = new WCF.DataContract.DCHisTipoCambio();
         DCGastos dcGasto = new DCGastos();
 
-        public DCHisTipoCambio crearTipoCambio(int idMoneda, decimal monto, DateTime fecha, int ultimoIngreso, int ultimoGasto)
+        public DCHisTipoCambio crearTipoCambioParcial(int idMoneda, decimal? monto, DateTime fecha)
         {
-            if (!idMoneda.Equals(null) || !monto.Equals(null) || !fecha.Equals(null))
+            if (idMoneda == 1)
             {
                 tipoCambio.iIdMoneda = idMoneda;
-                tipoCambio.vMonto = monto;
+                tipoCambio.vMonto = Convert.ToDecimal(monto);
                 tipoCambio.dFecha = fecha;
-                tipoCambio.iIdIngreso = ultimoIngreso;
-                tipoCambio.iIdGasto = ultimoGasto;
+            }
+            else
+            {
+                tipoCambio.iIdMoneda = idMoneda;
+                tipoCambio.vMonto = 1;
+                tipoCambio.dFecha = fecha;
             }
             return tipoCambio;
         }

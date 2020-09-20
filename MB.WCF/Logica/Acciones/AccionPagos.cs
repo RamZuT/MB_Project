@@ -7,7 +7,7 @@ namespace MB.WCF.Logica.Acciones
 {
     public class AccionPagos
     {
-        public bool actualizarPago(int idCatalogo, DateTime fecha)
+        public bool actualizarPago(int idCatalogo, DateTime fecha, bool estado)
         {
             bool resultado = false;
             using (var context = new MBEntities())
@@ -16,7 +16,7 @@ namespace MB.WCF.Logica.Acciones
                             where PAGOS.iIdCatalogo == idCatalogo
                             orderby PAGOS.dFechaVencePago descending
                             select PAGOS).FirstOrDefault();
-                pago.bEstado = true;
+                pago.bEstado = estado;
                 context.Entry(pago).State = System.Data.Entity.EntityState.Modified;
                 resultado = (Convert.ToBoolean(context.SaveChanges()) == true ? true : false);
             }

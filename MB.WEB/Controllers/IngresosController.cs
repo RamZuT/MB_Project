@@ -43,70 +43,21 @@ namespace MB.WEB.Controllers
         {
             try
             {
-                WCF.DataContract.DCIngresos ultimoIngreso = new WCF.DataContract.DCIngresos();
-                var continua = false;
-
                 if (ModelState.IsValid)
                 {
                     if (ingreso.iMoneda == 1)
                     {
-                        continua = (urServIngreso.registroIngresos(crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto)));
-                        if (continua == true)
-                        {
-                            var _ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
-                            continua = (urSercHisTipoCambio.registroTipoCambio(crearObjetos.crearTipoCambio(ingreso.iMoneda, ingreso.tipoCambio, ingreso.dFecha, 
-                                _ultimoIngreso.iIdIngresos, 0)));
-                            if (continua == true)
-                            {
-                                var _idUltimoTipoCambio = urSercHisTipoCambio.obtenerUltimoIdTipoCambio();
-                                continua = (urServHistCapital.registroHistCapital(utilitarios.convertirDolarAColon(_ultimoIngreso.dMonto, ingreso.tipoCambio),
-                                    _ultimoIngreso.dFecha, true));
-                                if (continua == true)
-                                {
-                                    var UltimoHistorial = urServHistCapital.capitalActual();
-                                    continua = (urServIngreso.registroUnionIngreso(_ultimoIngreso.iIdIngresos, UltimoHistorial.iIdCapitalF));
-                                    if (continua != true)
-                                    {
-                                        urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
-                                        urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
-                                        urServHistCapital.eliminarHisCapitalPorId(UltimoHistorial.iIdCapitalF);
-                                    }
-                                }
-                                else
-                                {
-                                    urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
-                                    urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
-                                }
-                            }
-                            else
-                            {
-                                urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
-                            }
-                        }
+                        urServIngreso.registroIngresos(
+                            crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto),
+                            crearObjetos.crearTipoCambioParcial(ingreso.iMoneda, ingreso.tipoCambio, ingreso.dFecha)
+                            );
                     }
                     else
                     {
-                        continua = urServIngreso.registroIngresos(crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto));
-                        if (continua == true)
-                        {
-                            var _ultimoIngreso = urServIngreso.obtenerUltimoIngreso();
-                            var UltimoHistorial = urServHistCapital.capitalActual();
-                            continua = (urServHistCapital.registroHistCapital(_ultimoIngreso.dMonto, _ultimoIngreso.dFecha, true));
-                            if (continua == true)
-                            {
-                                continua = (urServIngreso.registroUnionIngreso(_ultimoIngreso.iIdIngresos, UltimoHistorial.iIdCapitalF));
-                                if (continua != true)
-                                {
-                                    urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
-                                    urSercHisTipoCambio.eliminarTipoCambioPorId(_ultimoIngreso.iIdIngresos);
-                                    urServHistCapital.eliminarHisCapitalPorId(UltimoHistorial.iIdCapitalF);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            urServIngreso.eliminarIngresoPorId(ingreso.iIdIngresos);
-                        }
+                        urServIngreso.registroIngresos(
+                            crearObjetos.crearIngreso(ingreso.dMonto, ingreso.dFecha, ingreso.vConcepto),
+                            crearObjetos.crearTipoCambioParcial(ingreso.iMoneda, ingreso.tipoCambio, ingreso.dFecha)
+                            );
                     }
 
                 }

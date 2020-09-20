@@ -5,6 +5,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="idCatalogo" type="xs:int" />
         <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="estado" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

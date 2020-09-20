@@ -13,7 +13,7 @@ namespace MB.WEB.Models
         [Display(Name = "Catálogo")]
         public int iIdCatalogo { get; set; }
 
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
+        //[RegularExpression("^[0-9]*$", ErrorMessage = "Solo se permiten números.")]
         [Display(Name = "Monto")]
         public decimal dMonto { get; set; }
 
@@ -21,16 +21,16 @@ namespace MB.WEB.Models
         [DataType(DataType.Date)]
         public DateTime dFecha { get; set; }
 
-        [Display(Name = "Moneda")]
-        public int iIdMoneda { get; set; }
-
         [Display(Name = "Detalle")]
         public string vDetalle { get; set; }
 
         [Display(Name = "Forma de pago")]
         public int iIdFormaPago { get; set; }
 
+        [Display(Name = "Moneda")]
+        public int iIdMoneda { get; set; }
+
         [Display(Name = "Tipo de Cambio")]
-        public decimal tipoCambio { get; set; }
+        public decimal? tipoCambio { get; set; }
     }
 }

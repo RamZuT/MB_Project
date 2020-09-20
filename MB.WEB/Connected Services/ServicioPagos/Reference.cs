@@ -16,10 +16,10 @@ namespace MB.WEB.ServicioPagos {
     public interface IServicioPagos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPagos/actualizarPago", ReplyAction="http://tempuri.org/IServicioPagos/actualizarPagoResponse")]
-        bool actualizarPago(int idCatalogo, System.DateTime fecha);
+        bool actualizarPago(int idCatalogo, System.DateTime fecha, bool estado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPagos/actualizarPago", ReplyAction="http://tempuri.org/IServicioPagos/actualizarPagoResponse")]
-        System.Threading.Tasks.Task<bool> actualizarPagoAsync(int idCatalogo, System.DateTime fecha);
+        System.Threading.Tasks.Task<bool> actualizarPagoAsync(int idCatalogo, System.DateTime fecha, bool estado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace MB.WEB.ServicioPagos {
                 base(binding, remoteAddress) {
         }
         
-        public bool actualizarPago(int idCatalogo, System.DateTime fecha) {
-            return base.Channel.actualizarPago(idCatalogo, fecha);
+        public bool actualizarPago(int idCatalogo, System.DateTime fecha, bool estado) {
+            return base.Channel.actualizarPago(idCatalogo, fecha, estado);
         }
         
-        public System.Threading.Tasks.Task<bool> actualizarPagoAsync(int idCatalogo, System.DateTime fecha) {
-            return base.Channel.actualizarPagoAsync(idCatalogo, fecha);
+        public System.Threading.Tasks.Task<bool> actualizarPagoAsync(int idCatalogo, System.DateTime fecha, bool estado) {
+            return base.Channel.actualizarPagoAsync(idCatalogo, fecha, estado);
         }
     }
 }

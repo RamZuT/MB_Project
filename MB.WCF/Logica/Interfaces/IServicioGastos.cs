@@ -14,7 +14,7 @@ namespace MB.WCF.Logica.Servicios
     public interface IServicioGastos
     {
         [OperationContract]
-        bool guardarGasto(DCGastos gastos);
+        bool registroGasto(DCGastos gastos, DCHisTipoCambio tipocambio);
 
         [OperationContract]
         DCGastos obtenerUltimoGasto();

@@ -103,8 +103,6 @@
           <Property Name="iIdDetalle" Type="int" Nullable="false" />
           <Property Name="iIdPresupuesto" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MB.dbo.T_UNION_GAS_DET_PRESUP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="T_UNION_GAS_DET_PRESUP">
           <Key>
             <PropertyRef Name="iIdUnionGDP" />
@@ -321,15 +319,9 @@ warning 6002: The table/view 'MB.dbo.T_UNION_GAS_DET_PRESUP' does not have a pri
           <EntitySet Name="PAGOS" EntityType="Self.PAGOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRESUPUESTO" EntityType="Self.PRESUPUESTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_DETALLE_PRESUPUESTO" EntityType="Self.T_UNION_DETALLE_PRESUPUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_UNION_GAS_DET_PRESUP" EntityType="Self.T_UNION_GAS_DET_PRESUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_HIS_CF_GS" EntityType="Self.T_UNION_HIS_CF_GS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_UNION_HIS_CF_IG" EntityType="Self.T_UNION_HIS_CF_IG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_UNION_GAS_DET_PRESUP" EntityType="Self.T_UNION_GAS_DET_PRESUP" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [T_UNION_GAS_DET_PRESUP].[iIdUnionGDP] AS [iIdUnionGDP], 
-    [T_UNION_GAS_DET_PRESUP].[iIdGasto] AS [iIdGasto], 
-    [T_UNION_GAS_DET_PRESUP].[iIdDetallePresupuesto] AS [iIdDetallePresupuesto]
-    FROM [dbo].[T_UNION_GAS_DET_PRESUP] AS [T_UNION_GAS_DET_PRESUP]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__HIS_TIPO___iIdGa__1BC821DD" Association="Self.FK__HIS_TIPO___iIdGa__1BC821DD">
             <End Role="GASTOS" EntitySet="GASTOS" />
             <End Role="HIS_TIPO_CAMBIO" EntitySet="HIS_TIPO_CAMBIO" />

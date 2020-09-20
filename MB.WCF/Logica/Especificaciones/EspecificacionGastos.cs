@@ -14,7 +14,7 @@ namespace MB.WCF.Logica.Especificaciones
         /// </summary>
         /// <param name="gastos">Representa a un objeto de tipo DCGastos</param>
         /// <returns>Retorna un true o false según el resultado exitoso o fallido</returns>
-        public bool guardarGasto(DCGastos gastos) => new AccionGastos().guardarGasto(gastos);
+        public bool registroGasto(DCGastos gastos, DCHisTipoCambio tipoCambio) => new AccionGastos().registroGasto(gastos, tipoCambio);
 
         /// <summary>
         /// Función que obtiene el último registro de gastos

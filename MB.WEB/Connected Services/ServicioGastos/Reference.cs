@@ -15,11 +15,11 @@ namespace MB.WEB.ServicioGastos {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioGastos.IServicioGastos")]
     public interface IServicioGastos {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/guardarGasto", ReplyAction="http://tempuri.org/IServicioGastos/guardarGastoResponse")]
-        bool guardarGasto(MB.WCF.DataContract.DCGastos gastos);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/registroGasto", ReplyAction="http://tempuri.org/IServicioGastos/registroGastoResponse")]
+        bool registroGasto(MB.WCF.DataContract.DCGastos gastos, MB.WCF.DataContract.DCHisTipoCambio tipocambio);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/guardarGasto", ReplyAction="http://tempuri.org/IServicioGastos/guardarGastoResponse")]
-        System.Threading.Tasks.Task<bool> guardarGastoAsync(MB.WCF.DataContract.DCGastos gastos);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/registroGasto", ReplyAction="http://tempuri.org/IServicioGastos/registroGastoResponse")]
+        System.Threading.Tasks.Task<bool> registroGastoAsync(MB.WCF.DataContract.DCGastos gastos, MB.WCF.DataContract.DCHisTipoCambio tipocambio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioGastos/obtenerUltimoGasto", ReplyAction="http://tempuri.org/IServicioGastos/obtenerUltimoGastoResponse")]
         MB.WCF.DataContract.DCGastos obtenerUltimoGasto();
@@ -67,12 +67,12 @@ namespace MB.WEB.ServicioGastos {
                 base(binding, remoteAddress) {
         }
         
-        public bool guardarGasto(MB.WCF.DataContract.DCGastos gastos) {
-            return base.Channel.guardarGasto(gastos);
+        public bool registroGasto(MB.WCF.DataContract.DCGastos gastos, MB.WCF.DataContract.DCHisTipoCambio tipocambio) {
+            return base.Channel.registroGasto(gastos, tipocambio);
         }
         
-        public System.Threading.Tasks.Task<bool> guardarGastoAsync(MB.WCF.DataContract.DCGastos gastos) {
-            return base.Channel.guardarGastoAsync(gastos);
+        public System.Threading.Tasks.Task<bool> registroGastoAsync(MB.WCF.DataContract.DCGastos gastos, MB.WCF.DataContract.DCHisTipoCambio tipocambio) {
+            return base.Channel.registroGastoAsync(gastos, tipocambio);
         }
         
         public MB.WCF.DataContract.DCGastos obtenerUltimoGasto() {

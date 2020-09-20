@@ -5,6 +5,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="dcIngresos" nillable="true" type="q1:DCIngresos" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="tipoCambio" nillable="true" type="q2:DCHisTipoCambio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -23,7 +24,7 @@
   <xs:element name="obtenerUltimoIngresoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="obtenerUltimoIngresoResult" nillable="true" type="q2:DCIngresos" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="obtenerUltimoIngresoResult" nillable="true" type="q3:DCIngresos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -36,9 +37,7 @@
   </xs:element>
   <xs:element name="eliminarIngresoPorIdResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="eliminarIngresoPorIdResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="registroUnionIngreso">
@@ -51,9 +50,7 @@
   </xs:element>
   <xs:element name="registroUnionIngresoResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="registroUnionIngresoResult" type="xs:boolean" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

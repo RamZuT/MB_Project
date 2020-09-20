@@ -13,7 +13,7 @@ namespace MB.WCF.Logica.Servicios
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServicioGastos.svc or ServicioGastos.svc.cs at the Solution Explorer and start debugging.
     public class ServicioGastos : IServicioGastos
     {
-        public bool guardarGasto(DCGastos gastos) => new EspecificacionGastos().guardarGasto(gastos);
+        public bool registroGasto(DCGastos gastos, DCHisTipoCambio tipoCambio) => new EspecificacionGastos().registroGasto(gastos, tipoCambio);
 
         public DCGastos obtenerUltimoGasto() => new EspecificacionGastos().obtenerUltimoGasto();
 

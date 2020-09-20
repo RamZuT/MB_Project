@@ -11,4 +11,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DCGastos" nillable="true" type="tns:DCGastos" />
+  <xs:complexType name="DCHisTipoCambio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dFecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="iIdGasto" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdIngreso" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdMoneda" type="xs:int" />
+      <xs:element minOccurs="0" name="iIdTipoCambio" type="xs:int" />
+      <xs:element minOccurs="0" name="vMonto" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DCHisTipoCambio" nillable="true" type="tns:DCHisTipoCambio" />
 </xs:schema>

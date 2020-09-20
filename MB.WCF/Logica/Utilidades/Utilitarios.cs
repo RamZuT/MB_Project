@@ -13,5 +13,12 @@ namespace MB.WCF.Logica.Utilidades
             DateTime corteInicioAnno = new DateTime(anno,01,01);
             return corteInicioAnno;
         }
+
+        public decimal convertirDolarAColon(decimal monto, decimal tipoCambio)
+        {
+            decimal resultado;
+            resultado = monto * tipoCambio;
+            return resultado;
+        }
     }
 }

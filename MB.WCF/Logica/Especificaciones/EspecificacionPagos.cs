@@ -14,6 +14,6 @@ namespace MB.WCF.Logica.Especificaciones
         /// <param name="idCatalogo">Identificador  del catálogo</param>
         /// <param name="fecha">Fecha del movimiento</param>
         /// <returns>Retorna un verdadero o falso según el resultado de la función</returns>
-        public bool actualizarPago(int idCatalogo, DateTime fecha) => new AccionPagos().actualizarPago(idCatalogo, fecha);
+        public bool actualizarPago(int idCatalogo, DateTime fecha, bool estado) => new AccionPagos().actualizarPago(idCatalogo, fecha, estado);
     }
 }

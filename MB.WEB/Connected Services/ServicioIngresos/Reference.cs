@@ -16,10 +16,10 @@ namespace MB.WEB.ServicioIngresos {
     public interface IServicioIngresos {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/registroIngresos", ReplyAction="http://tempuri.org/IServicioIngresos/registroIngresosResponse")]
-        bool registroIngresos(MB.WCF.DataContract.DCIngresos dcIngresos);
+        bool registroIngresos(MB.WCF.DataContract.DCIngresos dcIngresos, MB.WCF.DataContract.DCHisTipoCambio tipoCambio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/registroIngresos", ReplyAction="http://tempuri.org/IServicioIngresos/registroIngresosResponse")]
-        System.Threading.Tasks.Task<bool> registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos);
+        System.Threading.Tasks.Task<bool> registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos, MB.WCF.DataContract.DCHisTipoCambio tipoCambio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/obtenerUltimoIngreso", ReplyAction="http://tempuri.org/IServicioIngresos/obtenerUltimoIngresoResponse")]
         MB.WCF.DataContract.DCIngresos obtenerUltimoIngreso();
@@ -28,16 +28,16 @@ namespace MB.WEB.ServicioIngresos {
         System.Threading.Tasks.Task<MB.WCF.DataContract.DCIngresos> obtenerUltimoIngresoAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/eliminarIngresoPorId", ReplyAction="http://tempuri.org/IServicioIngresos/eliminarIngresoPorIdResponse")]
-        bool eliminarIngresoPorId(int idIngreso);
+        void eliminarIngresoPorId(int idIngreso);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/eliminarIngresoPorId", ReplyAction="http://tempuri.org/IServicioIngresos/eliminarIngresoPorIdResponse")]
-        System.Threading.Tasks.Task<bool> eliminarIngresoPorIdAsync(int idIngreso);
+        System.Threading.Tasks.Task eliminarIngresoPorIdAsync(int idIngreso);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/registroUnionIngreso", ReplyAction="http://tempuri.org/IServicioIngresos/registroUnionIngresoResponse")]
-        bool registroUnionIngreso(int ingreso, int capital);
+        void registroUnionIngreso(int ingreso, int capital);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioIngresos/registroUnionIngreso", ReplyAction="http://tempuri.org/IServicioIngresos/registroUnionIngresoResponse")]
-        System.Threading.Tasks.Task<bool> registroUnionIngresoAsync(int ingreso, int capital);
+        System.Threading.Tasks.Task registroUnionIngresoAsync(int ingreso, int capital);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,12 +67,12 @@ namespace MB.WEB.ServicioIngresos {
                 base(binding, remoteAddress) {
         }
         
-        public bool registroIngresos(MB.WCF.DataContract.DCIngresos dcIngresos) {
-            return base.Channel.registroIngresos(dcIngresos);
+        public bool registroIngresos(MB.WCF.DataContract.DCIngresos dcIngresos, MB.WCF.DataContract.DCHisTipoCambio tipoCambio) {
+            return base.Channel.registroIngresos(dcIngresos, tipoCambio);
         }
         
-        public System.Threading.Tasks.Task<bool> registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos) {
-            return base.Channel.registroIngresosAsync(dcIngresos);
+        public System.Threading.Tasks.Task<bool> registroIngresosAsync(MB.WCF.DataContract.DCIngresos dcIngresos, MB.WCF.DataContract.DCHisTipoCambio tipoCambio) {
+            return base.Channel.registroIngresosAsync(dcIngresos, tipoCambio);
         }
         
         public MB.WCF.DataContract.DCIngresos obtenerUltimoIngreso() {
@@ -83,19 +83,19 @@ namespace MB.WEB.ServicioIngresos {
             return base.Channel.obtenerUltimoIngresoAsync();
         }
         
-        public bool eliminarIngresoPorId(int idIngreso) {
-            return base.Channel.eliminarIngresoPorId(idIngreso);
+        public void eliminarIngresoPorId(int idIngreso) {
+            base.Channel.eliminarIngresoPorId(idIngreso);
         }
         
-        public System.Threading.Tasks.Task<bool> eliminarIngresoPorIdAsync(int idIngreso) {
+        public System.Threading.Tasks.Task eliminarIngresoPorIdAsync(int idIngreso) {
             return base.Channel.eliminarIngresoPorIdAsync(idIngreso);
         }
         
-        public bool registroUnionIngreso(int ingreso, int capital) {
-            return base.Channel.registroUnionIngreso(ingreso, capital);
+        public void registroUnionIngreso(int ingreso, int capital) {
+            base.Channel.registroUnionIngreso(ingreso, capital);
         }
         
-        public System.Threading.Tasks.Task<bool> registroUnionIngresoAsync(int ingreso, int capital) {
+        public System.Threading.Tasks.Task registroUnionIngresoAsync(int ingreso, int capital) {
             return base.Channel.registroUnionIngresoAsync(ingreso, capital);
         }
     }

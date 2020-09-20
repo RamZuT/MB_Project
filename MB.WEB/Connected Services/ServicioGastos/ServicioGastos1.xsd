@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:63860/Logica/Servicios/ServicioGastos.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" />
-  <xs:element name="guardarGasto">
+  <xs:element name="registroGasto">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="gastos" nillable="true" type="q1:DCGastos" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="tipocambio" nillable="true" type="q2:DCHisTipoCambio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="guardarGastoResponse">
+  <xs:element name="registroGastoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="guardarGastoResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="registroGastoResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -23,7 +24,7 @@
   <xs:element name="obtenerUltimoGastoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="obtenerUltimoGastoResult" nillable="true" type="q2:DCGastos" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MB.WCF.DataContract" minOccurs="0" name="obtenerUltimoGastoResult" nillable="true" type="q3:DCGastos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
